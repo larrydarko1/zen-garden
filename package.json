@@ -1,0 +1,48 @@
+{
+  "name": "zen-garden",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "server": "ts-node server/index.ts",
+    "dbdump": "mongodump --db=ZenDB --out=db/dump",
+    "docker": "docker compose -f docker/docker-compose.yml up --build -d"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.21",
+    "argon2": "^0.43.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.17.0",
+    "validator": "^13.15.15",
+    "vue": "^3.5.17"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^24.0.13",
+    "@types/validator": "^13.15.3",
+    "@vitejs/plugin-vue": "^6.0.0",
+    "@vue/test-utils": "^2.4.6",
+    "@vue/tsconfig": "^0.7.0",
+    "jsdom": "^26.1.0",
+    "sass-embedded": "^1.92.1",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.0",
+    "vitest": "^3.2.4",
+    "vue-tsc": "^2.2.10"
+  },
+  "description": "A meditation and mindfulness web app built with Vue 3, TypeScript, and Vite.",
+  "author": "Lorenzo Mazzola",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/larrydarko1/zen-garden.git"
+  }
+}

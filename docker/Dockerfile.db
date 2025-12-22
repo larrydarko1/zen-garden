@@ -1,0 +1,4 @@
+FROM mongo:latest
+
+COPY db/dump /dump
+COPY db/init-mongo.sh /docker-entrypoint-initdb.d/

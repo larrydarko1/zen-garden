@@ -1,0 +1,18 @@
+FROM node:20
+
+WORKDIR /app
+
+# Copy source files
+COPY server ./server
+COPY package.json ./package.json
+
+# Install dependencies and TypeScript
+RUN npm install && npm install typescript --save-dev
+
+# Compile TypeScript
+RUN npx tsc --project server/tsconfig.server.json
+
+EXPOSE 3001
+
+# Run the compiled JS file
+CMD ["node", "build/server/index.js"]

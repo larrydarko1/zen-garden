@@ -1,0 +1,91 @@
+services:
+  traefik:
+    image: traefik:latest
+    command:
+      - --api.insecure=true
+      - --providers.docker=true
+      - --providers.file.filename=/etc/traefik/traefik.yml
+      - --entryPoints.web.address=:80
+      - --entryPoints.websecure.address=:443
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik.yml:/etc/traefik/traefik.yml:ro
+      - acme-data:/acme.json
+    networks:
+      - web
+    environment:
+      - CLOUDFLARE_DNS_API_TOKEN=your-cloudflare-api-token # Replace with your token
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.frontend
+    depends_on:
+      - api
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.zen-frontend.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.zen-frontend.entryPoints=websecure"
+      - "traefik.http.routers.zen-frontend.tls.certresolver=cloudflare"
+      - "traefik.http.services.zen-frontend.loadbalancer.server.port=3000"
+    restart: unless-stopped
+    expose:
+      - "3000"
+    networks:
+      - web
+      - internal
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    environment:
+      - VITE_API_KEY=zen-api-key-12345
+
+  api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.server
+    depends_on:
+      - zendb
+    restart: unless-stopped
+    expose:
+      - "3001"
+    networks:
+      - internal
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    environment:
+      - API_KEY=zen-api-key-12345
+      - JWT_SECRET=supersecretzenkey
+      - MONGO_URI=mongodb://zendb:27017
+      - PORT=3001
+
+  zendb:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+    expose:
+      - "27017"
+    networks:
+      - internal
+
+volumes:
+  mongo-data: # MongoDB data
+  acme-data:
+    # ACME certificates
+
+
+networks:
+  web:
+  internal:
+    # Internal network for communication between services
+    internal: true

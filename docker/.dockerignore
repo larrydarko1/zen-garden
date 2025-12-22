@@ -1,0 +1,7 @@
+node_modules
+dist
+docker/frontend-dist
+.env
+*.log
+tests
+coverage
