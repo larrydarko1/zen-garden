@@ -1,0 +1,113 @@
+{
+    "settings": {
+        "title": "Einstellungen",
+        "theme": "Thema",
+        "language": "Sprache",
+        "themes": {
+            "blue": "Blau",
+            "white": "Weiß",
+            "dark": "Dunkel"
+        },
+        "languages": {
+            "en": "English",
+            "es": "Español",
+            "it": "Italiano",
+            "fr": "Français",
+            "de": "Deutsch",
+            "pt": "Português",
+            "zh": "中文",
+            "ja": "日本語"
+        }
+    },
+    "header": {
+        "greeting": "Hallo",
+        "totalSessions": "Ges. Sitzungen",
+        "totalMinutes": "Ges. Minuten",
+        "dayStreak": "Tage-Serie",
+        "breathe": "Atmen",
+        "calendar": "Kalender",
+        "logout": "Abmelden"
+    },
+    "meditation": {
+        "begin": "Beginnen",
+        "stop": "Stoppen"
+    },
+    "auth": {
+        "welcome": "Willkommen bei ZenGarden",
+        "username": "Benutzername",
+        "password": "Passwort",
+        "login": "Anmelden",
+        "register": "Registrieren",
+        "switchToRegister": "Kein Konto? Registrieren",
+        "switchToLogin": "Haben Sie bereits ein Konto? Anmelden"
+    },
+    "notes": {
+        "title": "Sitzung Abgeschlossen",
+        "subtitle": "Wie war Ihre Meditation?",
+        "placeholder": "Schreiben Sie Ihre Gedanken...",
+        "save": "Speichern",
+        "skip": "Überspringen"
+    },
+    "breathing": {
+        "title": "Atemübung",
+        "box": "Box-Atmung",
+        "deep": "Tiefe Atmung",
+        "calm": "Beruhigende Atmung",
+        "fourSevenEight": "4-7-8 Atmung",
+        "energizing": "Energetisierende Atmung",
+        "start": "Starten",
+        "stop": "Stoppen",
+        "close": "Schließen",
+        "cycle": "Zyklus",
+        "breatheIn": "Einatmen",
+        "hold": "Halten",
+        "breatheOut": "Ausatmen",
+        "descriptions": {
+            "box": "Gleiche Teile: einatmen, halten, ausatmen, halten (4-4-4-4)",
+            "fourSevenEight": "Beruhigende Technik: einatmen 4, halten 7, ausatmen 8",
+            "deep": "Lange langsame Atemzüge: einatmen 6, ausatmen 6",
+            "energizing": "Schnelles Einatmen, längeres Ausatmen: 2 rein, 4 raus"
+        }
+    },
+    "calendar": {
+        "title": "Meditationskalender",
+        "minutes": "Min",
+        "close": "Schließen",
+        "notes": "Notizen",
+        "months": [
+            "Januar",
+            "Februar",
+            "März",
+            "April",
+            "Mai",
+            "Juni",
+            "Juli",
+            "August",
+            "September",
+            "Oktober",
+            "November",
+            "Dezember"
+        ],
+        "weekdays": [
+            "S",
+            "M",
+            "D",
+            "M",
+            "D",
+            "F",
+            "S"
+        ]
+    },
+    "phrases": [
+        "Atme Frieden ein, atme Spannung aus.",
+        "Der gegenwärtige Moment ist alles, was wir wirklich haben.",
+        "Stille ist der Schlüssel zur Klarheit.",
+        "Lass die Gedanken wie Wolken am Himmel vorbeiziehen.",
+        "Je ruhiger du wirst, desto mehr kannst du hören.",
+        "Fließe wie Wasser, stetig und klar.",
+        "In der Stille verwandelt sich die Welt.",
+        "Lass los und sei einfach.",
+        "Balance ist nichts, was du findest, es ist etwas, das du erschaffst.",
+        "Frieden kommt von innen."
+    ]
+}

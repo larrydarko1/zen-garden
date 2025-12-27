@@ -1,0 +1,113 @@
+{
+    "settings": {
+        "title": "Paramètres",
+        "theme": "Thème",
+        "language": "Langue",
+        "themes": {
+            "blue": "Bleu",
+            "white": "Blanc",
+            "dark": "Sombre"
+        },
+        "languages": {
+            "en": "English",
+            "es": "Español",
+            "it": "Italiano",
+            "fr": "Français",
+            "de": "Deutsch",
+            "pt": "Português",
+            "zh": "中文",
+            "ja": "日本語"
+        }
+    },
+    "header": {
+        "greeting": "Bonjour",
+        "totalSessions": "Sessions Tot.",
+        "totalMinutes": "Minutes Tot.",
+        "dayStreak": "Série de Jours",
+        "breathe": "Respirer",
+        "calendar": "Calendrier",
+        "logout": "Déconnexion"
+    },
+    "meditation": {
+        "begin": "Commencer",
+        "stop": "Arrêter"
+    },
+    "auth": {
+        "welcome": "Bienvenue sur ZenGarden",
+        "username": "Nom d'utilisateur",
+        "password": "Mot de passe",
+        "login": "Connexion",
+        "register": "S'inscrire",
+        "switchToRegister": "Pas de compte ? Inscrivez-vous",
+        "switchToLogin": "Vous avez un compte ? Connectez-vous"
+    },
+    "notes": {
+        "title": "Session Terminée",
+        "subtitle": "Comment était votre méditation ?",
+        "placeholder": "Écrivez vos pensées...",
+        "save": "Enregistrer",
+        "skip": "Passer"
+    },
+    "breathing": {
+        "title": "Exercice de Respiration",
+        "box": "Respiration en Boîte",
+        "deep": "Respiration Profonde",
+        "calm": "Respiration Calmante",
+        "fourSevenEight": "Respiration 4-7-8",
+        "energizing": "Respiration Énergisante",
+        "start": "Commencer",
+        "stop": "Arrêter",
+        "close": "Fermer",
+        "cycle": "Cycle",
+        "breatheIn": "Inspirer",
+        "hold": "Retenir",
+        "breatheOut": "Expirer",
+        "descriptions": {
+            "box": "Parties égales : inspirer, retenir, expirer, retenir (4-4-4-4)",
+            "fourSevenEight": "Technique calmante : inspirer 4, retenir 7, expirer 8",
+            "deep": "Respirations longues et lentes : inspirer 6, expirer 6",
+            "energizing": "Inspiration rapide, expiration plus longue : 2 dedans, 4 dehors"
+        }
+    },
+    "calendar": {
+        "title": "Calendrier de Méditation",
+        "minutes": "min",
+        "close": "Fermer",
+        "notes": "Notes",
+        "months": [
+            "Janvier",
+            "Février",
+            "Mars",
+            "Avril",
+            "Mai",
+            "Juin",
+            "Juillet",
+            "Août",
+            "Septembre",
+            "Octobre",
+            "Novembre",
+            "Décembre"
+        ],
+        "weekdays": [
+            "D",
+            "L",
+            "M",
+            "M",
+            "J",
+            "V",
+            "S"
+        ]
+    },
+    "phrases": [
+        "Inspire la paix, expire la tension.",
+        "Le moment présent est tout ce que nous avons vraiment.",
+        "Le calme est la clé de la clarté.",
+        "Laisse les pensées passer comme des nuages dans le ciel.",
+        "Plus tu deviens calme, plus tu peux entendre.",
+        "Coule comme l'eau, stable et clair.",
+        "Dans le calme, le monde se transforme.",
+        "Lâche prise et sois simplement.",
+        "L'équilibre n'est pas quelque chose que tu trouves, c'est quelque chose que tu crées.",
+        "La paix vient de l'intérieur."
+    ]
+}

@@ -1,0 +1,113 @@
+{
+    "settings": {
+        "title": "Impostazioni",
+        "theme": "Tema",
+        "language": "Lingua",
+        "themes": {
+            "blue": "Blu",
+            "white": "Bianco",
+            "dark": "Scuro"
+        },
+        "languages": {
+            "en": "English",
+            "es": "Español",
+            "it": "Italiano",
+            "fr": "Français",
+            "de": "Deutsch",
+            "pt": "Português",
+            "zh": "中文",
+            "ja": "日本語"
+        }
+    },
+    "header": {
+        "greeting": "Ciao",
+        "totalSessions": "Sessioni Tot.",
+        "totalMinutes": "Minuti Tot.",
+        "dayStreak": "Serie di Giorni",
+        "breathe": "Respira",
+        "calendar": "Calendario",
+        "logout": "Esci"
+    },
+    "meditation": {
+        "begin": "Inizia",
+        "stop": "Ferma"
+    },
+    "auth": {
+        "welcome": "Benvenuto in ZenGarden",
+        "username": "Nome utente",
+        "password": "Password",
+        "login": "Accedi",
+        "register": "Registrati",
+        "switchToRegister": "Non hai un account? Registrati",
+        "switchToLogin": "Hai già un account? Accedi"
+    },
+    "notes": {
+        "title": "Sessione Completata",
+        "subtitle": "Com'è andata la tua meditazione?",
+        "placeholder": "Scrivi i tuoi pensieri...",
+        "save": "Salva",
+        "skip": "Salta"
+    },
+    "breathing": {
+        "title": "Esercizio di Respirazione",
+        "box": "Respirazione a Scatola",
+        "deep": "Respirazione Profonda",
+        "calm": "Respiro Calmante",
+        "fourSevenEight": "Respirazione 4-7-8",
+        "energizing": "Respiro Energizzante",
+        "start": "Inizia",
+        "stop": "Ferma",
+        "close": "Chiudi",
+        "cycle": "Ciclo",
+        "breatheIn": "Inspira",
+        "hold": "Trattieni",
+        "breatheOut": "Espira",
+        "descriptions": {
+            "box": "Parti uguali: inspirare, trattenere, espirare, trattenere (4-4-4-4)",
+            "fourSevenEight": "Tecnica calmante: inspirare 4, trattenere 7, espirare 8",
+            "deep": "Respiri lunghi e lenti: inspirare 6, espirare 6",
+            "energizing": "Inspirazione rapida, espirazione più lunga: 2 dentro, 4 fuori"
+        }
+    },
+    "calendar": {
+        "title": "Calendario di Meditazione",
+        "minutes": "min",
+        "close": "Chiudi",
+        "notes": "Note",
+        "months": [
+            "Gennaio",
+            "Febbraio",
+            "Marzo",
+            "Aprile",
+            "Maggio",
+            "Giugno",
+            "Luglio",
+            "Agosto",
+            "Settembre",
+            "Ottobre",
+            "Novembre",
+            "Dicembre"
+        ],
+        "weekdays": [
+            "D",
+            "L",
+            "M",
+            "M",
+            "G",
+            "V",
+            "S"
+        ]
+    },
+    "phrases": [
+        "Inspira pace, espira tensione.",
+        "Il momento presente è tutto ciò che abbiamo veramente.",
+        "La quiete è la chiave della chiarezza.",
+        "Lascia passare i pensieri come nuvole nel cielo.",
+        "Più diventi silenzioso, più puoi sentire.",
+        "Fluisci come l'acqua, costante e chiaro.",
+        "Nella quiete, il mondo si trasforma.",
+        "Lascia andare e sii semplicemente.",
+        "L'equilibrio non è qualcosa che trovi, è qualcosa che crei.",
+        "La pace viene da dentro."
+    ]
+}

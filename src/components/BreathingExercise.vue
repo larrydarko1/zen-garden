@@ -2,7 +2,7 @@
   <div class="breathing-modal-bg" @click.self="$emit('close')" aria-label="Breathing exercise modal background">
     <div class="breathing-modal" role="dialog" aria-labelledby="breathing-title" aria-modal="true">
       <div class="breathing-header">
-        <h2 id="breathing-title">Breathing Exercises</h2>
+        <h2 id="breathing-title">{{ t('breathing.title') }}</h2>
         <button class="breathing-close" @click="$emit('close')" aria-label="Close breathing exercises">×</button>
       </div>
       <div class="breathing-content">
@@ -20,7 +20,7 @@
           </button>
         </div>
         <div v-else class="exercise-active">
-          <button class="back-btn" @click="stopExercise" aria-label="Back to exercise list">← Back</button>
+          <button class="back-btn" @click="stopExercise" aria-label="Back to exercise list">← {{ t('breathing.close') }}</button>
           <h3 class="exercise-title">{{ activeExercise.name }}</h3>
           <div class="breathing-visual">
             <div 
@@ -32,8 +32,8 @@
             </div>
           </div>
           <div class="breathing-instructions">
-            <div class="cycle-count">Cycle {{ cycleCount }}</div>
-            <button class="exercise-btn" @click="stopExercise">Stop</button>
+            <div class="cycle-count">{{ t('breathing.cycle') }} {{ cycleCount }}</div>
+            <button class="exercise-btn" @click="stopExercise">{{ t('breathing.stop') }}</button>
           </div>
         </div>
       </div>
@@ -43,6 +43,9 @@
 
 <script setup lang="ts">
 import { ref, onUnmounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 defineEmits<{
   close: []
@@ -58,41 +61,41 @@ interface Exercise {
 const exercises: Exercise[] = [
   {
     id: 'box',
-    name: 'Box Breathing',
-    description: 'Equal parts: inhale, hold, exhale, hold (4-4-4-4)',
+    name: t('breathing.box'),
+    description: t('breathing.descriptions.box'),
     pattern: [
-      { phase: 'in', duration: 4, text: 'Breathe In' },
-      { phase: 'hold', duration: 4, text: 'Hold' },
-      { phase: 'out', duration: 4, text: 'Breathe Out' },
-      { phase: 'hold', duration: 4, text: 'Hold' }
+      { phase: 'in', duration: 4, text: t('breathing.breatheIn') },
+      { phase: 'hold', duration: 4, text: t('breathing.hold') },
+      { phase: 'out', duration: 4, text: t('breathing.breatheOut') },
+      { phase: 'hold', duration: 4, text: t('breathing.hold') }
     ]
   },
   {
     id: '478',
-    name: '4-7-8 Breathing',
-    description: 'Calming technique: inhale 4, hold 7, exhale 8',
+    name: t('breathing.fourSevenEight'),
+    description: t('breathing.descriptions.fourSevenEight'),
     pattern: [
-      { phase: 'in', duration: 4, text: 'Breathe In' },
-      { phase: 'hold', duration: 7, text: 'Hold' },
-      { phase: 'out', duration: 8, text: 'Breathe Out' }
+      { phase: 'in', duration: 4, text: t('breathing.breatheIn') },
+      { phase: 'hold', duration: 7, text: t('breathing.hold') },
+      { phase: 'out', duration: 8, text: t('breathing.breatheOut') }
     ]
   },
   {
     id: 'deep',
-    name: 'Deep Breathing',
-    description: 'Long slow breaths: inhale 6, exhale 6',
+    name: t('breathing.deep'),
+    description: t('breathing.descriptions.deep'),
     pattern: [
-      { phase: 'in', duration: 6, text: 'Breathe In' },
-      { phase: 'out', duration: 6, text: 'Breathe Out' }
+      { phase: 'in', duration: 6, text: t('breathing.breatheIn') },
+      { phase: 'out', duration: 6, text: t('breathing.breatheOut') }
     ]
   },
   {
     id: 'energizing',
-    name: 'Energizing Breath',
-    description: 'Quick inhale, longer exhale: 2 in, 4 out',
+    name: t('breathing.energizing'),
+    description: t('breathing.descriptions.energizing'),
     pattern: [
-      { phase: 'in', duration: 2, text: 'Breathe In' },
-      { phase: 'out', duration: 4, text: 'Breathe Out' }
+      { phase: 'in', duration: 2, text: t('breathing.breatheIn') },
+      { phase: 'out', duration: 4, text: t('breathing.breatheOut') }
     ]
   }
 ]
@@ -154,7 +157,7 @@ onUnmounted(() => {
 .breathing-modal-bg {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--blur2);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;

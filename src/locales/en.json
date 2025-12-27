@@ -1,0 +1,113 @@
+{
+    "settings": {
+        "title": "Settings",
+        "theme": "Theme",
+        "language": "Language",
+        "themes": {
+            "blue": "Blue",
+            "white": "White",
+            "dark": "Dark"
+        },
+        "languages": {
+            "en": "English",
+            "es": "Español",
+            "it": "Italiano",
+            "fr": "Français",
+            "de": "Deutsch",
+            "pt": "Português",
+            "zh": "中文",
+            "ja": "日本語"
+        }
+    },
+    "header": {
+        "greeting": "Hello",
+        "totalSessions": "Tot. Sessions",
+        "totalMinutes": "Tot. Minutes",
+        "dayStreak": "Day Streak",
+        "breathe": "Breathe",
+        "calendar": "Calendar",
+        "logout": "Logout"
+    },
+    "meditation": {
+        "begin": "Begin",
+        "stop": "Stop"
+    },
+    "auth": {
+        "welcome": "Welcome to ZenGarden",
+        "username": "Username",
+        "password": "Password",
+        "login": "Login",
+        "register": "Register",
+        "switchToRegister": "Don't have an account? Register",
+        "switchToLogin": "Already have an account? Login"
+    },
+    "notes": {
+        "title": "Session Complete",
+        "subtitle": "How was your meditation?",
+        "placeholder": "Write your thoughts...",
+        "save": "Save",
+        "skip": "Skip"
+    },
+    "breathing": {
+        "title": "Breathing Exercise",
+        "box": "Box Breathing",
+        "deep": "Deep Breathing",
+        "calm": "Calming Breath",
+        "fourSevenEight": "4-7-8 Breathing",
+        "energizing": "Energizing Breath",
+        "start": "Start",
+        "stop": "Stop",
+        "close": "Close",
+        "cycle": "Cycle",
+        "breatheIn": "Breathe In",
+        "hold": "Hold",
+        "breatheOut": "Breathe Out",
+        "descriptions": {
+            "box": "Equal parts: inhale, hold, exhale, hold (4-4-4-4)",
+            "fourSevenEight": "Calming technique: inhale 4, hold 7, exhale 8",
+            "deep": "Long slow breaths: inhale 6, exhale 6",
+            "energizing": "Quick inhale, longer exhale: 2 in, 4 out"
+        }
+    },
+    "calendar": {
+        "title": "Meditation Calendar",
+        "minutes": "min",
+        "close": "Close",
+        "notes": "Notes",
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "weekdays": [
+            "S",
+            "M",
+            "T",
+            "W",
+            "T",
+            "F",
+            "S"
+        ]
+    },
+    "phrases": [
+        "Breathe in peace, breathe out tension.",
+        "The present moment is all we truly have.",
+        "Stillness is the key to clarity.",
+        "Let thoughts pass like clouds in the sky.",
+        "The quieter you become, the more you can hear.",
+        "Flow like water, steady and clear.",
+        "In stillness, the world is transformed.",
+        "Let go and just be.",
+        "Balance is not something you find, it's something you create.",
+        "Peace comes from within."
+    ]
+}

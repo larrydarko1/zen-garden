@@ -65,21 +65,18 @@ app.post('/api/register', requireApiKey, async (req: Request, res: Response) => 
         username,
         password: hash,
         theme: 'blue',
+        language: 'en',
         stats: {
             totalSessions: 0,
             totalMinutes: 0,
             currentStreak: 0,
             longestStreak: 0,
             lastMeditationDate: null
-        },
-        goals: {
-            dailyMinutes: 10,
-            weeklyMinutes: 70
         }
     };
     await monks.insertOne(monk);
     const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: '7d' });
-    res.status(201).json({ message: 'User registered', user: { username, theme: monk.theme, stats: monk.stats, goals: monk.goals }, token });
+    res.status(201).json({ message: 'User registered', user: { username, theme: monk.theme, language: monk.language, stats: monk.stats, goals: monk.goals }, token });
 });
 
 // Login
@@ -93,7 +90,7 @@ app.post('/api/login', requireApiKey, async (req: Request, res: Response) => {
     const valid = await argon2.verify(monk.password, password);
     if (!valid) return res.status(401).json({ error: 'Invalid credentials' });
     const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: '7d' });
-    res.json({ message: 'Login successful', user: { username, theme: monk.theme || 'blue' }, token });
+    res.json({ message: 'Login successful', user: { username, theme: monk.theme || 'blue', language: monk.language || 'en' }, token });
 });
 
 // Auth middleware
@@ -124,6 +121,7 @@ app.get('/api/me', auth, async (req: Request, res: Response) => {
             user: {
                 username: monk.username,
                 theme: monk.theme || 'blue',
+                language: monk.language || 'en',
                 stats: monk.stats || { totalSessions: 0, totalMinutes: 0, currentStreak: 0, longestStreak: 0, lastMeditationDate: null },
                 goals: monk.goals || { dailyMinutes: 10, weeklyMinutes: 70 }
             }
@@ -229,6 +227,24 @@ app.patch('/api/theme', auth, async (req: Request, res: Response) => {
     try {
         await monks.updateOne({ username }, { $set: { theme } });
         res.json({ message: 'Theme updated', theme });
+    } catch (err: any) {
+        res.status(500).json({ error: 'Database error', details: err.message });
+    }
+});
+
+app.patch('/api/language', auth, async (req: Request, res: Response) => {
+    const user = (req as AuthRequest).user;
+    const username = user.username;
+    const { language } = req.body;
+
+    const validLanguages = ['en', 'es', 'it', 'fr', 'de', 'pt', 'zh', 'ja'];
+    if (!language || !validLanguages.includes(language)) {
+        return res.status(400).json({ error: 'Valid language required (en, es, it, fr, de, pt, zh, ja)' });
+    }
+
+    try {
+        await monks.updateOne({ username }, { $set: { language } });
+        res.json({ message: 'Language updated', language });
     } catch (err: any) {
         res.status(500).json({ error: 'Database error', details: err.message });
     }

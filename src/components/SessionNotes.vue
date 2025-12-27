@@ -2,22 +2,22 @@
   <div class="notes-modal-bg" @click.self="handleClose" aria-label="Session notes modal background">
     <div class="notes-modal" role="dialog" aria-labelledby="notes-title" aria-modal="true">
       <div class="notes-header">
-        <h2 id="notes-title">Meditation Reflection</h2>
+        <h2 id="notes-title">{{ t('notes.title') }}</h2>
         <button class="notes-close" @click="handleClose" aria-label="Close notes modal">×</button>
       </div>
       <div class="notes-content">
-        <p class="notes-prompt">How was your meditation session?</p>
+        <p class="notes-prompt">{{ t('notes.subtitle') }}</p>
         <textarea
           v-model="notes"
           class="notes-textarea"
-          placeholder="Write your thoughts, feelings, or insights from this session..."
+          :placeholder="t('notes.placeholder')"
           rows="6"
           aria-label="Meditation session notes"
           @keydown.esc="handleClose"
         ></textarea>
         <div class="notes-actions">
-          <button class="notes-btn notes-btn-secondary" @click="handleSkip">Skip</button>
-          <button class="notes-btn notes-btn-primary" @click="handleSave">Save</button>
+          <button class="notes-btn notes-btn-secondary" @click="handleSkip">{{ t('notes.skip') }}</button>
+          <button class="notes-btn notes-btn-primary" @click="handleSave">{{ t('notes.save') }}</button>
         </div>
       </div>
     </div>
@@ -26,6 +26,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const props = defineProps<{
   duration: number

@@ -37,10 +37,10 @@
           <h3>{{ monthNames[selectedDay.getMonth()] }} {{ selectedDay.getDate() }}</h3>
           <div v-for="(med, idx) in selectedDayMeditations" :key="idx" class="meditation-entry">
             <div class="meditation-info">
-              <span class="meditation-duration">⏱ {{ med.duration || 0 }} min</span>
+              <span class="meditation-duration">⏱ {{ med.duration || 0 }} {{ t('calendar.minutes') }}</span>
             </div>
             <div v-if="med.notes" class="meditation-notes">
-              <strong>Notes:</strong> {{ med.notes }}
+              <strong>{{ t('calendar.notes') }}:</strong> {{ med.notes }}
             </div>
           </div>
         </div>
@@ -51,6 +51,9 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t, tm } = useI18n()
 
 type Meditation = {
   Date: string | { $date: string }
@@ -62,11 +65,8 @@ type Meditation = {
 const props = defineProps<{ meditations: Array<Meditation> }>()
 const today = new Date()
 const year = today.getFullYear()
-const weekdays = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
-const monthNames = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
-]
+const weekdays = computed(() => tm('calendar.weekdays') as string[])
+const monthNames = computed(() => tm('calendar.months') as string[])
 const visibleMonth = ref(today.getMonth())
 const selectedDay = ref<Date | null>(null)
 

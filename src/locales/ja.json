@@ -1,0 +1,113 @@
+{
+    "settings": {
+        "title": "設定",
+        "theme": "テーマ",
+        "language": "言語",
+        "themes": {
+            "blue": "ブルー",
+            "white": "ホワイト",
+            "dark": "ダーク"
+        },
+        "languages": {
+            "en": "English",
+            "es": "Español",
+            "it": "Italiano",
+            "fr": "Français",
+            "de": "Deutsch",
+            "pt": "Português",
+            "zh": "中文",
+            "ja": "日本語"
+        }
+    },
+    "header": {
+        "greeting": "こんにちは",
+        "totalSessions": "合計セッション",
+        "totalMinutes": "合計分",
+        "dayStreak": "連続日数",
+        "breathe": "呼吸",
+        "calendar": "カレンダー",
+        "logout": "ログアウト"
+    },
+    "meditation": {
+        "begin": "開始",
+        "stop": "停止"
+    },
+    "auth": {
+        "welcome": "ZenGardenへようこそ",
+        "username": "ユーザー名",
+        "password": "パスワード",
+        "login": "ログイン",
+        "register": "登録",
+        "switchToRegister": "アカウントをお持ちでない？登録",
+        "switchToLogin": "既にアカウントをお持ち？ログイン"
+    },
+    "notes": {
+        "title": "セッション完了",
+        "subtitle": "瞑想はいかがでしたか？",
+        "placeholder": "考えを書いてください...",
+        "save": "保存",
+        "skip": "スキップ"
+    },
+    "breathing": {
+        "title": "呼吸エクササイズ",
+        "box": "ボックス呼吸",
+        "deep": "深呼吸",
+        "calm": "穏やかな呼吸",
+        "fourSevenEight": "4-7-8呼吸",
+        "energizing": "活力呼吸",
+        "start": "開始",
+        "stop": "停止",
+        "close": "閉じる",
+        "cycle": "サイクル",
+        "breatheIn": "吸う",
+        "hold": "止める",
+        "breatheOut": "吐く",
+        "descriptions": {
+            "box": "均等な部分：吸う、止める、吐く、止める (4-4-4-4)",
+            "fourSevenEight": "落ち着きの技法：吸う4、止める7、吐く8",
+            "deep": "長くゆっくりとした呼吸：吸う6、吐く6",
+            "energizing": "速い吸気、長い呼気：2入り4出"
+        }
+    },
+    "calendar": {
+        "title": "瞑想カレンダー",
+        "minutes": "分",
+        "close": "閉じる",
+        "notes": "メモ",
+        "months": [
+            "1月",
+            "2月",
+            "3月",
+            "4月",
+            "5月",
+            "6月",
+            "7月",
+            "8月",
+            "9月",
+            "10月",
+            "11月",
+            "12月"
+        ],
+        "weekdays": [
+            "日",
+            "月",
+            "火",
+            "水",
+            "木",
+            "金",
+            "土"
+        ]
+    },
+    "phrases": [
+        "平和を吸い込み、緊張を吐き出す。",
+        "今この瞬間が私たちが本当に持っているすべてです。",
+        "静けさは明晰さへの鍵です。",
+        "思考を空の雲のように通り過ぎさせましょう。",
+        "静かになるほど、より多くを聞くことができます。",
+        "水のように流れ、着実で澄んでいます。",
+        "静けさの中で、世界は変容します。",
+        "手放して、ただ存在しましょう。",
+        "バランスは見つけるものではなく、創り出すものです。",
+        "平和は内から来ます。"
+    ]
+}

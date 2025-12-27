@@ -22,20 +22,20 @@
 <path d="M0 0 C6.52010014 3.86238313 11.03171562 9.30493006 13.16796875 16.59765625 C14.15306732 23.01084898 12.60890809 29.08203648 9.05078125 34.46484375 C4.9071922 39.36456219 -0.4816921 42.40782264 -6.8125 43.49609375 C-13.31286854 43.76553908 -18.59156092 41.75127272 -24.13671875 38.52734375 C-29.01776336 33.38245889 -31.73442127 27.58544682 -32.01171875 20.46484375 C-31.63017155 13.34597632 -29.27933452 8.48790171 -24.01171875 3.71484375 C-17.42060388 -1.7599106 -8.03446005 -2.98569249 0 0 Z " fill="currentColor" transform="translate(726.44921875,232.91015625)"/>
 </svg>
           <span class="zen-date">{{ today }}</span>
-          <span class="zen-greeting">Hello, {{ user.username }}</span>
+          <span class="zen-greeting">{{ t('header.greeting') }}, {{ user.username }}</span>
         </div>
         <div class="zen-header-right">
           <nav class="menu-bar">
             <div v-if="user?.stats" class="stats-inline">
-              <span class="stat-separator">Tot. Sessions</span>
+              <span class="stat-separator">{{ t('header.totalSessions') }}</span>
               <span class="stat-compact" :title="`${user.stats.totalSessions} total sessions`">
                 {{ user.stats.totalSessions }}
               </span>
-              <span class="stat-separator">Tot. Minutes</span>
+              <span class="stat-separator">{{ t('header.totalMinutes') }}</span>
               <span class="stat-compact" :title="`${formatMinutes(user.stats.totalMinutes)} total time`">
                 {{ formatMinutes(user.stats.totalMinutes) }}
               </span>
-              <span class="stat-separator">Day Streak</span>
+              <span class="stat-separator">{{ t('header.dayStreak') }}</span>
               <span class="stat-compact" :title="`${user.stats.currentStreak} day streak`">
                 {{ user.stats.currentStreak }}🔥
               </span>
@@ -45,21 +45,21 @@
               @click="showBreathing = true"
               aria-label="Breathing exercises"
             >
-              Breathe
+              {{ t('header.breathe') }}
             </button>
             <button 
               class="menu-item"
               @click="showCalendar = true"
               aria-label="View meditation history"
             >
-              Calendar
+              {{ t('header.calendar') }}
             </button>
             <button 
               class="menu-item menu-logout" 
               @click="handleLogout" 
               aria-label="Logout from your account"
             >
-              Logout
+              {{ t('header.logout') }}
             </button>
           </nav>
         </div>
@@ -89,12 +89,12 @@
             {{ duration }}
           </button>
           <button class="start-meditation-btn" @click="startMeditation" :aria-label="`Start a ${selectedDuration}-minute meditation session`">
-            Begin
+            {{ t('meditation.begin') }}
           </button>
         </div>
         <div v-else class="meditation-timer">
           <div class="timer-display" aria-live="polite" aria-label="Meditation timer">{{ formatTime(meditationSeconds) }}</div>
-          <button class="meditation-btn" @click="stopMeditation" aria-label="Stop the current meditation session">Stop</button>
+          <button class="meditation-btn" @click="stopMeditation" aria-label="Stop the current meditation session">{{ t('meditation.stop') }}</button>
         </div>
       </div>
     </div>
@@ -102,7 +102,7 @@
         <component :is="ANIMATIONS[meditationAnimationIdx]" />
         <div class="meditation-timer meditation-timer-overlay">
           <div class="timer-display" aria-live="polite" aria-label="Meditation timer">{{ formatTime(meditationSeconds) }}</div>
-          <button class="meditation-btn" @click="stopMeditation" aria-label="Stop the current meditation session">Stop</button>
+          <button class="meditation-btn" @click="stopMeditation" aria-label="Stop the current meditation session">{{ t('meditation.stop') }}</button>
         </div>
       </div>
     </template>
@@ -113,28 +113,20 @@
 import MeditationCalendar from './MeditationCalendar.vue'
 import SessionNotes from './SessionNotes.vue'
 import BreathingExercise from './BreathingExercise.vue'
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { ref, onMounted, onUnmounted, watch, computed } from 'vue'
 import ZenWindAnimation from './ZenWindAnimation.vue'
 import ZenWavesAnimation from './ZenWavesAnimation.vue'
 import MonkAuth from './MonkAuth.vue'
 import { apiRequest } from '../api'
+import { useI18n } from 'vue-i18n'
+
+const { t, tm } = useI18n()
 // Zen phrases
-const phrases = [
-  'Breathe in calm, breathe out tension.',
-  'Let your thoughts settle like stones in a pond.',
-  'Simplicity is the ultimate sophistication.',
-  'Be present. Be mindful. Be at peace.',
-  'The quieter you become, the more you can hear.',
-  'Flow like water, steady and clear.',
-  'In stillness, the world is transformed.',
-  'Let go and just be.',
-  'Balance is not something you find, it’s something you create.',
-  'Peace comes from within.'
-]
-const currentPhrase = ref(phrases[Math.floor(Math.random() * phrases.length)])
+const phrases = computed(() => tm('phrases') as string[])
+const currentPhrase = ref(phrases.value[Math.floor(Math.random() * phrases.value.length)])
 let phraseIntervalId: number | undefined
 
-const emit = defineEmits(['meditation-active', 'theme-changed'])
+const emit = defineEmits(['meditation-active', 'theme-changed', 'language-changed'])
 const meditationActive = ref(false)
 
 // Watch meditationActive and emit event on change
@@ -157,8 +149,8 @@ const alertAudio = ref<HTMLAudioElement | null>(null)
 function setRandomPhrase() {
   let next
   do {
-    next = phrases[Math.floor(Math.random() * phrases.length)]
-  } while (next === currentPhrase.value && phrases.length > 1)
+    next = phrases.value[Math.floor(Math.random() * phrases.value.length)]
+  } while (next === currentPhrase.value && phrases.value.length > 1)
   currentPhrase.value = next
 }
 
@@ -176,6 +168,9 @@ async function fetchUserData() {
     const res = await apiRequest('/me')
     user.value = res.user
     emit('theme-changed', res.user.theme)
+    if (res.user.language) {
+      emit('language-changed', res.user.language)
+    }
   } catch (e) {
     // Silently handle error - user will be logged out if token invalid
   }
@@ -326,6 +321,9 @@ async function handleAuth(evt: { user: any, token: string }) {
   await fetchMeditations()
   if (evt.user && evt.user.theme) {
     emit('theme-changed', evt.user.theme)
+  }
+  if (evt.user && evt.user.language) {
+    emit('language-changed', evt.user.language)
   }
 }
 

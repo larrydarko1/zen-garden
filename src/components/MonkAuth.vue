@@ -19,11 +19,11 @@
 <path d="M0 0 C6.52010014 3.86238313 11.03171562 9.30493006 13.16796875 16.59765625 C14.15306732 23.01084898 12.60890809 29.08203648 9.05078125 34.46484375 C4.9071922 39.36456219 -0.4816921 42.40782264 -6.8125 43.49609375 C-13.31286854 43.76553908 -18.59156092 41.75127272 -24.13671875 38.52734375 C-29.01776336 33.38245889 -31.73442127 27.58544682 -32.01171875 20.46484375 C-31.63017155 13.34597632 -29.27933452 8.48790171 -24.01171875 3.71484375 C-17.42060388 -1.7599106 -8.03446005 -2.98569249 0 0 Z " fill="currentColor" transform="translate(726.44921875,232.91015625)"/>
 </svg>
       </div>
-      <div class="zen-title" id="login-title">Welcome</div>
-      <input v-model="loginUsername" :disabled="isLoading" placeholder="Username" required autocomplete="username" aria-label="Enter your username" />
-      <input v-model="loginPassword" :disabled="isLoading" type="password" placeholder="Password" required autocomplete="current-password" aria-label="Enter your password" />
+      <div class="zen-title" id="login-title">{{ t('auth.welcome') }}</div>
+      <input v-model="loginUsername" :disabled="isLoading" :placeholder="t('auth.username')" required autocomplete="username" aria-label="Enter your username" />
+      <input v-model="loginPassword" :disabled="isLoading" type="password" :placeholder="t('auth.password')" required autocomplete="current-password" aria-label="Enter your password" />
       <button type="submit" :disabled="isLoading" class="auth-btn" aria-label="Login to your account">
-        <span v-if="!isLoading">Login</span>
+        <span v-if="!isLoading">{{ t('auth.login') }}</span>
         <span v-else class="zen-loader">
           <svg width="32" height="32" viewBox="0 0 32 32">
             <rect x="10" y="15" width="12" height="2" rx="1">
@@ -33,8 +33,7 @@
         </span>
       </button>
       <div class="zen-link-row">
-        <span>Not registered?</span>
-        <a href="#" @click.prevent="mode = 'register'" aria-label="Switch to registration form">Create an account</a>
+        <a href="#" @click.prevent="mode = 'register'" aria-label="Switch to registration form">{{ t('auth.switchToRegister') }}</a>
       </div>
       <div v-if="error" class="error" role="alert" aria-live="polite">{{ error }}</div>
     </form>
@@ -57,11 +56,11 @@
 <path d="M0 0 C6.52010014 3.86238313 11.03171562 9.30493006 13.16796875 16.59765625 C14.15306732 23.01084898 12.60890809 29.08203648 9.05078125 34.46484375 C4.9071922 39.36456219 -0.4816921 42.40782264 -6.8125 43.49609375 C-13.31286854 43.76553908 -18.59156092 41.75127272 -24.13671875 38.52734375 C-29.01776336 33.38245889 -31.73442127 27.58544682 -32.01171875 20.46484375 C-31.63017155 13.34597632 -29.27933452 8.48790171 -24.01171875 3.71484375 C-17.42060388 -1.7599106 -8.03446005 -2.98569249 0 0 Z " fill="currentColor" transform="translate(726.44921875,232.91015625)"/>
 </svg>
       </div>
-      <div class="zen-title" id="register-title">Create Your Zen Account</div>
-      <input v-model="username" :disabled="isLoading" placeholder="Username" required autocomplete="username" aria-label="Choose a username for your account" />
-      <input v-model="password" :disabled="isLoading" type="password" placeholder="Password" required autocomplete="new-password" aria-label="Choose a password for your account" />
+      <div class="zen-title" id="register-title">{{ t('auth.welcome') }}</div>
+      <input v-model="username" :disabled="isLoading" :placeholder="t('auth.username')" required autocomplete="username" aria-label="Choose a username for your account" />
+      <input v-model="password" :disabled="isLoading" type="password" :placeholder="t('auth.password')" required autocomplete="new-password" aria-label="Choose a password for your account" />
       <button type="submit" :disabled="isLoading" class="auth-btn" aria-label="Create your new account">
-        <span v-if="!isLoading">Register</span>
+        <span v-if="!isLoading">{{ t('auth.register') }}</span>
         <span v-else class="zen-loader">
           <svg width="32" height="32" viewBox="0 0 32 32">
             <rect x="10" y="15" width="12" height="2" rx="1">
@@ -71,8 +70,7 @@
         </span>
       </button>
       <div class="zen-link-row">
-        <span>Already have an account?</span>
-        <a href="#" @click.prevent="mode = 'login'" aria-label="Switch to login form">Back to login</a>
+        <a href="#" @click.prevent="mode = 'login'" aria-label="Switch to login form">{{ t('auth.switchToLogin') }}</a>
       </div>
       <div v-if="error" class="error" role="alert" aria-live="polite">{{ error }}</div>
     </form>
@@ -81,7 +79,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { apiRequest } from '../api'
+
+const { t } = useI18n()
 
 const emit = defineEmits(['auth'])
 

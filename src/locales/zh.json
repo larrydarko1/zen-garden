@@ -1,0 +1,113 @@
+{
+    "settings": {
+        "title": "设置",
+        "theme": "主题",
+        "language": "语言",
+        "themes": {
+            "blue": "蓝色",
+            "white": "白色",
+            "dark": "深色"
+        },
+        "languages": {
+            "en": "English",
+            "es": "Español",
+            "it": "Italiano",
+            "fr": "Français",
+            "de": "Deutsch",
+            "pt": "Português",
+            "zh": "中文",
+            "ja": "日本語"
+        }
+    },
+    "header": {
+        "greeting": "你好",
+        "totalSessions": "总会话数",
+        "totalMinutes": "总分钟数",
+        "dayStreak": "连续天数",
+        "breathe": "呼吸",
+        "calendar": "日历",
+        "logout": "登出"
+    },
+    "meditation": {
+        "begin": "开始",
+        "stop": "停止"
+    },
+    "auth": {
+        "welcome": "欢迎来到ZenGarden",
+        "username": "用户名",
+        "password": "密码",
+        "login": "登录",
+        "register": "注册",
+        "switchToRegister": "没有账户？注册",
+        "switchToLogin": "已有账户？登录"
+    },
+    "notes": {
+        "title": "会话完成",
+        "subtitle": "你的冥想如何？",
+        "placeholder": "写下你的想法...",
+        "save": "保存",
+        "skip": "跳过"
+    },
+    "breathing": {
+        "title": "呼吸练习",
+        "box": "方框呼吸",
+        "deep": "深呼吸",
+        "calm": "平静呼吸",
+        "fourSevenEight": "4-7-8呼吸",
+        "energizing": "活力呼吸",
+        "start": "开始",
+        "stop": "停止",
+        "close": "关闭",
+        "cycle": "循环",
+        "breatheIn": "吸气",
+        "hold": "屏住",
+        "breatheOut": "呼气",
+        "descriptions": {
+            "box": "均等部分：吸气、屏住、呼气、屏住 (4-4-4-4)",
+            "fourSevenEight": "平静技巧：吸气4、屏住7、呼气8",
+            "deep": "长而缓慢的呼吸：吸气6、呼气6",
+            "energizing": "快速吸气，较长呼气：2进4出"
+        }
+    },
+    "calendar": {
+        "title": "冥想日历",
+        "minutes": "分钟",
+        "close": "关闭",
+        "notes": "笔记",
+        "months": [
+            "一月",
+            "二月",
+            "三月",
+            "四月",
+            "五月",
+            "六月",
+            "七月",
+            "八月",
+            "九月",
+            "十月",
+            "十一月",
+            "十二月"
+        ],
+        "weekdays": [
+            "日",
+            "一",
+            "二",
+            "三",
+            "四",
+            "五",
+            "六"
+        ]
+    },
+    "phrases": [
+        "吸入平静，呼出紧张。",
+        "当下是我们真正拥有的一切。",
+        "宁静是清晰的关键。",
+        "让思绪像天空中的云朵一样飘过。",
+        "你变得越安静，就能听到越多。",
+        "像水一样流动，稳定而清澈。",
+        "在宁静中，世界被改变。",
+        "放下，只是存在。",
+        "平衡不是你找到的东西，而是你创造的东西。",
+        "平静来自内心。"
+    ]
+}
