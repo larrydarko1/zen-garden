@@ -25,6 +25,7 @@
         "totalMinutes": "Minuti Tot.",
         "dayStreak": "Serie di Giorni",
         "breathe": "Respira",
+        "emotions": "Emozioni",
         "calendar": "Calendario",
         "logout": "Esci"
     },
@@ -97,6 +98,298 @@
             "V",
             "S"
         ]
+    },
+    "emotions": {
+        "title": "Tracker delle Emozioni Quotidiane",
+        "positive": "Positive",
+        "negative": "Negative",
+        "pnRatio": "Rapporto P/N",
+        "positiveTab": "Emozioni Positive",
+        "negativeTab": "Emozioni Negative",
+        "analytics": "Analisi",
+        "saving": "Salvataggio...",
+        "saved": "Salvato ✓",
+        "loading": "Caricamento...",
+        "loadingAnalytics": "Caricamento analisi",
+        "totalDaysTracked": "Giorni Tracciati",
+        "avgPNRatio": "Rapporto P/N Medio",
+        "emotionDiversity": "Emozioni Uniche",
+        "daysSummary": "Equilibrio Emotivo",
+        "positiveDays": "Giorni Positivi (P/N ≥ 0.5)",
+        "negativeDays": "Giorni Negativi (P/N < 0.5)",
+        "topEmotions": "Emozioni Più Frequenti",
+        "trendChart": "Tendenza Rapporto P/N",
+        "past30Days": "Ultimi 30 Giorni",
+        "list": {
+            "Joy": {
+                "name": "Gioia",
+                "description": "Felicità e diletto puro"
+            },
+            "Happiness": {
+                "name": "Felicità",
+                "description": "Stato generale di benessere"
+            },
+            "Contentment": {
+                "name": "Contentezza",
+                "description": "Soddisfazione pacifica con la vita"
+            },
+            "Satisfaction": {
+                "name": "Soddisfazione",
+                "description": "Appagamento dal realizzazione"
+            },
+            "Pride": {
+                "name": "Orgoglio",
+                "description": "Riconoscimento positivo dei tuoi successi"
+            },
+            "Gratitude": {
+                "name": "Gratitudine",
+                "description": "Apprezzamento per ciò che hai"
+            },
+            "Love": {
+                "name": "Amore",
+                "description": "Affetto profondo e cura per gli altri"
+            },
+            "Affection": {
+                "name": "Affetto",
+                "description": "Calore e tenerezza verso qualcuno"
+            },
+            "Compassion": {
+                "name": "Compassione",
+                "description": "Empatia e desiderio di aiutare gli altri"
+            },
+            "Excitement": {
+                "name": "Eccitazione",
+                "description": "Anticipazione energizzata"
+            },
+            "Enthusiasm": {
+                "name": "Entusiasmo",
+                "description": "Coinvolgimento appassionato con qualcosa"
+            },
+            "Optimism": {
+                "name": "Ottimismo",
+                "description": "Prospettiva speranzosa sul futuro"
+            },
+            "Hope": {
+                "name": "Speranza",
+                "description": "Credenza che accadranno cose buone"
+            },
+            "Relief": {
+                "name": "Sollievo",
+                "description": "Liberazione dalla tensione o preoccupazione"
+            },
+            "Amusement": {
+                "name": "Divertimento",
+                "description": "Trovare qualcosa di divertente o intrattenente"
+            },
+            "Delight": {
+                "name": "Delizia",
+                "description": "Gioia o piacere improvviso"
+            },
+            "Inspiration": {
+                "name": "Ispirazione",
+                "description": "Motivazione a creare o agire"
+            },
+            "Confidence": {
+                "name": "Fiducia",
+                "description": "Credenza nelle tue capacità"
+            },
+            "Calm": {
+                "name": "Calma",
+                "description": "Stato pacifico e rilassato"
+            },
+            "Serenity": {
+                "name": "Serenità",
+                "description": "Pace interiore profonda"
+            },
+            "Peaceful": {
+                "name": "Pacifico",
+                "description": "Assenza di conflitto o disturbo"
+            },
+            "Accomplished": {
+                "name": "Realizzato",
+                "description": "Senso di completamento o successo"
+            },
+            "Validated": {
+                "name": "Validato",
+                "description": "Sentirsi riconosciuto e affermato"
+            },
+            "Accepted": {
+                "name": "Accettato",
+                "description": "Sentirsi benvenuto e appartenente"
+            },
+            "Belonging": {
+                "name": "Appartenenza",
+                "description": "Connessione a un gruppo o comunità"
+            },
+            "Curiosity": {
+                "name": "Curiosità",
+                "description": "Interesse nell'apprendere o esplorare"
+            },
+            "Wonder": {
+                "name": "Meraviglia",
+                "description": "Stupore per qualcosa di notevole"
+            },
+            "Awe": {
+                "name": "Reverenza",
+                "description": "Senso travolgente di stupore"
+            },
+            "Sadness": {
+                "name": "Tristezza",
+                "description": "Profondo dolore o infelicità"
+            },
+            "Grief": {
+                "name": "Lutto",
+                "description": "Dolore intenso dalla perdita"
+            },
+            "Despair": {
+                "name": "Disperazione",
+                "description": "Perdita di speranza e motivazione"
+            },
+            "Loneliness": {
+                "name": "Solitudine",
+                "description": "Sentimento doloroso di isolamento"
+            },
+            "Anger": {
+                "name": "Rabbia",
+                "description": "Forte dispiacere o ostilità"
+            },
+            "Rage": {
+                "name": "Furia",
+                "description": "Rabbia intensa e incontrollabile"
+            },
+            "Frustration": {
+                "name": "Frustrazione",
+                "description": "Fastidio da obiettivi bloccati"
+            },
+            "Irritation": {
+                "name": "Irritazione",
+                "description": "Fastidio minore o impazienza"
+            },
+            "Fear": {
+                "name": "Paura",
+                "description": "Terrore del pericolo o danno"
+            },
+            "Anxiety": {
+                "name": "Ansia",
+                "description": "Preoccupazione per risultati incerti"
+            },
+            "Dread": {
+                "name": "Timore",
+                "description": "Paura intensa di qualcosa di specifico"
+            },
+            "Panic": {
+                "name": "Panico",
+                "description": "Terrore improvviso e travolgente"
+            },
+            "Shame": {
+                "name": "Vergogna",
+                "description": "Profondo imbarazzo su te stesso"
+            },
+            "Guilt": {
+                "name": "Colpa",
+                "description": "Rammarico per qualcosa che hai fatto di sbagliato"
+            },
+            "Embarrassment": {
+                "name": "Imbarazzo",
+                "description": "Autoconsapevolezza in situazioni sociali"
+            },
+            "Humiliation": {
+                "name": "Umiliazione",
+                "description": "Sentirsi pubblicamente degradato"
+            },
+            "Disgust": {
+                "name": "Disgusto",
+                "description": "Repulsione o forte disapprovazione"
+            },
+            "Contempt": {
+                "name": "Disprezzo",
+                "description": "Sentire che qualcuno è al di sotto di te"
+            },
+            "Jealousy": {
+                "name": "Gelosia",
+                "description": "Paura di perdere qualcosa di prezioso"
+            },
+            "Envy": {
+                "name": "Invidia",
+                "description": "Desiderio per ciò che altri hanno"
+            },
+            "Resentment": {
+                "name": "Risentimento",
+                "description": "Rabbia amara per trattamento ingiusto"
+            },
+            "Bitterness": {
+                "name": "Amarezza",
+                "description": "Rabbia e delusione persistente"
+            },
+            "Regret": {
+                "name": "Rimpianto",
+                "description": "Desiderare di aver fatto qualcosa diversamente"
+            },
+            "Disappointment": {
+                "name": "Delusione",
+                "description": "Abbattimento da aspettative non soddisfatte"
+            },
+            "Discouragement": {
+                "name": "Scoraggiamento",
+                "description": "Perdita di motivazione o fiducia"
+            },
+            "Helplessness": {
+                "name": "Impotenza",
+                "description": "Sentirsi incapace di cambiare una situazione"
+            },
+            "Hopelessness": {
+                "name": "Disperazione",
+                "description": "Credenza che le cose non miglioreranno"
+            },
+            "Inadequacy": {
+                "name": "Inadeguatezza",
+                "description": "Sentire di non essere abbastanza bravo"
+            },
+            "Insecurity": {
+                "name": "Insicurezza",
+                "description": "Dubbio sul tuo valore o capacità"
+            },
+            "Vulnerability": {
+                "name": "Vulnerabilità",
+                "description": "Sentirsi esposto o a rischio"
+            },
+            "Stress": {
+                "name": "Stress",
+                "description": "Tensione da pressione o richieste"
+            },
+            "Tension": {
+                "name": "Tensione",
+                "description": "Tensione fisica o mentale"
+            },
+            "Worry": {
+                "name": "Preoccupazione",
+                "description": "Preoccupazione ansiosa per qualcosa"
+            },
+            "Doubt": {
+                "name": "Dubbio",
+                "description": "Incertezza su te stesso o decisioni"
+            },
+            "Confusion": {
+                "name": "Confusione",
+                "description": "Disorientamento mentale o incertezza"
+            },
+            "Overwhelm": {
+                "name": "Sopraffatto",
+                "description": "Sentirsi inondato da troppo"
+            },
+            "Betrayal": {
+                "name": "Tradimento",
+                "description": "Dolore dalla fiducia infranta"
+            },
+            "Hurt": {
+                "name": "Ferito",
+                "description": "Dolore emotivo dalle azioni degli altri"
+            },
+            "Rejection": {
+                "name": "Rifiuto",
+                "description": "Dolore dall'essere escluso o indesiderato"
+            }
+        }
     },
     "phrases": [
         "Inspira pace, espira tensione.",

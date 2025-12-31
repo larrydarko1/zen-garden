@@ -25,6 +25,7 @@
         "totalMinutes": "合計分",
         "dayStreak": "連続日数",
         "breathe": "呼吸",
+        "emotions": "感情",
         "calendar": "カレンダー",
         "logout": "ログアウト"
     },
@@ -97,6 +98,298 @@
             "金",
             "土"
         ]
+    },
+    "emotions": {
+        "title": "毎日の感情トラッカー",
+        "positive": "ポジティブ",
+        "negative": "ネガティブ",
+        "pnRatio": "P/N比率",
+        "positiveTab": "ポジティブ感情",
+        "negativeTab": "ネガティブ感情",
+        "analytics": "分析",
+        "saving": "保存中...",
+        "saved": "保存済み ✓",
+        "loading": "読み込み中...",
+        "loadingAnalytics": "分析を読み込み中",
+        "totalDaysTracked": "追跡日数",
+        "avgPNRatio": "平均P/N比率",
+        "emotionDiversity": "ユニーク感情",
+        "daysSummary": "感情のバランス",
+        "positiveDays": "ポジティブな日 (P/N ≥ 0.5)",
+        "negativeDays": "ネガティブな日 (P/N < 0.5)",
+        "topEmotions": "最も頻繁な感情",
+        "trendChart": "P/N比率のトレンド",
+        "past30Days": "過去30日",
+        "list": {
+            "Joy": {
+                "name": "喜び",
+                "description": "純粋な幸せと喜び"
+            },
+            "Happiness": {
+                "name": "幸福",
+                "description": "全般的な幸福の状態"
+            },
+            "Contentment": {
+                "name": "満足",
+                "description": "人生への平和な満足感"
+            },
+            "Satisfaction": {
+                "name": "充足",
+                "description": "達成からの充実感"
+            },
+            "Pride": {
+                "name": "誇り",
+                "description": "自分の成果への肯定的な認識"
+            },
+            "Gratitude": {
+                "name": "感謝",
+                "description": "持っているものへの感謝"
+            },
+            "Love": {
+                "name": "愛",
+                "description": "他者への深い愛情とケア"
+            },
+            "Affection": {
+                "name": "愛情",
+                "description": "誰かへの温かさと優しさ"
+            },
+            "Compassion": {
+                "name": "思いやり",
+                "description": "共感と他者を助けたい気持ち"
+            },
+            "Excitement": {
+                "name": "興奮",
+                "description": "活気づいた期待感"
+            },
+            "Enthusiasm": {
+                "name": "熱意",
+                "description": "何かへの情熱的な関与"
+            },
+            "Optimism": {
+                "name": "楽観",
+                "description": "未来への希望に満ちた見通し"
+            },
+            "Hope": {
+                "name": "希望",
+                "description": "良いことが起こるという信念"
+            },
+            "Relief": {
+                "name": "安堵",
+                "description": "緊張や心配からの解放"
+            },
+            "Amusement": {
+                "name": "愉快",
+                "description": "面白いまたは楽しいと思うこと"
+            },
+            "Delight": {
+                "name": "歓喜",
+                "description": "突然の喜びや楽しさ"
+            },
+            "Inspiration": {
+                "name": "インスピレーション",
+                "description": "創造や行動への動機づけ"
+            },
+            "Confidence": {
+                "name": "自信",
+                "description": "自分の能力への信念"
+            },
+            "Calm": {
+                "name": "穏やか",
+                "description": "平和でリラックスした状態"
+            },
+            "Serenity": {
+                "name": "静寂",
+                "description": "深い内なる平和"
+            },
+            "Peaceful": {
+                "name": "平和",
+                "description": "対立や乱れの不在"
+            },
+            "Accomplished": {
+                "name": "達成感",
+                "description": "完了または成功の感覚"
+            },
+            "Validated": {
+                "name": "認められた",
+                "description": "認識され肯定されていると感じる"
+            },
+            "Accepted": {
+                "name": "受け入れられた",
+                "description": "歓迎され所属していると感じる"
+            },
+            "Belonging": {
+                "name": "所属",
+                "description": "グループやコミュニティとのつながり"
+            },
+            "Curiosity": {
+                "name": "好奇心",
+                "description": "学習や探求への興味"
+            },
+            "Wonder": {
+                "name": "不思議",
+                "description": "注目すべきものへの驚嘆"
+            },
+            "Awe": {
+                "name": "畏敬",
+                "description": "圧倒的な驚きの感覚"
+            },
+            "Sadness": {
+                "name": "悲しみ",
+                "description": "深い悲しみや不幸"
+            },
+            "Grief": {
+                "name": "悲嘆",
+                "description": "喪失からの激しい痛み"
+            },
+            "Despair": {
+                "name": "絶望",
+                "description": "希望と動機の喪失"
+            },
+            "Loneliness": {
+                "name": "孤独",
+                "description": "孤立の痛みを伴う感情"
+            },
+            "Anger": {
+                "name": "怒り",
+                "description": "強い不快感や敵意"
+            },
+            "Rage": {
+                "name": "激怒",
+                "description": "激しく制御不能な怒り"
+            },
+            "Frustration": {
+                "name": "欲求不満",
+                "description": "目標が阻まれることへのいらだち"
+            },
+            "Irritation": {
+                "name": "いらだち",
+                "description": "軽度の迷惑や焦り"
+            },
+            "Fear": {
+                "name": "恐怖",
+                "description": "危険や害への恐れ"
+            },
+            "Anxiety": {
+                "name": "不安",
+                "description": "不確実な結果への心配"
+            },
+            "Dread": {
+                "name": "恐れ",
+                "description": "特定のものへの激しい恐怖"
+            },
+            "Panic": {
+                "name": "パニック",
+                "description": "突然の圧倒的な恐怖"
+            },
+            "Shame": {
+                "name": "恥",
+                "description": "自分自身への深い恥ずかしさ"
+            },
+            "Guilt": {
+                "name": "罪悪感",
+                "description": "間違ったことをしたことへの後悔"
+            },
+            "Embarrassment": {
+                "name": "恥ずかしさ",
+                "description": "社交場面での自意識"
+            },
+            "Humiliation": {
+                "name": "屈辱",
+                "description": "公に貶められたと感じる"
+            },
+            "Disgust": {
+                "name": "嫌悪",
+                "description": "嫌悪や強い不承認"
+            },
+            "Contempt": {
+                "name": "軽蔑",
+                "description": "誰かが自分より下だと感じる"
+            },
+            "Jealousy": {
+                "name": "嫉妬",
+                "description": "大切なものを失う恐れ"
+            },
+            "Envy": {
+                "name": "羨望",
+                "description": "他人が持っているものへの欲望"
+            },
+            "Resentment": {
+                "name": "憤り",
+                "description": "不公平な扱いへの苦い怒り"
+            },
+            "Bitterness": {
+                "name": "苦々しさ",
+                "description": "持続的な怒りと失望"
+            },
+            "Regret": {
+                "name": "後悔",
+                "description": "違うことをしていればと願う"
+            },
+            "Disappointment": {
+                "name": "失望",
+                "description": "期待が満たされないことからの落胆"
+            },
+            "Discouragement": {
+                "name": "落胆",
+                "description": "動機や自信の喪失"
+            },
+            "Helplessness": {
+                "name": "無力感",
+                "description": "状況を変えられないと感じる"
+            },
+            "Hopelessness": {
+                "name": "絶望感",
+                "description": "物事が改善しないという信念"
+            },
+            "Inadequacy": {
+                "name": "不十分",
+                "description": "十分でないと感じる"
+            },
+            "Insecurity": {
+                "name": "不安定",
+                "description": "自分の価値や能力への疑念"
+            },
+            "Vulnerability": {
+                "name": "脆弱性",
+                "description": "露出されているか危険にさらされていると感じる"
+            },
+            "Stress": {
+                "name": "ストレス",
+                "description": "圧力や要求からの緊張"
+            },
+            "Tension": {
+                "name": "緊張",
+                "description": "身体的または精神的な緊張"
+            },
+            "Worry": {
+                "name": "心配",
+                "description": "何かについての不安な懸念"
+            },
+            "Doubt": {
+                "name": "疑念",
+                "description": "自分自身や決定についての不確実性"
+            },
+            "Confusion": {
+                "name": "混乱",
+                "description": "精神的な混乱や不確実性"
+            },
+            "Overwhelm": {
+                "name": "圧倒",
+                "description": "多すぎるものに押しつぶされる感覚"
+            },
+            "Betrayal": {
+                "name": "裏切り",
+                "description": "信頼が破られたことからの痛み"
+            },
+            "Hurt": {
+                "name": "傷つき",
+                "description": "他人の行動からの感情的な痛み"
+            },
+            "Rejection": {
+                "name": "拒絶",
+                "description": "排除されたり望まれていないことからの痛み"
+            }
+        }
     },
     "phrases": [
         "平和を吸い込み、緊張を吐き出す。",

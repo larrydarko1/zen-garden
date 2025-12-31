@@ -49,6 +49,13 @@
             </button>
             <button 
               class="menu-item"
+              @click="showEmotions = true"
+              aria-label="Track your emotions"
+            >
+              {{ t('header.emotions') }}
+            </button>
+            <button 
+              class="menu-item"
               @click="showCalendar = true"
               aria-label="View meditation history"
             >
@@ -67,6 +74,7 @@
       <MeditationCalendar v-if="showCalendar && !meditationActive" :meditations="meditations" @close="showCalendar = false" />
       <SessionNotes v-if="showNotes" :duration="completedMeditationDuration" @save="saveSessionNotes" @skip="skipSessionNotes" @close="showNotes = false" />
       <BreathingExercise v-if="showBreathing" @close="showBreathing = false" />
+      <EmotionTracker v-if="showEmotions" @close="showEmotions = false" />
 
       <div v-if="!meditationActive" class="zen-main">
         <div class="zen-center">
@@ -113,6 +121,7 @@
 import MeditationCalendar from './MeditationCalendar.vue'
 import SessionNotes from './SessionNotes.vue'
 import BreathingExercise from './BreathingExercise.vue'
+import EmotionTracker from './EmotionTracker.vue'
 import { ref, onMounted, onUnmounted, watch, computed } from 'vue'
 import ZenWindAnimation from './ZenWindAnimation.vue'
 import ZenWavesAnimation from './ZenWavesAnimation.vue'
@@ -140,6 +149,7 @@ let meditationIntervalId: number | undefined
 const showCalendar = ref(false)
 const showNotes = ref(false)
 const showBreathing = ref(false)
+const showEmotions = ref(false)
 const meditations = ref<Array<{ Date: string | { $date: string }, Username?: string, duration?: number, notes?: string }>>([])  
 const completedMeditationDuration = ref(0)
 

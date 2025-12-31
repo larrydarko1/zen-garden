@@ -25,6 +25,7 @@
         "totalMinutes": "总分钟数",
         "dayStreak": "连续天数",
         "breathe": "呼吸",
+        "emotions": "情绪",
         "calendar": "日历",
         "logout": "登出"
     },
@@ -97,6 +98,298 @@
             "五",
             "六"
         ]
+    },
+    "emotions": {
+        "title": "每日情绪跟踪器",
+        "positive": "积极",
+        "negative": "消极",
+        "pnRatio": "P/N 比率",
+        "positiveTab": "积极情绪",
+        "negativeTab": "消极情绪",
+        "analytics": "分析",
+        "saving": "保存中...",
+        "saved": "已保存 ✓",
+        "loading": "加载中...",
+        "loadingAnalytics": "加载分析",
+        "totalDaysTracked": "跟踪天数",
+        "avgPNRatio": "平均 P/N 比率",
+        "emotionDiversity": "独特情绪",
+        "daysSummary": "情绪平衡",
+        "positiveDays": "积极天 (P/N ≥ 0.5)",
+        "negativeDays": "消极天 (P/N < 0.5)",
+        "topEmotions": "最常见情绪",
+        "trendChart": "P/N 比率趋势",
+        "past30Days": "过去30天",
+        "list": {
+            "Joy": {
+                "name": "喜悦",
+                "description": "纯粹的快乐和愉悦"
+            },
+            "Happiness": {
+                "name": "幸福",
+                "description": "整体的幸福状态"
+            },
+            "Contentment": {
+                "name": "满足",
+                "description": "对生活的平静满足"
+            },
+            "Satisfaction": {
+                "name": "满意",
+                "description": "成就带来的满足感"
+            },
+            "Pride": {
+                "name": "自豪",
+                "description": "对成就的积极认可"
+            },
+            "Gratitude": {
+                "name": "感激",
+                "description": "对所拥有的感恩"
+            },
+            "Love": {
+                "name": "爱",
+                "description": "对他人的深厚感情和关怀"
+            },
+            "Affection": {
+                "name": "爱慕",
+                "description": "对某人的温暖和柔情"
+            },
+            "Compassion": {
+                "name": "同情",
+                "description": "同理心和帮助他人的愿望"
+            },
+            "Excitement": {
+                "name": "兴奋",
+                "description": "充满活力的期待"
+            },
+            "Enthusiasm": {
+                "name": "热情",
+                "description": "对某事的激情投入"
+            },
+            "Optimism": {
+                "name": "乐观",
+                "description": "对未来充满希望的展望"
+            },
+            "Hope": {
+                "name": "希望",
+                "description": "相信好事会发生"
+            },
+            "Relief": {
+                "name": "放松",
+                "description": "从紧张或担忧中释放"
+            },
+            "Amusement": {
+                "name": "愉快",
+                "description": "发现有趣或娱乐的东西"
+            },
+            "Delight": {
+                "name": "欢喜",
+                "description": "突然的喜悦或快乐"
+            },
+            "Inspiration": {
+                "name": "灵感",
+                "description": "创造或行动的动力"
+            },
+            "Confidence": {
+                "name": "自信",
+                "description": "相信自己的能力"
+            },
+            "Calm": {
+                "name": "平静",
+                "description": "平和放松的状态"
+            },
+            "Serenity": {
+                "name": "宁静",
+                "description": "深层的内心平和"
+            },
+            "Peaceful": {
+                "name": "和平",
+                "description": "没有冲突或干扰"
+            },
+            "Accomplished": {
+                "name": "成就",
+                "description": "完成或成功的感觉"
+            },
+            "Validated": {
+                "name": "被认可",
+                "description": "感到被认可和肯定"
+            },
+            "Accepted": {
+                "name": "被接纳",
+                "description": "感到被欢迎和归属"
+            },
+            "Belonging": {
+                "name": "归属感",
+                "description": "与群体或社区的联系"
+            },
+            "Curiosity": {
+                "name": "好奇",
+                "description": "对学习或探索的兴趣"
+            },
+            "Wonder": {
+                "name": "惊奇",
+                "description": "对非凡事物的敬畏"
+            },
+            "Awe": {
+                "name": "敬畏",
+                "description": "压倒性的惊叹感"
+            },
+            "Sadness": {
+                "name": "悲伤",
+                "description": "深深的悲痛或不快"
+            },
+            "Grief": {
+                "name": "悲痛",
+                "description": "失去带来的强烈痛苦"
+            },
+            "Despair": {
+                "name": "绝望",
+                "description": "失去希望和动力"
+            },
+            "Loneliness": {
+                "name": "孤独",
+                "description": "痛苦的孤立感"
+            },
+            "Anger": {
+                "name": "愤怒",
+                "description": "强烈的不满或敌意"
+            },
+            "Rage": {
+                "name": "暴怒",
+                "description": "强烈、无法控制的愤怒"
+            },
+            "Frustration": {
+                "name": "挫折",
+                "description": "目标受阻的烦恼"
+            },
+            "Irritation": {
+                "name": "烦躁",
+                "description": "轻微的烦恼或不耐烦"
+            },
+            "Fear": {
+                "name": "恐惧",
+                "description": "对危险或伤害的恐惧"
+            },
+            "Anxiety": {
+                "name": "焦虑",
+                "description": "对不确定结果的担忧"
+            },
+            "Dread": {
+                "name": "恐惧",
+                "description": "对特定事物的强烈恐惧"
+            },
+            "Panic": {
+                "name": "恐慌",
+                "description": "突然压倒性的恐惧"
+            },
+            "Shame": {
+                "name": "羞耻",
+                "description": "对自己的深深尴尬"
+            },
+            "Guilt": {
+                "name": "内疚",
+                "description": "对做错事的悔恨"
+            },
+            "Embarrassment": {
+                "name": "尴尬",
+                "description": "在社交场合的自我意识"
+            },
+            "Humiliation": {
+                "name": "羞辱",
+                "description": "感到公开被贬低"
+            },
+            "Disgust": {
+                "name": "厌恶",
+                "description": "反感或强烈不满"
+            },
+            "Contempt": {
+                "name": "轻蔑",
+                "description": "感觉某人低于你"
+            },
+            "Jealousy": {
+                "name": "嫉妒",
+                "description": "害怕失去珍贵的东西"
+            },
+            "Envy": {
+                "name": "羡慕",
+                "description": "渴望别人拥有的东西"
+            },
+            "Resentment": {
+                "name": "怨恨",
+                "description": "对不公平待遇的苦涩愤怒"
+            },
+            "Bitterness": {
+                "name": "苦涩",
+                "description": "持续的愤怒和失望"
+            },
+            "Regret": {
+                "name": "后悔",
+                "description": "希望做了不同的事"
+            },
+            "Disappointment": {
+                "name": "失望",
+                "description": "期望未满足的失落"
+            },
+            "Discouragement": {
+                "name": "沮丧",
+                "description": "失去动力或信心"
+            },
+            "Helplessness": {
+                "name": "无助",
+                "description": "感到无法改变情况"
+            },
+            "Hopelessness": {
+                "name": "绝望",
+                "description": "相信事情不会好转"
+            },
+            "Inadequacy": {
+                "name": "不足",
+                "description": "感觉不够好"
+            },
+            "Insecurity": {
+                "name": "不安全",
+                "description": "对自己的价值或能力的怀疑"
+            },
+            "Vulnerability": {
+                "name": "脆弱",
+                "description": "感到暴露或处于危险"
+            },
+            "Stress": {
+                "name": "压力",
+                "description": "来自压力或需求的紧张"
+            },
+            "Tension": {
+                "name": "紧张",
+                "description": "身体或精神的紧张"
+            },
+            "Worry": {
+                "name": "担忧",
+                "description": "对某事的焦虑关注"
+            },
+            "Doubt": {
+                "name": "怀疑",
+                "description": "对自己或决定的不确定"
+            },
+            "Confusion": {
+                "name": "困惑",
+                "description": "精神迷失或不确定"
+            },
+            "Overwhelm": {
+                "name": "不知所措",
+                "description": "感到被太多事情淹没"
+            },
+            "Betrayal": {
+                "name": "背叛",
+                "description": "信任破裂的痛苦"
+            },
+            "Hurt": {
+                "name": "受伤",
+                "description": "他人行为造成的情感痛苦"
+            },
+            "Rejection": {
+                "name": "拒绝",
+                "description": "被排除或不受欢迎的痛苦"
+            }
+        }
     },
     "phrases": [
         "吸入平静，呼出紧张。",

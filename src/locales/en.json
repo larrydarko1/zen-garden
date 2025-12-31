@@ -25,6 +25,7 @@
         "totalMinutes": "Tot. Minutes",
         "dayStreak": "Day Streak",
         "breathe": "Breathe",
+        "emotions": "Emotions",
         "calendar": "Calendar",
         "logout": "Logout"
     },
@@ -97,6 +98,298 @@
             "F",
             "S"
         ]
+    },
+    "emotions": {
+        "title": "Daily Emotion Tracker",
+        "positive": "Positive",
+        "negative": "Negative",
+        "pnRatio": "P/N Ratio",
+        "positiveTab": "Positive Emotions",
+        "negativeTab": "Negative Emotions",
+        "analytics": "Analytics",
+        "saving": "Saving...",
+        "saved": "Saved ✓",
+        "loading": "Loading",
+        "loadingAnalytics": "Loading analytics",
+        "totalDaysTracked": "Days Tracked",
+        "avgPNRatio": "Avg P/N Ratio",
+        "emotionDiversity": "Unique Emotions",
+        "daysSummary": "Emotional Balance",
+        "positiveDays": "Positive Days (P/N ≥ 0.5)",
+        "negativeDays": "Negative Days (P/N < 0.5)",
+        "topEmotions": "Most Frequent Emotions",
+        "trendChart": "P/N Ratio Trend",
+        "past30Days": "Last 30 Days",
+        "list": {
+            "Joy": {
+                "name": "Joy",
+                "description": "Pure happiness and delight"
+            },
+            "Happiness": {
+                "name": "Happiness",
+                "description": "General state of well-being"
+            },
+            "Contentment": {
+                "name": "Contentment",
+                "description": "Peaceful satisfaction with life"
+            },
+            "Satisfaction": {
+                "name": "Satisfaction",
+                "description": "Fulfillment from accomplishment"
+            },
+            "Pride": {
+                "name": "Pride",
+                "description": "Positive recognition of your achievements"
+            },
+            "Gratitude": {
+                "name": "Gratitude",
+                "description": "Appreciation for what you have"
+            },
+            "Love": {
+                "name": "Love",
+                "description": "Deep affection and care for others"
+            },
+            "Affection": {
+                "name": "Affection",
+                "description": "Warmth and tenderness toward someone"
+            },
+            "Compassion": {
+                "name": "Compassion",
+                "description": "Empathy and desire to help others"
+            },
+            "Excitement": {
+                "name": "Excitement",
+                "description": "Energized anticipation"
+            },
+            "Enthusiasm": {
+                "name": "Enthusiasm",
+                "description": "Passionate engagement with something"
+            },
+            "Optimism": {
+                "name": "Optimism",
+                "description": "Hopeful outlook on the future"
+            },
+            "Hope": {
+                "name": "Hope",
+                "description": "Belief that good things will happen"
+            },
+            "Relief": {
+                "name": "Relief",
+                "description": "Release from tension or worry"
+            },
+            "Amusement": {
+                "name": "Amusement",
+                "description": "Finding something funny or entertaining"
+            },
+            "Delight": {
+                "name": "Delight",
+                "description": "Sudden joy or pleasure"
+            },
+            "Inspiration": {
+                "name": "Inspiration",
+                "description": "Motivated to create or act"
+            },
+            "Confidence": {
+                "name": "Confidence",
+                "description": "Belief in your abilities"
+            },
+            "Calm": {
+                "name": "Calm",
+                "description": "Peaceful and relaxed state"
+            },
+            "Serenity": {
+                "name": "Serenity",
+                "description": "Deep inner peace"
+            },
+            "Peaceful": {
+                "name": "Peaceful",
+                "description": "Absence of conflict or disturbance"
+            },
+            "Accomplished": {
+                "name": "Accomplished",
+                "description": "Sense of completion or success"
+            },
+            "Validated": {
+                "name": "Validated",
+                "description": "Feeling recognized and affirmed"
+            },
+            "Accepted": {
+                "name": "Accepted",
+                "description": "Feeling welcomed and belonging"
+            },
+            "Belonging": {
+                "name": "Belonging",
+                "description": "Connection to a group or community"
+            },
+            "Curiosity": {
+                "name": "Curiosity",
+                "description": "Interest in learning or exploring"
+            },
+            "Wonder": {
+                "name": "Wonder",
+                "description": "Awe at something remarkable"
+            },
+            "Awe": {
+                "name": "Awe",
+                "description": "Overwhelming sense of amazement"
+            },
+            "Sadness": {
+                "name": "Sadness",
+                "description": "Deep sorrow or unhappiness"
+            },
+            "Grief": {
+                "name": "Grief",
+                "description": "Intense pain from loss"
+            },
+            "Despair": {
+                "name": "Despair",
+                "description": "Loss of hope and motivation"
+            },
+            "Loneliness": {
+                "name": "Loneliness",
+                "description": "Painful feeling of isolation"
+            },
+            "Anger": {
+                "name": "Anger",
+                "description": "Strong displeasure or hostility"
+            },
+            "Rage": {
+                "name": "Rage",
+                "description": "Intense, uncontrollable anger"
+            },
+            "Frustration": {
+                "name": "Frustration",
+                "description": "Annoyance from blocked goals"
+            },
+            "Irritation": {
+                "name": "Irritation",
+                "description": "Minor annoyance or impatience"
+            },
+            "Fear": {
+                "name": "Fear",
+                "description": "Dread of danger or harm"
+            },
+            "Anxiety": {
+                "name": "Anxiety",
+                "description": "Worry about uncertain outcomes"
+            },
+            "Dread": {
+                "name": "Dread",
+                "description": "Intense fear of something specific"
+            },
+            "Panic": {
+                "name": "Panic",
+                "description": "Sudden overwhelming terror"
+            },
+            "Shame": {
+                "name": "Shame",
+                "description": "Deep embarrassment about yourself"
+            },
+            "Guilt": {
+                "name": "Guilt",
+                "description": "Regret for something you did wrong"
+            },
+            "Embarrassment": {
+                "name": "Embarrassment",
+                "description": "Self-consciousness in social situations"
+            },
+            "Humiliation": {
+                "name": "Humiliation",
+                "description": "Feeling publicly degraded"
+            },
+            "Disgust": {
+                "name": "Disgust",
+                "description": "Revulsion or strong disapproval"
+            },
+            "Contempt": {
+                "name": "Contempt",
+                "description": "Feeling someone is beneath you"
+            },
+            "Jealousy": {
+                "name": "Jealousy",
+                "description": "Fear of losing something valued"
+            },
+            "Envy": {
+                "name": "Envy",
+                "description": "Desire for what others have"
+            },
+            "Resentment": {
+                "name": "Resentment",
+                "description": "Bitter anger at unfair treatment"
+            },
+            "Bitterness": {
+                "name": "Bitterness",
+                "description": "Lingering anger and disappointment"
+            },
+            "Regret": {
+                "name": "Regret",
+                "description": "Wishing you'd done something differently"
+            },
+            "Disappointment": {
+                "name": "Disappointment",
+                "description": "Letdown from unmet expectations"
+            },
+            "Discouragement": {
+                "name": "Discouragement",
+                "description": "Loss of motivation or confidence"
+            },
+            "Helplessness": {
+                "name": "Helplessness",
+                "description": "Feeling unable to change a situation"
+            },
+            "Hopelessness": {
+                "name": "Hopelessness",
+                "description": "Belief that things won't improve"
+            },
+            "Inadequacy": {
+                "name": "Inadequacy",
+                "description": "Feeling not good enough"
+            },
+            "Insecurity": {
+                "name": "Insecurity",
+                "description": "Doubt about your worth or abilities"
+            },
+            "Vulnerability": {
+                "name": "Vulnerability",
+                "description": "Feeling exposed or at risk"
+            },
+            "Stress": {
+                "name": "Stress",
+                "description": "Tension from pressure or demands"
+            },
+            "Tension": {
+                "name": "Tension",
+                "description": "Physical or mental tightness"
+            },
+            "Worry": {
+                "name": "Worry",
+                "description": "Anxious concern about something"
+            },
+            "Doubt": {
+                "name": "Doubt",
+                "description": "Uncertainty about yourself or decisions"
+            },
+            "Confusion": {
+                "name": "Confusion",
+                "description": "Mental disorientation or uncertainty"
+            },
+            "Overwhelm": {
+                "name": "Overwhelm",
+                "description": "Feeling flooded by too much"
+            },
+            "Betrayal": {
+                "name": "Betrayal",
+                "description": "Hurt from broken trust"
+            },
+            "Hurt": {
+                "name": "Hurt",
+                "description": "Emotional pain from others' actions"
+            },
+            "Rejection": {
+                "name": "Rejection",
+                "description": "Pain from being excluded or unwanted"
+            }
+        }
     },
     "phrases": [
         "Breathe in peace, breathe out tension.",
