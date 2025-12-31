@@ -392,4 +392,111 @@ app.get('/api/emotions/analytics', auth, async (req: Request, res: Response) => 
     }
 });
 
+// Change username
+app.patch('/api/user/username', auth, async (req: Request, res: Response) => {
+    const user = (req as AuthRequest).user;
+    const oldUsername = user.username;
+    let { newUsername } = req.body;
+
+    if (!newUsername) return res.status(400).json({ error: 'New username required' });
+
+    newUsername = validator.trim(newUsername);
+
+    if (!validator.isAlphanumeric(newUsername) || !validator.isLength(newUsername, { min: 3, max: 32 })) {
+        return res.status(400).json({ error: 'Username must be 3-32 alphanumeric characters' });
+    }
+
+    if (oldUsername === newUsername) {
+        return res.status(400).json({ error: 'New username must be different from current username' });
+    }
+
+    try {
+        // Check if new username already exists
+        const existing = await monks.findOne({ username: newUsername });
+        if (existing) return res.status(409).json({ error: 'Username already exists' });
+
+        // Update username in Monks collection
+        await monks.updateOne({ username: oldUsername }, { $set: { username: newUsername } });
+
+        // Update username in Meditations collection
+        await db.collection('Meditations').updateMany({ Username: oldUsername }, { $set: { Username: newUsername } });
+
+        // Update username in EmotionLogs collection
+        await db.collection('EmotionLogs').updateMany({ username: oldUsername }, { $set: { username: newUsername } });
+
+        // Generate new token with new username
+        const token = jwt.sign({ username: newUsername }, JWT_SECRET, { expiresIn: '7d' });
+
+        res.json({ message: 'Username updated successfully', username: newUsername, token });
+    } catch (err: any) {
+        res.status(500).json({ error: 'Failed to update username', details: err.message });
+    }
+});
+
+// Change password
+app.patch('/api/user/password', auth, async (req: Request, res: Response) => {
+    const user = (req as AuthRequest).user;
+    const username = user.username;
+    let { currentPassword, newPassword } = req.body;
+
+    if (!currentPassword || !newPassword) {
+        return res.status(400).json({ error: 'Current password and new password required' });
+    }
+
+    currentPassword = validator.trim(currentPassword);
+    newPassword = validator.trim(newPassword);
+
+    if (!validator.isLength(newPassword, { min: 6, max: 128 })) {
+        return res.status(400).json({ error: 'New password must be 6-128 characters' });
+    }
+
+    try {
+        // Verify current password
+        const monk = await monks.findOne({ username });
+        if (!monk) return res.status(404).json({ error: 'User not found' });
+
+        const valid = await argon2.verify(monk.password, currentPassword);
+        if (!valid) return res.status(401).json({ error: 'Current password is incorrect' });
+
+        // Hash and update new password
+        const hash = await argon2.hash(newPassword);
+        await monks.updateOne({ username }, { $set: { password: hash } });
+
+        res.json({ message: 'Password updated successfully' });
+    } catch (err: any) {
+        res.status(500).json({ error: 'Failed to update password', details: err.message });
+    }
+});
+
+// Delete account
+app.delete('/api/user/account', auth, async (req: Request, res: Response) => {
+    const user = (req as AuthRequest).user;
+    const username = user.username;
+    let { password } = req.body;
+
+    if (!password) {
+        return res.status(400).json({ error: 'Password required to delete account' });
+    }
+
+    password = validator.trim(password);
+
+    try {
+        // Verify password
+        const monk = await monks.findOne({ username });
+        if (!monk) return res.status(404).json({ error: 'User not found' });
+
+        const valid = await argon2.verify(monk.password, password);
+        if (!valid) return res.status(401).json({ error: 'Password is incorrect' });
+
+        // Delete user data from all collections
+        await monks.deleteOne({ username });
+        await db.collection('Meditations').deleteMany({ Username: username });
+        await db.collection('EmotionLogs').deleteMany({ username });
+
+        res.json({ message: 'Account deleted successfully' });
+    } catch (err: any) {
+        res.status(500).json({ error: 'Failed to delete account', details: err.message });
+    }
+});
+
 export default app;

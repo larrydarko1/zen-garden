@@ -1,42 +1,52 @@
 <template>
 	<div class="settings-overlay" @click.self="$emit('close')">
 		<div class="settings-popup">
-			<h2 class="settings-title">{{ t('settings.title') }}</h2>
-			
-			<div class="settings-section">
-				<h3 class="section-label">{{ t('settings.theme') }}</h3>
-				<div class="theme-options">
-					<button
-						v-for="theme in themes"
-						:key="theme"
-						:class="['theme-option', theme, { active: currentTheme === theme }]"
-						@click="selectTheme(theme)"
-					>
-						<div class="theme-preview" :class="theme"></div>
-						<span class="theme-name">{{ t(`settings.themes.${theme}`) }}</span>
-					</button>
-				</div>
+			<div class="settings-header">
+				<h2 class="settings-title">{{ t('settings.title') }}</h2>
+				<button class="close-btn" @click="$emit('close')" aria-label="Close settings">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<path d="M18 6L6 18M6 6l12 12"/>
+					</svg>
+				</button>
 			</div>
 
-			<div class="settings-section">
-				<h3 class="section-label">{{ t('settings.language') }}</h3>
-				<div class="language-options">
-					<button
-						v-for="(langName, langCode) in languages"
-						:key="langCode"
-						:class="['language-option', { active: currentLanguage === langCode }]"
-						@click="selectLanguage(langCode)"
-					>
-						{{ langName }}
-					</button>
+			<div class="settings-content">
+				<div class="settings-section">
+					<h3 class="section-label">{{ t('settings.theme') }}</h3>
+					<div class="theme-options">
+						<button
+							v-for="theme in themes"
+							:key="theme"
+							:class="['theme-option', theme, { active: currentTheme === theme }]"
+							@click="selectTheme(theme)"
+						>
+							<div class="theme-preview" :class="theme"></div>
+							<span class="theme-name">{{ t(`settings.themes.${theme}`) }}</span>
+						</button>
+					</div>
 				</div>
-			</div>
 
-			<button class="close-btn" @click="$emit('close')" aria-label="Close settings">
-				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-					<path d="M18 6L6 18M6 6l12 12"/>
-				</svg>
-			</button>
+				<div class="settings-section">
+					<h3 class="section-label">{{ t('settings.language') }}</h3>
+					<div class="language-options">
+						<button
+							v-for="(langName, langCode) in languages"
+							:key="langCode"
+							:class="['language-option', { active: currentLanguage === langCode }]"
+							@click="selectLanguage(langCode)"
+						>
+							{{ langName }}
+						</button>
+					</div>
+				</div>
+
+				<div class="settings-divider"></div>
+
+				<AccountSettings 
+					@usernameChanged="handleUsernameChange"
+					@accountDeleted="handleAccountDeletion"
+				/>
+			</div>
 		</div>
 	</div>
 </template>
@@ -44,6 +54,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import AccountSettings from './AccountSettings.vue';
 
 const { t, locale } = useI18n();
 
@@ -77,6 +88,19 @@ function selectLanguage(lang: string) {
 	currentLanguage.value = lang;
 	emit('language-change', lang);
 }
+
+function handleUsernameChange(newUsername: string) {
+	// Username was changed successfully, might want to update UI
+	console.log('Username changed to:', newUsername);
+	// Optionally refresh the page or update any displayed username
+	window.location.reload();
+}
+
+function handleAccountDeletion() {
+	// Account deleted, redirect to login
+	emit('close');
+	window.location.reload();
+}
 </script>
 
 <style scoped>
@@ -101,14 +125,15 @@ function selectLanguage(lang: string) {
 	background: var(--input-bg);
 	border: 1px solid var(--input-border);
 	border-radius: 6px;
-	padding: 0.75rem;
 	width: 90%;
-	max-width: 420px;
-	max-height: 80vh;
-	overflow-y: auto;
+	max-width: 600px;
+	max-height: 85vh;
 	position: relative;
 	animation: slideUp 0.3s ease-out;
 	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
 }
 
 @keyframes slideUp {
@@ -122,15 +147,30 @@ function selectLanguage(lang: string) {
 	}
 }
 
+.settings-header {
+	padding: 0.75rem;
+	border-bottom: 1px solid var(--input-border);
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
 .settings-title {
 	color: var(--text1);
 	font-size: 0.875rem;
 	font-weight: 400;
-	margin: 0 0 1rem 0;
+	margin: 0;
 	text-align: center;
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
-	padding-right: 2rem;
+}
+
+.settings-content {
+	padding: 0.75rem;
+	overflow-y: auto;
+	flex: 1;
 }
 
 .settings-section {
@@ -148,6 +188,13 @@ function selectLanguage(lang: string) {
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
 	margin: 0 0 0.5rem 0;
+}
+
+.settings-divider {
+	height: 1px;
+	background: var(--input-border);
+	margin: 1.5rem 0;
+	opacity: 0.5;
 }
 
 .theme-options {
@@ -244,8 +291,9 @@ function selectLanguage(lang: string) {
 
 .close-btn {
 	position: absolute;
-	top: 0.5rem;
+	top: 50%;
 	right: 0.5rem;
+	transform: translateY(-50%);
 	background: transparent;
 	border: none;
 	color: var(--text2);
