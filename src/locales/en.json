@@ -26,6 +26,7 @@
         "dayStreak": "Day Streak",
         "breathe": "Breathe",
         "emotions": "Emotions",
+        "eightfoldPath": "Eightfold Path",
         "calendar": "Calendar",
         "logout": "Logout"
     },
@@ -439,6 +440,57 @@
             "Rejection": {
                 "name": "Rejection",
                 "description": "Pain from being excluded or unwanted"
+            }
+        }
+    },
+    "eightfold": {
+        "title": "Noble Eightfold Path",
+        "completed": "Completed",
+        "progress": "Progress",
+        "loading": "Loading",
+        "saving": "Saving...",
+        "saved": "Saved ✓",
+        "notesPlaceholder": "Add notes about how you followed this path today...",
+        "paths": {
+            "rightView": {
+                "name": "Right View",
+                "description": "Understanding the Four Noble Truths and seeing reality as it is",
+                "questions": "Did I see situations clearly today? Did I recognize suffering and its causes?"
+            },
+            "rightIntention": {
+                "name": "Right Intention",
+                "description": "Cultivating thoughts of compassion, goodwill, and harmlessness",
+                "questions": "Were my intentions pure today? Did I wish well for others and myself?"
+            },
+            "rightSpeech": {
+                "name": "Right Speech",
+                "description": "Speaking truthfully, kindly, and mindfully without gossip or harsh words",
+                "questions": "Did I speak truthfully? Did I avoid gossip, lies, or hurtful words?"
+            },
+            "rightAction": {
+                "name": "Right Action",
+                "description": "Acting ethically, avoiding harm to all living beings",
+                "questions": "Did I act with integrity? Did I avoid stealing, harming, or betraying trust?"
+            },
+            "rightLivelihood": {
+                "name": "Right Livelihood",
+                "description": "Earning a living in ways that don't harm others or oneself",
+                "questions": "Does my work contribute positively? Am I earning honestly and ethically?"
+            },
+            "rightEffort": {
+                "name": "Right Effort",
+                "description": "Cultivating positive states of mind and preventing unwholesome ones",
+                "questions": "Did I let go of negative thoughts? Did I nurture positive qualities?"
+            },
+            "rightMindfulness": {
+                "name": "Right Mindfulness",
+                "description": "Maintaining present-moment awareness of body, feelings, mind, and phenomena",
+                "questions": "Was I present today? Did I notice my thoughts, feelings, and actions?"
+            },
+            "rightConcentration": {
+                "name": "Right Concentration",
+                "description": "Developing deep focus through meditation practice",
+                "questions": "Did I meditate or practice deep focus? Did I cultivate inner peace?"
             }
         }
     },

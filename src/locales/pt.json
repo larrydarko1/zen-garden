@@ -26,6 +26,7 @@
         "dayStreak": "Sequência de Dias",
         "breathe": "Respirar",
         "emotions": "Emoções",
+        "eightfoldPath": "Caminho Óctuplo",
         "calendar": "Calendário",
         "logout": "Sair"
     },
@@ -439,6 +440,57 @@
             "Rejection": {
                 "name": "Rejeição",
                 "description": "Dor por ser excluído ou indesejado"
+            }
+        }
+    },
+    "eightfold": {
+        "title": "Nobre Caminho Óctuplo",
+        "completed": "Completado",
+        "progress": "Progresso",
+        "loading": "Carregando",
+        "saving": "Salvando...",
+        "saved": "Salvo ✓",
+        "notesPlaceholder": "Adicione notas sobre como você seguiu este caminho hoje...",
+        "paths": {
+            "rightView": {
+                "name": "Visão Correta",
+                "description": "Compreender as Quatro Nobres Verdades e ver a realidade como ela é",
+                "questions": "Eu vi as situações claramente hoje? Reconheci o sofrimento e suas causas?"
+            },
+            "rightIntention": {
+                "name": "Intenção Correta",
+                "description": "Cultivar pensamentos de compaixão, boa vontade e inofensividade",
+                "questions": "Minhas intenções foram puras hoje? Desejei bem aos outros e a mim mesmo?"
+            },
+            "rightSpeech": {
+                "name": "Fala Correta",
+                "description": "Falar com verdade, gentileza e atenção plena sem fofoca ou palavras duras",
+                "questions": "Falei com verdade? Evitei fofocas, mentiras ou palavras ofensivas?"
+            },
+            "rightAction": {
+                "name": "Ação Correta",
+                "description": "Agir eticamente, evitando prejudicar todos os seres vivos",
+                "questions": "Agi com integridade? Evitei roubar, prejudicar ou trair a confiança?"
+            },
+            "rightLivelihood": {
+                "name": "Meio de Vida Correto",
+                "description": "Ganhar a vida de maneiras que não prejudiquem os outros ou a si mesmo",
+                "questions": "Meu trabalho contribui positivamente? Estou ganhando honesta e eticamente?"
+            },
+            "rightEffort": {
+                "name": "Esforço Correto",
+                "description": "Cultivar estados mentais positivos e prevenir os não saudáveis",
+                "questions": "Deixei ir pensamentos negativos? Nutri qualidades positivas?"
+            },
+            "rightMindfulness": {
+                "name": "Atenção Plena Correta",
+                "description": "Manter a consciência do momento presente do corpo, sentimentos, mente e fenômenos",
+                "questions": "Estive presente hoje? Notei meus pensamentos, sentimentos e ações?"
+            },
+            "rightConcentration": {
+                "name": "Concentração Correta",
+                "description": "Desenvolver foco profundo através da prática de meditação",
+                "questions": "Meditei ou pratiquei foco profundo? Cultivei paz interior?"
             }
         }
     },

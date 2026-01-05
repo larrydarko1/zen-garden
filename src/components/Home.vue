@@ -56,6 +56,13 @@
             </button>
             <button 
               class="menu-item"
+              @click="showEightfoldPath = true"
+              aria-label="Track the Eightfold Path"
+            >
+              {{ t('header.eightfoldPath') }}
+            </button>
+            <button 
+              class="menu-item"
               @click="showCalendar = true"
               aria-label="View meditation history"
             >
@@ -68,6 +75,7 @@
             >
               {{ t('header.logout') }}
             </button>
+      <EightfoldPath v-if="showEightfoldPath" @close="showEightfoldPath = false" />
           </nav>
         </div>
       </div>
@@ -122,6 +130,7 @@ import MeditationCalendar from './MeditationCalendar.vue'
 import SessionNotes from './SessionNotes.vue'
 import BreathingExercise from './BreathingExercise.vue'
 import EmotionTracker from './EmotionTracker.vue'
+import EightfoldPath from './EightfoldPath.vue'
 import { ref, onMounted, onUnmounted, watch, computed } from 'vue'
 import ZenWindAnimation from './ZenWindAnimation.vue'
 import ZenWavesAnimation from './ZenWavesAnimation.vue'
@@ -150,6 +159,7 @@ const showCalendar = ref(false)
 const showNotes = ref(false)
 const showBreathing = ref(false)
 const showEmotions = ref(false)
+const showEightfoldPath = ref(false)
 const meditations = ref<Array<{ Date: string | { $date: string }, Username?: string, duration?: number, notes?: string }>>([])  
 const completedMeditationDuration = ref(0)
 

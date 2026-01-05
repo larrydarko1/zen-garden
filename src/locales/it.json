@@ -26,6 +26,7 @@
         "dayStreak": "Serie di Giorni",
         "breathe": "Respira",
         "emotions": "Emozioni",
+        "eightfoldPath": "Nobile Ottuplice",
         "calendar": "Calendario",
         "logout": "Esci"
     },
@@ -439,6 +440,57 @@
             "Rejection": {
                 "name": "Rifiuto",
                 "description": "Dolore dall'essere escluso o indesiderato"
+            }
+        }
+    },
+    "eightfold": {
+        "title": "Nobile Ottuplice Sentiero",
+        "completed": "Completato",
+        "progress": "Progresso",
+        "loading": "Caricamento",
+        "saving": "Salvataggio...",
+        "saved": "Salvato ✓",
+        "notesPlaceholder": "Aggiungi note su come hai seguito questo sentiero oggi...",
+        "paths": {
+            "rightView": {
+                "name": "Retta Visione",
+                "description": "Comprendere le Quattro Nobili Verità e vedere la realtà così com'è",
+                "questions": "Ho visto le situazioni chiaramente oggi? Ho riconosciuto la sofferenza e le sue cause?"
+            },
+            "rightIntention": {
+                "name": "Retta Intenzione",
+                "description": "Coltivare pensieri di compassione, benevolenza e innocuità",
+                "questions": "Le mie intenzioni erano pure oggi? Ho desiderato il bene per gli altri e per me stesso?"
+            },
+            "rightSpeech": {
+                "name": "Retta Parola",
+                "description": "Parlare con verità, gentilezza e consapevolezza senza pettegolezzi o parole dure",
+                "questions": "Ho parlato con verità? Ho evitato pettegolezzi, bugie o parole offensive?"
+            },
+            "rightAction": {
+                "name": "Retta Azione",
+                "description": "Agire eticamente, evitando di danneggiare tutti gli esseri viventi",
+                "questions": "Ho agito con integrità? Ho evitato di rubare, danneggiare o tradire la fiducia?"
+            },
+            "rightLivelihood": {
+                "name": "Retto Sostentamento",
+                "description": "Guadagnarsi da vivere in modi che non danneggiano gli altri o se stessi",
+                "questions": "Il mio lavoro contribuisce positivamente? Sto guadagnando onestamente ed eticamente?"
+            },
+            "rightEffort": {
+                "name": "Retto Sforzo",
+                "description": "Coltivare stati mentali positivi e prevenire quelli non salutari",
+                "questions": "Ho lasciato andare i pensieri negativi? Ho nutrito qualità positive?"
+            },
+            "rightMindfulness": {
+                "name": "Retta Consapevolezza",
+                "description": "Mantenere la consapevolezza del momento presente del corpo, dei sentimenti, della mente e dei fenomeni",
+                "questions": "Sono stato presente oggi? Ho notato i miei pensieri, sentimenti e azioni?"
+            },
+            "rightConcentration": {
+                "name": "Retta Concentrazione",
+                "description": "Sviluppare una concentrazione profonda attraverso la pratica della meditazione",
+                "questions": "Ho meditato o praticato una concentrazione profonda? Ho coltivato la pace interiore?"
             }
         }
     },

@@ -26,6 +26,7 @@
         "dayStreak": "Série de Jours",
         "breathe": "Respirer",
         "emotions": "Émotions",
+        "eightfoldPath": "Noble Sentier",
         "calendar": "Calendrier",
         "logout": "Déconnexion"
     },
@@ -439,6 +440,57 @@
             "Rejection": {
                 "name": "Rejet",
                 "description": "Douleur d'être exclu ou indésirable"
+            }
+        }
+    },
+    "eightfold": {
+        "title": "Noble Sentier Octuple",
+        "completed": "Complété",
+        "progress": "Progrès",
+        "loading": "Chargement",
+        "saving": "Enregistrement...",
+        "saved": "Enregistré ✓",
+        "notesPlaceholder": "Ajoutez des notes sur la façon dont vous avez suivi ce chemin aujourd'hui...",
+        "paths": {
+            "rightView": {
+                "name": "Vue Juste",
+                "description": "Comprendre les Quatre Nobles Vérités et voir la réalité telle qu'elle est",
+                "questions": "Ai-je vu les situations clairement aujourd'hui ? Ai-je reconnu la souffrance et ses causes ?"
+            },
+            "rightIntention": {
+                "name": "Intention Juste",
+                "description": "Cultiver des pensées de compassion, de bienveillance et d'innocuité",
+                "questions": "Mes intentions étaient-elles pures aujourd'hui ? Ai-je souhaité du bien aux autres et à moi-même ?"
+            },
+            "rightSpeech": {
+                "name": "Parole Juste",
+                "description": "Parler avec vérité, gentillesse et pleine conscience sans commérages ni mots durs",
+                "questions": "Ai-je parlé avec vérité ? Ai-je évité les ragots, les mensonges ou les mots blessants ?"
+            },
+            "rightAction": {
+                "name": "Action Juste",
+                "description": "Agir de manière éthique, en évitant de nuire à tous les êtres vivants",
+                "questions": "Ai-je agi avec intégrité ? Ai-je évité de voler, de nuire ou de trahir la confiance ?"
+            },
+            "rightLivelihood": {
+                "name": "Moyens d'Existence Justes",
+                "description": "Gagner sa vie de manière à ne pas nuire aux autres ni à soi-même",
+                "questions": "Mon travail contribue-t-il positivement ? Est-ce que je gagne honnêtement et éthiquement ?"
+            },
+            "rightEffort": {
+                "name": "Effort Juste",
+                "description": "Cultiver des états d'esprit positifs et prévenir les malsains",
+                "questions": "Ai-je laissé partir les pensées négatives ? Ai-je nourri des qualités positives ?"
+            },
+            "rightMindfulness": {
+                "name": "Attention Juste",
+                "description": "Maintenir la conscience du moment présent du corps, des sentiments, de l'esprit et des phénomènes",
+                "questions": "Étais-je présent aujourd'hui ? Ai-je remarqué mes pensées, sentiments et actions ?"
+            },
+            "rightConcentration": {
+                "name": "Concentration Juste",
+                "description": "Développer une concentration profonde par la pratique de la méditation",
+                "questions": "Ai-je médité ou pratiqué une concentration profonde ? Ai-je cultivé la paix intérieure ?"
             }
         }
     },

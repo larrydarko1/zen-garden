@@ -26,6 +26,7 @@
         "dayStreak": "连续天数",
         "breathe": "呼吸",
         "emotions": "情绪",
+        "eightfoldPath": "八正道",
         "calendar": "日历",
         "logout": "登出"
     },
@@ -439,6 +440,57 @@
             "Rejection": {
                 "name": "拒绝",
                 "description": "被排除或不受欢迎的痛苦"
+            }
+        }
+    },
+    "eightfold": {
+        "title": "八正道",
+        "completed": "已完成",
+        "progress": "进度",
+        "loading": "加载中",
+        "saving": "保存中...",
+        "saved": "已保存 ✓",
+        "notesPlaceholder": "添加关于您今天如何遵循此道路的笔记...",
+        "paths": {
+            "rightView": {
+                "name": "正见",
+                "description": "理解四圣谛，如实见到真实",
+                "questions": "今天我是否清楚地看待情况？我是否认识到了苦难及其原因？"
+            },
+            "rightIntention": {
+                "name": "正思维",
+                "description": "培养慈悲、善意和无害的思想",
+                "questions": "今天我的意图是否纯正？我是否为他人和自己祈愿？"
+            },
+            "rightSpeech": {
+                "name": "正语",
+                "description": "说真话、说善语、说正念话，不说闲话或恶语",
+                "questions": "我是否说了真话？我是否避免了闲话、谎言或伤人的话？"
+            },
+            "rightAction": {
+                "name": "正业",
+                "description": "以道德行事，避免伤害一切众生",
+                "questions": "我是否诚实地行事？我是否避免了偷盗、伤害或背信弃义？"
+            },
+            "rightLivelihood": {
+                "name": "正命",
+                "description": "以不伤害他人或自己的方式谋生",
+                "questions": "我的工作是否积极贡献？我是否诚实合乎道德地谋生？"
+            },
+            "rightEffort": {
+                "name": "正精进",
+                "description": "培养积极的心态，防止不健康的心态",
+                "questions": "我是否放下了消极思想？我是否培养了积极的品质？"
+            },
+            "rightMindfulness": {
+                "name": "正念",
+                "description": "保持对身体、感觉、心念和现象的当下觉知",
+                "questions": "今天我是否保持了当下？我是否注意到了我的思想、感受和行为？"
+            },
+            "rightConcentration": {
+                "name": "正定",
+                "description": "通过禅修培养深度专注",
+                "questions": "我是否禅修或练习了深度专注？我是否培养了内心的宁静？"
             }
         }
     },
