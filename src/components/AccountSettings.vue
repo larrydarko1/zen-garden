@@ -69,6 +69,85 @@
       </form>
     </div>
 
+    <!-- Recovery Codes Section -->
+    <div class="settings-section">
+      <h3 class="section-title">{{ t('account.recoveryCodes') }}</h3>
+      <p class="info-text">{{ t('account.recoveryCodesDescription') }}</p>
+      
+      <!-- Status display -->
+      <div v-if="recoveryStatus && recoveryStatus.hasRecoveryCodes" class="recovery-status">
+        <div class="status-item">
+          <span class="status-label">{{ t('account.totalCodes') }}:</span>
+          <span class="status-value">{{ recoveryStatus.totalCodes }}</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">{{ t('account.usedCodes') }}:</span>
+          <span class="status-value">{{ recoveryStatus.usedCodes }}</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">{{ t('account.remainingCodes') }}:</span>
+          <span class="status-value">{{ recoveryStatus.remainingCodes }}</span>
+        </div>
+      </div>
+      
+      <!-- Generate codes form -->
+      <div v-if="!showRecoveryCodes && !showGenerateForm" class="button-container">
+        <button @click="showGenerateForm = true" class="zen-btn">
+          {{ recoveryStatus?.hasRecoveryCodes ? t('account.regenerateCodes') : t('account.generateCodes') }}
+        </button>
+      </div>
+
+      <form v-if="showGenerateForm && !showRecoveryCodes" @submit.prevent="generateRecoveryCodes" class="settings-form">
+        <p class="warning-text">{{ t('account.generateCodesWarning') }}</p>
+        <input
+          v-model="recoveryPassword"
+          type="password"
+          :placeholder="t('account.confirmPasswordToGenerate')"
+          :disabled="isGeneratingCodes"
+          required
+          autocomplete="current-password"
+        />
+        <div class="button-row">
+          <button type="button" @click="cancelGenerateCodes" :disabled="isGeneratingCodes" class="zen-btn cancel-btn">
+            {{ t('account.cancel') }}
+          </button>
+          <button type="submit" :disabled="isGeneratingCodes || !recoveryPassword" class="zen-btn">
+            <span v-if="!isGeneratingCodes">{{ t('account.confirm') }}</span>
+            <span v-else class="zen-loader">
+              <svg width="20" height="20" viewBox="0 0 32 32">
+                <rect x="10" y="15" width="12" height="2" rx="1">
+                  <animateTransform attributeName="transform" type="rotate" from="0 16 16" to="360 16 16" dur="2.5s" repeatCount="indefinite"/>
+                </rect>
+              </svg>
+            </span>
+          </button>
+        </div>
+        <div v-if="recoveryError" class="error-message">{{ recoveryError }}</div>
+      </form>
+
+      <!-- Display generated codes -->
+      <div v-if="showRecoveryCodes && recoveryCodes.length > 0" class="recovery-codes-display">
+        <div class="warning-banner">
+          <strong>⚠️ {{ t('account.saveCodesWarning') }}</strong>
+          <p>{{ t('account.saveCodesDescription') }}</p>
+        </div>
+        <div class="codes-grid">
+          <div v-for="(code, index) in recoveryCodes" :key="index" class="code-item">
+            <span class="code-number">{{ index + 1 }}.</span>
+            <code class="code-value">{{ code }}</code>
+          </div>
+        </div>
+        <div class="button-row">
+          <button @click="copyAllCodes" class="zen-btn">
+            {{ codiesCopied ? t('account.copied') : t('account.copyAll') }}
+          </button>
+          <button @click="closeRecoveryCodes" class="zen-btn">
+            {{ t('account.iHaveSavedCodes') }}
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Delete Account Section -->
     <div class="settings-section danger-section">
       <h3 class="section-title danger-title">{{ t('account.deleteAccount') }}</h3>
@@ -109,7 +188,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { apiRequest } from '../api'
 
@@ -131,11 +210,82 @@ const isChangingPassword = ref(false)
 const passwordSuccess = ref('')
 const passwordError = ref('')
 
+// Recovery Codes
+const recoveryStatus = ref<any>(null)
+const showGenerateForm = ref(false)
+const showRecoveryCodes = ref(false)
+const recoveryCodes = ref<string[]>([])
+const recoveryPassword = ref('')
+const isGeneratingCodes = ref(false)
+const recoveryError = ref('')
+const codiesCopied = ref(false)
+
 // Delete Account
 const showDeleteConfirm = ref(false)
 const deletePassword = ref('')
 const isDeletingAccount = ref(false)
 const deleteError = ref('')
+
+onMounted(async () => {
+  await loadRecoveryStatus()
+})
+
+async function loadRecoveryStatus() {
+  try {
+    const result = await apiRequest('/user/recovery-codes/status', 'GET')
+    recoveryStatus.value = result
+  } catch (error) {
+    console.error('Failed to load recovery status:', error)
+  }
+}
+
+async function generateRecoveryCodes() {
+  recoveryError.value = ''
+  isGeneratingCodes.value = true
+
+  try {
+    const result = await apiRequest('/user/recovery-codes', 'POST', { 
+      password: recoveryPassword.value 
+    })
+    
+    recoveryCodes.value = result.codes
+    showRecoveryCodes.value = true
+    showGenerateForm.value = false
+    recoveryPassword.value = ''
+    
+    // Reload status
+    await loadRecoveryStatus()
+  } catch (error: any) {
+    recoveryError.value = error.message || t('account.recoveryCodesFailed')
+  } finally {
+    isGeneratingCodes.value = false
+  }
+}
+
+function cancelGenerateCodes() {
+  showGenerateForm.value = false
+  recoveryPassword.value = ''
+  recoveryError.value = ''
+}
+
+function closeRecoveryCodes() {
+  showRecoveryCodes.value = false
+  recoveryCodes.value = []
+  codiesCopied.value = false
+}
+
+async function copyAllCodes() {
+  const codesText = recoveryCodes.value.map((code, index) => `${index + 1}. ${code}`).join('\n')
+  try {
+    await navigator.clipboard.writeText(codesText)
+    codiesCopied.value = true
+    setTimeout(() => {
+      codiesCopied.value = false
+    }, 2000)
+  } catch (error) {
+    console.error('Failed to copy codes:', error)
+  }
+}
 
 async function changeUsername() {
   usernameError.value = ''
@@ -360,6 +510,104 @@ input::placeholder {
   line-height: 1.5;
 }
 
+.info-text {
+  color: var(--text2);
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.recovery-status {
+  background: var(--base1);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.status-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.status-item:last-child {
+  border-bottom: none;
+}
+
+.status-label {
+  color: var(--text2);
+  font-size: 0.875rem;
+}
+
+.status-value {
+  color: var(--text1);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.recovery-codes-display {
+  margin-top: 1rem;
+}
+
+.warning-banner {
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.warning-banner strong {
+  color: #f59e0b;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.warning-banner p {
+  color: var(--text2);
+  font-size: 0.875rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.codes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.code-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--base1);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 0.75rem;
+}
+
+.code-number {
+  color: var(--text2);
+  font-size: 0.75rem;
+  min-width: 1.5rem;
+}
+
+.code-value {
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  color: var(--text1);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
 .danger-btn {
   background: #ef4444;
   border-color: #dc2626;
@@ -399,6 +647,10 @@ input::placeholder {
 
   .button-row {
     flex-direction: column;
+  }
+
+  .codes-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>

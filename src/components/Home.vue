@@ -135,7 +135,7 @@ const phrases = computed(() => tm('phrases') as string[])
 const currentPhrase = ref(phrases.value[Math.floor(Math.random() * phrases.value.length)])
 let phraseIntervalId: number | undefined
 
-const emit = defineEmits(['meditation-active', 'theme-changed', 'language-changed'])
+const emit = defineEmits(['meditation-active', 'theme-changed', 'language-changed', 'user-changed'])
 const meditationActive = ref(false)
 
 // Watch meditationActive and emit event on change
@@ -327,6 +327,7 @@ const token = ref<string | null>(localStorage.getItem('zen_token'))
 async function handleAuth(evt: { user: any, token: string }) {
   user.value = evt.user
   token.value = evt.token
+  emit('user-changed', evt.user)
   await fetchUserData()
   await fetchMeditations()
   if (evt.user && evt.user.theme) {
@@ -341,6 +342,7 @@ function handleLogout() {
   user.value = null
   token.value = null
   localStorage.removeItem('zen_token')
+  emit('user-changed', null)
 }
 
 // Optionally, fetch meditations when calendar is opened

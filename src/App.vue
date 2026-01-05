@@ -1,8 +1,8 @@
 <template>
 	<div id="app" :class="currentTheme">
-		<Home @meditation-active="onMeditationActive" @theme-changed="setThemeFromLogin" @language-changed="setLanguageFromLogin" />
+		<Home @meditation-active="onMeditationActive" @theme-changed="setThemeFromLogin" @language-changed="setLanguageFromLogin" @user-changed="onUserChanged" />
 		<button
-			v-if="!meditationActive"
+			v-if="!meditationActive && isAuthenticated"
 			class="settings-btn"
 			@click="showSettings = true"
 			aria-label="Open settings"
@@ -28,9 +28,14 @@ const { locale } = useI18n();
 const currentTheme = ref(localStorage.getItem('zen_theme') || 'blue');
 const meditationActive = ref(false); // controlled by Home.vue
 const showSettings = ref(false);
+const isAuthenticated = ref(false);
 
 function onMeditationActive(val: boolean) {
 	meditationActive.value = val;
+}
+
+function onUserChanged(user: any) {
+	isAuthenticated.value = !!user;
 }
 
 function setThemeFromLogin(theme: string) {

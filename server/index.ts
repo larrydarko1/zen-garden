@@ -7,6 +7,7 @@ import argon2 from 'argon2';
 import dotenv from 'dotenv';
 import validator from 'validator';
 import path from 'path';
+import crypto from 'crypto';
 
 dotenv.config({ path: path.resolve('./server/.env') });
 
@@ -76,7 +77,7 @@ app.post('/api/register', requireApiKey, async (req: Request, res: Response) => 
     };
     await monks.insertOne(monk);
     const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: '7d' });
-    res.status(201).json({ message: 'User registered', user: { username, theme: monk.theme, language: monk.language, stats: monk.stats, goals: monk.goals }, token });
+    res.status(201).json({ message: 'User registered', user: { username, theme: monk.theme, language: monk.language, stats: monk.stats }, token });
 });
 
 // Login
@@ -496,6 +497,156 @@ app.delete('/api/user/account', auth, async (req: Request, res: Response) => {
         res.json({ message: 'Account deleted successfully' });
     } catch (err: any) {
         res.status(500).json({ error: 'Failed to delete account', details: err.message });
+    }
+});
+
+// Generate recovery codes
+app.post('/api/user/recovery-codes', auth, async (req: Request, res: Response) => {
+    const user = (req as AuthRequest).user;
+    const username = user.username;
+    let { password } = req.body;
+
+    if (!password) {
+        return res.status(400).json({ error: 'Password required to generate recovery codes' });
+    }
+
+    password = validator.trim(password);
+
+    try {
+        // Verify password
+        const monk = await monks.findOne({ username });
+        if (!monk) return res.status(404).json({ error: 'User not found' });
+
+        const valid = await argon2.verify(monk.password, password);
+        if (!valid) return res.status(401).json({ error: 'Password is incorrect' });
+
+        // Generate 12 random recovery codes (8 characters each, alphanumeric)
+        const recoveryCodes: string[] = [];
+        const hashedCodes: { code: string; used: boolean }[] = [];
+
+        for (let i = 0; i < 12; i++) {
+            // Generate a random code
+            const code = crypto.randomBytes(4).toString('hex').toUpperCase();
+            recoveryCodes.push(code);
+
+            // Hash the code before storing
+            const hashedCode = await argon2.hash(code);
+            hashedCodes.push({ code: hashedCode, used: false });
+        }
+
+        // Store hashed codes in database
+        await monks.updateOne(
+            { username },
+            { $set: { recoveryCodes: hashedCodes, recoveryCodesGeneratedAt: new Date() } }
+        );
+
+        // Return plain codes to user (only time they'll see them)
+        res.json({
+            message: 'Recovery codes generated successfully',
+            codes: recoveryCodes,
+            warning: 'Save these codes in a safe place. You will not be able to see them again.'
+        });
+    } catch (err: any) {
+        res.status(500).json({ error: 'Failed to generate recovery codes', details: err.message });
+    }
+});
+
+// Get recovery codes status
+app.get('/api/user/recovery-codes/status', auth, async (req: Request, res: Response) => {
+    const user = (req as AuthRequest).user;
+    const username = user.username;
+
+    try {
+        const monk = await monks.findOne({ username });
+        if (!monk) return res.status(404).json({ error: 'User not found' });
+
+        const recoveryCodes = monk.recoveryCodes || [];
+        const totalCodes = recoveryCodes.length;
+        const usedCodes = recoveryCodes.filter((c: any) => c.used).length;
+        const remainingCodes = totalCodes - usedCodes;
+
+        res.json({
+            hasRecoveryCodes: totalCodes > 0,
+            totalCodes,
+            usedCodes,
+            remainingCodes,
+            generatedAt: monk.recoveryCodesGeneratedAt || null
+        });
+    } catch (err: any) {
+        res.status(500).json({ error: 'Failed to get recovery codes status', details: err.message });
+    }
+});
+
+// Reset password with recovery code (no auth required)
+app.post('/api/user/recovery-reset', requireApiKey, async (req: Request, res: Response) => {
+    let { username, recoveryCode, newPassword } = req.body;
+
+    if (!username || !recoveryCode || !newPassword) {
+        return res.status(400).json({ error: 'Username, recovery code, and new password required' });
+    }
+
+    username = validator.trim(username);
+    recoveryCode = validator.trim(recoveryCode).toUpperCase();
+    newPassword = validator.trim(newPassword);
+
+    if (!validator.isLength(newPassword, { min: 6, max: 128 })) {
+        return res.status(400).json({ error: 'New password must be 6-128 characters' });
+    }
+
+    try {
+        const monk = await monks.findOne({ username });
+        if (!monk) return res.status(401).json({ error: 'Invalid credentials' });
+
+        const recoveryCodes = monk.recoveryCodes || [];
+        if (recoveryCodes.length === 0) {
+            return res.status(400).json({ error: 'No recovery codes available for this account' });
+        }
+
+        // Find and verify the recovery code
+        let codeIndex = -1;
+        let isValidCode = false;
+
+        for (let i = 0; i < recoveryCodes.length; i++) {
+            if (!recoveryCodes[i].used) {
+                try {
+                    const valid = await argon2.verify(recoveryCodes[i].code, recoveryCode);
+                    if (valid) {
+                        isValidCode = true;
+                        codeIndex = i;
+                        break;
+                    }
+                } catch {
+                    // Continue checking other codes
+                }
+            }
+        }
+
+        if (!isValidCode || codeIndex === -1) {
+            return res.status(401).json({ error: 'Invalid or already used recovery code' });
+        }
+
+        // Mark code as used
+        recoveryCodes[codeIndex].used = true;
+
+        // Hash new password
+        const hash = await argon2.hash(newPassword);
+
+        // Update password and recovery codes
+        await monks.updateOne(
+            { username },
+            { $set: { password: hash, recoveryCodes: recoveryCodes } }
+        );
+
+        // Calculate remaining codes
+        const remainingCodes = recoveryCodes.filter((c: any) => !c.used).length;
+
+        res.json({
+            message: 'Password reset successfully',
+            remainingCodes,
+            warning: remainingCodes === 0 ? 'All recovery codes have been used. Please generate new codes after logging in.' : undefined
+        });
+    } catch (err: any) {
+        res.status(500).json({ error: 'Failed to reset password', details: err.message });
     }
 });
 
