@@ -120,7 +120,7 @@
                   class="top-emotion-item"
                 >
                   <span class="emotion-rank">{{ Number(idx) + 1 }}</span>
-                  <span class="emotion-name">{{ emotion.name }}</span>
+                  <span class="emotion-name">{{ getTranslatedEmotionName(emotion.name) }}</span>
                   <span class="emotion-bar-container">
                     <span 
                       class="emotion-bar" 
@@ -335,6 +335,13 @@ function changeDate(delta: number) {
   if (newDate.getTime() <= today.getTime()) {
     selectedDate.value = newDate;
   }
+}
+
+function getTranslatedEmotionName(englishName: string): string {
+  // Find the emotion in our lists to get the translated name
+  const allEmotions = [...positiveEmotions.value, ...negativeEmotions.value];
+  const emotion = allEmotions.find(e => e.name === englishName);
+  return emotion ? emotion.displayName : englishName;
 }
 
 watch(selectedDate, () => {

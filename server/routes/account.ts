@@ -267,5 +267,96 @@ export function createAccountRoutes(db: Db, monks: Collection) {
         }
     });
 
+    // Export user data
+    router.get('/export', auth, async (req: Request, res: Response) => {
+        const user = (req as AuthRequest).user;
+        const username = user.username;
+        const format = req.query.format || 'json';
+
+        try {
+            // Fetch all user data
+            const userData = await monks.findOne({ username }, { projection: { password: 0, recoveryCodes: 0 } });
+            const meditations = await db.collection('Meditations').find({ Username: username }).toArray();
+            const emotions = await db.collection('EmotionLogs').find({ username }).toArray();
+            const eightfoldPath = await db.collection('EightfoldPathLogs').find({ username }).toArray();
+            const gratitude = await db.collection('GratitudeEntries').find({ username }).toArray();
+
+            const exportData = {
+                user: userData,
+                meditations,
+                emotions,
+                eightfoldPath,
+                gratitude,
+                exportedAt: new Date().toISOString()
+            };
+
+            if (format === 'csv') {
+                // Helper function to escape CSV fields
+                const escapeCsv = (value: any): string => {
+                    if (value == null) return '';
+                    const str = String(value);
+                    return str.replace(/"/g, '""');
+                };
+
+                let csv = '';
+
+                // Generate CSV for meditations
+                csv += '=== MEDITATIONS ===\n';
+                csv += 'Date,Duration (min),Notes\n';
+                meditations.forEach(m => {
+                    const date = m.Date.$date ? new Date(m.Date.$date) : new Date(m.Date);
+                    const dateStr = date.toISOString().split('T')[0];
+                    const duration = m.duration || 0;
+                    const notes = escapeCsv(m.notes || '');
+                    csv += `"${dateStr}","${duration}","${notes}"\n`;
+                });
+                csv += '\n';
+
+                // Generate CSV for emotions
+                csv += '=== EMOTIONS ===\n';
+                csv += 'Date,Positive Count,Negative Count,P/N Ratio,Emotions\n';
+                emotions.forEach(e => {
+                    const date = e.date ? new Date(e.date) : new Date();
+                    const dateStr = date.toISOString().split('T')[0];
+                    const positiveCount = e.positiveCount || 0;
+                    const negativeCount = e.negativeCount || 0;
+                    const pnRatio = e.pnRatio || 0;
+                    const emotionsList = Array.isArray(e.emotions) ? e.emotions.map((em: any) => `${em.name}(${em.type})`).join('; ') : '';
+                    csv += `"${dateStr}","${positiveCount}","${negativeCount}","${pnRatio.toFixed(2)}","${escapeCsv(emotionsList)}"\n`;
+                });
+                csv += '\n';
+
+                // Generate CSV for eightfold path
+                csv += '=== EIGHTFOLD PATH ===\n';
+                csv += 'Date,Completed Count,Progress %,Paths\n';
+                eightfoldPath.forEach(e => {
+                    const date = e.date ? new Date(e.date) : new Date();
+                    const dateStr = date.toISOString().split('T')[0];
+                    const completedCount = e.completedCount || 0;
+                    const progressPercentage = e.progressPercentage || 0;
+                    const pathsList = Array.isArray(e.paths) ? e.paths.map((p: any) => `${p.path}: ${p.note}`).join('; ') : '';
+                    csv += `"${dateStr}","${completedCount}","${progressPercentage}","${escapeCsv(pathsList)}"\n`;
+                });
+                csv += '\n';
+
+                // Generate CSV for gratitude
+                csv += '=== GRATITUDE ===\n';
+                csv += 'Date,Text\n';
+                gratitude.forEach(g => {
+                    const date = g.date ? new Date(g.date) : new Date();
+                    const dateStr = date.toISOString().split('T')[0];
+                    const text = escapeCsv(g.text || '');
+                    csv += `"${dateStr}","${text}"\n`;
+                });
+
+                res.json({ csv });
+            } else {
+                res.json(exportData);
+            }
+        } catch (err: any) {
+            res.status(500).json({ error: 'Failed to export data', details: err.message });
+        }
+    });
+
     return router;
 }

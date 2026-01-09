@@ -40,34 +40,86 @@
                 {{ user.stats.currentStreak }}🔥
               </span>
             </div>
-            <button 
-              class="menu-item"
-              @click="showBreathing = true"
-              aria-label="Breathing exercises"
-            >
-              {{ t('header.breathe') }}
-            </button>
-            <button 
-              class="menu-item"
-              @click="showEmotions = true"
-              aria-label="Track your emotions"
-            >
-              {{ t('header.emotions') }}
-            </button>
-            <button 
-              class="menu-item"
-              @click="showEightfoldPath = true"
-              aria-label="Track the Eightfold Path"
-            >
-              {{ t('header.eightfoldPath') }}
-            </button>
-            <button 
-              class="menu-item"
-              @click="showCalendar = true"
-              aria-label="View meditation history"
-            >
-              {{ t('header.calendar') }}
-            </button>
+            
+            <div class="dropdown-container" ref="dropdownContainer">
+              <button 
+                class="menu-item menu-trigger"
+                @click="toggleDropdown"
+                aria-label="Open menu"
+                :aria-expanded="showDropdown"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 3.5h12M2 8h12M2 12.5h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>Menu</span>
+              </button>
+              
+              <div v-if="showDropdown" class="dropdown-menu" @click.stop>
+                <button 
+                  class="dropdown-item"
+                  @click="handleMenuClick(() => showBreathing = true)"
+                  aria-label="Breathing exercises"
+                >
+                 <svg fill="currentColor" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 935.475 935.475" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M921.983,620.366c-18.399-93.701-59.1-182.8-111.3-262.3c-23.8-36.2-52.399-70-83.8-99.9c-24.4-23.2-59-56-95.2-55.3 c-0.399,0-0.8,0-1.3,0c-58.6,2.5-78.3,71.4-87.7,118.6c-5.7,28.4-9.2,57.2-10.8,86.2c-17.1-19.399-25.8-47.1-25.8-82.6v-120.1 h-38.3h-38.301v120.1c0,35.6-8.699,63.3-25.8,82.6c-1.6-29-5.2-57.8-10.8-86.2c-9.4-47.2-29.1-116.1-87.7-118.6 c-0.399,0-0.8,0-1.3,0c-36.3-0.8-70.9,32.1-95.2,55.3c-31.4,29.8-60,63.7-83.8,99.9c-52.4,79.5-93,168.599-111.4,262.3 c-12.9,65.799-41.2,229.4,62.5,235c60.2,3.199,114.1-48.1,164.2-74c40-20.701,81.3-43.301,109.4-79.6 c32.1-41.5,40.2-96.5,47.3-147c2.6-18.602,4.6-37.4,6-56.201c10.6-4.6,22.5-11.1,34.4-20.199c10-7.701,20.699-17.701,30.5-30.701 c9.8,13,20.4,23.101,30.5,30.701c11.899,9.1,23.8,15.6,34.399,20.199c1.3,18.801,3.3,37.6,6,56.201 c7.101,50.5,15.3,105.5,47.3,147c28,36.299,69.4,59,109.4,79.6c50.1,25.9,104.1,77.199,164.2,74 C963.184,849.767,934.884,686.165,921.983,620.366z"></path> <path d="M506.084,163.966v-54c0-16.6-13.4-30-30-30h-8.3h-8.301c-16.6,0-30,13.4-30,30v54h38.301H506.084z"></path> </g> </g> </g></svg>
+                  {{ t('header.breathe') }}
+                </button>
+                <button 
+                  class="dropdown-item"
+                  @click="handleMenuClick(() => showEmotions = true)"
+                  aria-label="Track your emotions"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="9" cy="9" r="1" fill="currentColor"/>
+                    <circle cx="15" cy="9" r="1" fill="currentColor"/>
+                  </svg>
+                  {{ t('header.emotions') }}
+                </button>
+                <button 
+                  class="dropdown-item"
+                  @click="handleMenuClick(() => showEightfoldPath = true)"
+                  aria-label="Track the Eightfold Path"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 3v4M12 17v4M21 12h-4M7 12H3M18.364 5.636l-2.828 2.828M8.464 15.536l-2.828 2.828M18.364 18.364l-2.828-2.828M8.464 8.464L5.636 5.636" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                  {{ t('header.eightfoldPath') }}
+                </button>
+                <button 
+                  class="dropdown-item"
+                  @click="handleMenuClick(() => showCalendar = true)"
+                  aria-label="View meditation history"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                    <path d="M3 10h18M8 2v4M16 2v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                  {{ t('header.calendar') }}
+                </button>
+                <button 
+                  class="dropdown-item"
+                  @click="handleMenuClick(() => showGratitude = true)"
+                  aria-label="Open gratitude journal"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  {{ t('header.gratitude') }}
+                </button>
+                <button 
+                  class="dropdown-item"
+                  @click="handleMenuClick(() => showInsights = true)"
+                  aria-label="View insights"
+                >
+                 <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="stats" class="icon glyph"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M20,2H4A2,2,0,0,0,2,4V20a2,2,0,0,0,2,2H20a2,2,0,0,0,2-2V4A2,2,0,0,0,20,2ZM9,17a1,1,0,0,1-2,0V15a1,1,0,0,1,2,0Zm4,0a1,1,0,0,1-2,0V11a1,1,0,0,1,2,0Zm4,0a1,1,0,0,1-2,0V7a1,1,0,0,1,2,0Z"></path></g></svg>
+                  {{ t('header.insights') }}
+                </button>
+              </div>
+            </div>
+            
             <button 
               class="menu-item menu-logout" 
               @click="handleLogout" 
@@ -75,7 +127,6 @@
             >
               {{ t('header.logout') }}
             </button>
-      <EightfoldPath v-if="showEightfoldPath" @close="showEightfoldPath = false" />
           </nav>
         </div>
       </div>
@@ -83,6 +134,9 @@
       <SessionNotes v-if="showNotes" :duration="completedMeditationDuration" @save="saveSessionNotes" @skip="skipSessionNotes" @close="showNotes = false" />
       <BreathingExercise v-if="showBreathing" @close="showBreathing = false" />
       <EmotionTracker v-if="showEmotions" @close="showEmotions = false" />
+      <GratitudeJournal v-if="showGratitude" @close="showGratitude = false" />
+      <InsightsCorrelation v-if="showInsights" @close="showInsights = false" />
+      <EightfoldPath v-if="showEightfoldPath" @close="showEightfoldPath = false" />
 
       <div v-if="!meditationActive" class="zen-main">
         <div class="zen-center">
@@ -131,6 +185,8 @@ import SessionNotes from './SessionNotes.vue'
 import BreathingExercise from './BreathingExercise.vue'
 import EmotionTracker from './EmotionTracker.vue'
 import EightfoldPath from './EightfoldPath.vue'
+import GratitudeJournal from './GratitudeJournal.vue'
+import InsightsCorrelation from './InsightsCorrelation.vue'
 import { ref, onMounted, onUnmounted, watch, computed } from 'vue'
 import ZenWindAnimation from './ZenWindAnimation.vue'
 import ZenWavesAnimation from './ZenWavesAnimation.vue'
@@ -160,6 +216,10 @@ const showNotes = ref(false)
 const showBreathing = ref(false)
 const showEmotions = ref(false)
 const showEightfoldPath = ref(false)
+const showGratitude = ref(false)
+const showInsights = ref(false)
+const showDropdown = ref(false)
+const dropdownContainer = ref<HTMLElement | null>(null)
 const meditations = ref<Array<{ Date: string | { $date: string }, Username?: string, duration?: number, notes?: string }>>([])  
 const completedMeditationDuration = ref(0)
 
@@ -172,6 +232,21 @@ function setRandomPhrase() {
     next = phrases.value[Math.floor(Math.random() * phrases.value.length)]
   } while (next === currentPhrase.value && phrases.value.length > 1)
   currentPhrase.value = next
+}
+
+function toggleDropdown() {
+  showDropdown.value = !showDropdown.value
+}
+
+function handleMenuClick(callback: () => void) {
+  callback()
+  showDropdown.value = false
+}
+
+function handleClickOutside(event: MouseEvent) {
+  if (dropdownContainer.value && !dropdownContainer.value.contains(event.target as Node)) {
+    showDropdown.value = false
+  }
 }
 
 async function fetchMeditations() {
@@ -308,10 +383,12 @@ onMounted(async () => {
       token.value = null
     }
   }
+  document.addEventListener('click', handleClickOutside)
 })
 onUnmounted(() => {
   if (phraseIntervalId) clearInterval(phraseIntervalId)
   if (meditationIntervalId) clearInterval(meditationIntervalId)
+  document.removeEventListener('click', handleClickOutside)
 })
 
 function formatTime(sec: number) {
@@ -580,7 +657,7 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
   transition: stroke 0.2s;
 }
 
-/* Professional Menu Bar - Y Combinator Style */
+/* Professional Menu Bar - Compact Dropdown Style */
 .menu-bar {
   display: flex;
   align-items: center;
@@ -602,6 +679,7 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
   border-radius: 4px;
   transition: all 0.15s ease;
   letter-spacing: 0.01em;
+  white-space: nowrap;
 }
 
 .menu-item:hover {
@@ -611,6 +689,20 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
 
 .menu-item:active {
   transform: scale(0.98);
+}
+
+.menu-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.menu-trigger svg {
+  flex-shrink: 0;
+}
+
+.menu-trigger span {
+  line-height: 1;
 }
 
 .menu-logout {
@@ -623,6 +715,74 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
 .menu-logout:hover {
   color: var(--text1);
   background: var(--input-bg-focus);
+}
+
+/* Dropdown Container */
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 180px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  padding: 0.35rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  animation: dropdownSlide 0.2s ease-out;
+}
+
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 0.85rem;
+  background: transparent;
+  border: none;
+  color: var(--text2);
+  font-size: 0.875rem;
+  font-weight: 400;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  text-align: left;
+}
+
+.dropdown-item:hover {
+  background: var(--input-bg-focus);
+  color: var(--text1);
+}
+
+.dropdown-item:active {
+  transform: scale(0.98);
+}
+
+.dropdown-item svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  opacity: 0.85;
+  transition: opacity 0.15s ease;
+}
+
+.dropdown-item:hover svg {
+  opacity: 1;
 }
 
 /* Inline Compact Stats */
@@ -697,37 +857,37 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
 
   .menu-bar {
     width: 100%;
-    flex-wrap: wrap;
     gap: 0.3rem;
     padding: 0.5rem;
   }
 
   .stats-inline {
-    width: 100%;
     display: flex;
     border-right: none;
-    border-bottom: 1px solid var(--input-bg-focus);
-    padding-bottom: 0.5rem;
-    margin-bottom: 0.3rem;
+    padding-right: 0;
     margin-right: 0;
-    flex-direction: row;
+    gap: 0.35rem;
   }
 
   .stat-compact,
   .stat-separator {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
   }
 
   .menu-item {
-    flex: 1;
-    text-align: center;
-    font-size: 0.8rem;
-    padding: 0.5rem 0.5rem;
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
   }
 
   .menu-logout {
     border-left: none;
     margin-left: 0;
+    padding-left: 0.75rem;
+  }
+  
+  .dropdown-menu {
+    right: auto;
+    left: 0;
     padding-left: 0.5rem;
   }
 

@@ -28,6 +28,8 @@
         "emotions": "Emotions",
         "eightfoldPath": "Eightfold Path",
         "calendar": "Calendar",
+        "gratitude": "Gratitude",
+        "insights": "Insights",
         "logout": "Logout"
     },
     "meditation": {
@@ -92,7 +94,13 @@
         "confirmPasswordToDelete": "Enter your password to confirm",
         "confirmDelete": "Yes, Delete My Account",
         "cancel": "Cancel",
-        "deleteFailed": "Failed to delete account"
+        "deleteFailed": "Failed to delete account",
+        "exportData": "Export Data",
+        "exportDescription": "Download all your meditation, emotion, and gratitude data.",
+        "exportJSON": "Export as JSON",
+        "exportCSV": "Export as CSV",
+        "exportSuccess": "Data exported successfully",
+        "exportFailed": "Failed to export data"
     },
     "notes": {
         "title": "Session Complete",
@@ -493,6 +501,43 @@
                 "description": "Developing deep focus through meditation practice",
                 "questions": "Did I meditate or practice deep focus? Did I cultivate inner peace?"
             }
+        }
+    },
+    "gratitude": {
+        "title": "Gratitude Journal",
+        "prompt": "What are you grateful for today?",
+        "placeholder": "Write what you're grateful for...",
+        "save": "Save Entry",
+        "saving": "Saving...",
+        "saved": "Saved!",
+        "recentEntries": "Recent Entries"
+    },
+    "insights": {
+        "title": "Meditation & Emotion Insights",
+        "subtitle": "Discover how your practice affects your well-being",
+        "loading": "Loading insights",
+        "correlationScore": "Meditation Impact Score",
+        "strongCorrelation": "Strong positive impact",
+        "moderateCorrelation": "Moderate positive impact",
+        "weakCorrelation": "Building momentum",
+        "meditationDays": "Days with Meditation",
+        "avgMeditationTime": "Avg. Meditation Time",
+        "emotionTrackedDays": "Days Tracked",
+        "avgPNRatio": "Avg. P/N Ratio",
+        "withVsWithout": "Impact Comparison",
+        "daysWithMeditation": "Days with Meditation",
+        "daysWithoutMeditation": "Days without Meditation",
+        "avgPositive": "Avg. Positive",
+        "avgNegative": "Avg. Negative",
+        "pnRatio": "P/N Ratio",
+        "durationImpact": "Duration Impact on Emotions",
+        "days": "days",
+        "bestDays": "Your Best Days",
+        "insight": "Key Insight",
+        "messages": {
+            "high": "Excellent! Your meditation practice shows a strong positive impact on your emotional well-being. Keep up the great work!",
+            "medium": "Good progress! There's a moderate positive correlation between your meditation and emotions. Consider increasing frequency or duration.",
+            "low": "Your meditation journey is just beginning. With consistent practice, you may see greater emotional benefits over time."
         }
     },
     "phrases": [

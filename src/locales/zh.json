@@ -28,6 +28,8 @@
         "emotions": "情绪",
         "eightfoldPath": "八正道",
         "calendar": "日历",
+        "gratitude": "感恩",
+        "insights": "洞察",
         "logout": "登出"
     },
     "meditation": {
@@ -92,7 +94,13 @@
         "confirmPasswordToDelete": "输入您的密码以确认",
         "confirmDelete": "是的，删除我的账户",
         "cancel": "取消",
-        "deleteFailed": "删除账户失败"
+        "deleteFailed": "删除账户失败",
+        "exportData": "导出数据",
+        "exportDescription": "下载您的所有冥想、情绪和感恩数据。",
+        "exportJSON": "导出为JSON",
+        "exportCSV": "导出为CSV",
+        "exportSuccess": "数据导出成功",
+        "exportFailed": "数据导出失败"
     },
     "notes": {
         "title": "会话完成",
@@ -493,6 +501,43 @@
                 "description": "通过禅修培养深度专注",
                 "questions": "我是否禅修或练习了深度专注？我是否培养了内心的宁静？"
             }
+        }
+    },
+    "gratitude": {
+        "title": "感恩日记",
+        "prompt": "今天你感激什么？",
+        "placeholder": "写下你感激的事情...",
+        "save": "保存条目",
+        "saving": "保存中...",
+        "saved": "已保存！",
+        "recentEntries": "最近条目"
+    },
+    "insights": {
+        "title": "冥想与情绪洞察",
+        "subtitle": "发现你的练习如何影响你的幸福感",
+        "loading": "加载洞察",
+        "correlationScore": "冥想影响评分",
+        "strongCorrelation": "强烈的积极影响",
+        "moderateCorrelation": "中等积极影响",
+        "weakCorrelation": "构建动力",
+        "meditationDays": "冥想天数",
+        "avgMeditationTime": "平均冥想时间",
+        "emotionTrackedDays": "跟踪天数",
+        "avgPNRatio": "平均P/N比率",
+        "withVsWithout": "影响比较",
+        "daysWithMeditation": "有冥想的日子",
+        "daysWithoutMeditation": "没有冥想的日子",
+        "avgPositive": "平均积极",
+        "avgNegative": "平均消极",
+        "pnRatio": "P/N比率",
+        "durationImpact": "持续时间对情绪的影响",
+        "days": "天",
+        "bestDays": "你最好的日子",
+        "insight": "关键洞察",
+        "messages": {
+            "high": "太棒了！您的冥想练习对您的情绪健康产生了强烈的积极影响。请继续保持！",
+            "medium": "进展不错！您的冥想与情绪之间存在适度的正相关。考虑增加频率或时长。",
+            "low": "您的冥想之旅才刚刚开始。通过持续练习，您可能会看到更大的情绪益处。"
         }
     },
     "phrases": [

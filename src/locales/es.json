@@ -28,6 +28,8 @@
         "emotions": "Emociones",
         "eightfoldPath": "Óctuple Sendero",
         "calendar": "Calendario",
+        "gratitude": "Gratitud",
+        "insights": "Perspectivas",
         "logout": "Cerrar Sesión"
     },
     "meditation": {
@@ -92,7 +94,13 @@
         "confirmPasswordToDelete": "Ingresa tu contraseña para confirmar",
         "confirmDelete": "Sí, Eliminar Mi Cuenta",
         "cancel": "Cancelar",
-        "deleteFailed": "No se pudo eliminar la cuenta"
+        "deleteFailed": "No se pudo eliminar la cuenta",
+        "exportData": "Exportar Datos",
+        "exportDescription": "Descarga todos tus datos de meditación, emociones y gratitud.",
+        "exportJSON": "Exportar como JSON",
+        "exportCSV": "Exportar como CSV",
+        "exportSuccess": "Datos exportados exitosamente",
+        "exportFailed": "Error al exportar datos"
     },
     "notes": {
         "title": "Sesión Completa",
@@ -493,6 +501,43 @@
                 "description": "Desarrollar un enfoque profundo a través de la práctica de la meditación",
                 "questions": "¿Medité o practiqué enfoque profundo? ¿Cultivé paz interior?"
             }
+        }
+    },
+    "gratitude": {
+        "title": "Diario de Gratitud",
+        "prompt": "¿Por qué estás agradecido hoy?",
+        "placeholder": "Escribe por lo que estás agradecido...",
+        "save": "Guardar Entrada",
+        "saving": "Guardando...",
+        "saved": "¡Guardado!",
+        "recentEntries": "Entradas Recientes"
+    },
+    "insights": {
+        "title": "Perspectivas de Meditación y Emociones",
+        "subtitle": "Descubre cómo tu práctica afecta tu bienestar",
+        "loading": "Cargando perspectivas",
+        "correlationScore": "Puntuación de Impacto de Meditación",
+        "strongCorrelation": "Fuerte impacto positivo",
+        "moderateCorrelation": "Impacto positivo moderado",
+        "weakCorrelation": "Construyendo impulso",
+        "meditationDays": "Días con Meditación",
+        "avgMeditationTime": "Tiempo Prom. de Meditación",
+        "emotionTrackedDays": "Días Registrados",
+        "avgPNRatio": "Ratio P/N Prom.",
+        "withVsWithout": "Comparación de Impacto",
+        "daysWithMeditation": "Días con Meditación",
+        "daysWithoutMeditation": "Días sin Meditación",
+        "avgPositive": "Prom. Positivo",
+        "avgNegative": "Prom. Negativo",
+        "pnRatio": "Ratio P/N",
+        "durationImpact": "Impacto de la Duración en las Emociones",
+        "days": "días",
+        "bestDays": "Tus Mejores Días",
+        "insight": "Perspectiva Clave",
+        "messages": {
+            "high": "¡Excelente! Tu práctica de meditación muestra un fuerte impacto positivo en tu bienestar emocional. ¡Sigue así!",
+            "medium": "¡Buen progreso! Hay una correlación positiva moderada entre tu meditación y emociones. Considera aumentar la frecuencia o duración.",
+            "low": "Tu viaje de meditación apenas comienza. Con práctica constante, puedes ver mayores beneficios emocionales con el tiempo."
         }
     },
     "phrases": [
