@@ -115,7 +115,7 @@
               <h3>{{ t('emotions.topEmotions') }}</h3>
               <div class="top-emotions-list">
                 <div 
-                  v-for="(emotion, idx) in analytics.topEmotions.slice(0, 5)"
+                  v-for="(emotion, idx) in analytics.topEmotions.slice(0, 10)"
                   :key="emotion.name"
                   class="top-emotion-item"
                 >
@@ -137,7 +137,7 @@
               <h3>{{ t('emotions.trendChart') }}</h3>
               <div class="trend-chart">
                 <div 
-                  v-for="(day, idx) in analytics.trends.slice(0, 30).reverse()"
+                  v-for="(day, idx) in analytics.trends.slice(0, 90).reverse()"
                   :key="idx"
                   class="trend-bar"
                   :style="{ height: `${day.pnRatio * 100}%` }"
@@ -146,7 +146,7 @@
                 ></div>
               </div>
               <div class="trend-labels">
-                <span>{{ t('emotions.past30Days') }}</span>
+                <span>{{ t('emotions.past90Days') }}</span>
               </div>
             </div>
           </div>
@@ -313,7 +313,7 @@ async function loadEmotions() {
 async function loadAnalytics() {
   loading.value = true;
   try {
-    const response = await apiRequest('/emotions/analytics?days=30', 'GET');
+    const response = await apiRequest('/emotions/analytics?days=90', 'GET');
     analytics.value = response;
   } catch (err) {
     console.error('Failed to load analytics:', err);

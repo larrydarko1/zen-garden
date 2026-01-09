@@ -172,6 +172,7 @@
         "topEmotions": "最常见情绪",
         "trendChart": "P/N 比率趋势",
         "past30Days": "过去30天",
+        "past90Days": "过去90天",
         "list": {
             "Joy": {
                 "name": "喜悦",

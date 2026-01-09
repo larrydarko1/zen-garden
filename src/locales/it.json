@@ -172,6 +172,7 @@
         "topEmotions": "Emozioni Più Frequenti",
         "trendChart": "Tendenza Rapporto P/N",
         "past30Days": "Ultimi 30 Giorni",
+        "past90Days": "Ultimi 90 Giorni",
         "list": {
             "Joy": {
                 "name": "Gioia",

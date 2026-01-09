@@ -172,6 +172,7 @@
         "topEmotions": "最も頻繁な感情",
         "trendChart": "P/N比率のトレンド",
         "past30Days": "過去30日",
+        "past90Days": "過去90日",
         "list": {
             "Joy": {
                 "name": "喜び",
