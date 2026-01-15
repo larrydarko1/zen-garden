@@ -185,18 +185,90 @@
               </svg>
             </button>
           </div>
+          <button 
+            :class="['duration-btn', 'bell-config-btn', { active: bellEnabled }]"
+            @click="bellEnabled = !bellEnabled; showBellConfig = bellEnabled"
+            :aria-label="bellEnabled ? 'Disable interval bells' : 'Enable interval bells'"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C10.9 2 10 2.9 10 4C10 4.6 10.2 5.1 10.6 5.5C8 6.1 6 8.3 6 11V16L4 18V19H20V18L18 16V11C18 8.3 16 6.1 13.4 5.5C13.8 5.1 14 4.6 14 4C14 2.9 13.1 2 12 2ZM10 20C10 21.1 10.9 22 12 22C13.1 22 14 21.1 14 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
           <button class="start-meditation-btn" @click="startMeditation" :aria-label="`Start a ${selectedDuration}-minute meditation session`">
             {{ t('meditation.begin') }}
           </button>
         </div>
-        <div v-else class="meditation-timer">
-          <div class="timer-display" aria-live="polite" aria-label="Meditation timer">{{ formatTime(meditationSeconds) }}</div>
-          <button class="meditation-btn" @click="stopMeditation" aria-label="Stop the current meditation session">{{ t('meditation.stop') }}</button>
+        
+        <!-- Bell Configuration Panel -->
+        <div v-if="showBellConfig && !meditationActive" class="bell-config-panel">
+          <div class="bell-config-options">
+            <div class="bell-dropdown">
+              <button class="bell-dropdown-btn" @click="showConfigIntervalDropdown = !showConfigIntervalDropdown">
+                {{ bellInterval }} min <span class="dropdown-arrow">▾</span>
+              </button>
+              <div v-if="showConfigIntervalDropdown" class="bell-dropdown-menu">
+                <button @click="bellInterval = 5; showConfigIntervalDropdown = false">Every 5 min</button>
+                <button @click="bellInterval = 10; showConfigIntervalDropdown = false">Every 10 min</button>
+                <button @click="bellInterval = 15; showConfigIntervalDropdown = false">Every 15 min</button>
+                <button @click="bellInterval = 20; showConfigIntervalDropdown = false">Every 20 min</button>
+              </div>
+            </div>
+            <div class="bell-sound-options">
+              <button
+                v-for="sound in ['1', '2', '3', '4']"
+                :key="sound"
+                :class="['bell-sound-btn', { active: bellSound === sound }]"
+                @click="selectBellSound(sound)"
+              >
+                Bell {{ sound }}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
       <div v-if="meditationActive" class="zen-meditation-overlay">
         <component :is="ANIMATIONS[meditationAnimationIdx]" />
+        
+        <!-- Bell Settings Toolbar -->
+        <div class="bell-settings-toolbar">
+          <button 
+            :class="['bell-toggle-btn', { active: bellEnabled }]"
+            @click="bellEnabled = !bellEnabled"
+            :aria-label="bellEnabled ? 'Disable interval bells' : 'Enable interval bells'"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C10.9 2 10 2.9 10 4C10 4.6 10.2 5.1 10.6 5.5C8 6.1 6 8.3 6 11V16L4 18V19H20V18L18 16V11C18 8.3 16 6.1 13.4 5.5C13.8 5.1 14 4.6 14 4C14 2.9 13.1 2 12 2ZM10 20C10 21.1 10.9 22 12 22C13.1 22 14 21.1 14 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          
+          <div v-if="bellEnabled" class="bell-settings">
+            <div class="bell-dropdown">
+              <button class="bell-dropdown-btn" @click="showIntervalDropdown = !showIntervalDropdown">
+                {{ bellInterval }} min <span class="dropdown-arrow">▾</span>
+              </button>
+              <div v-if="showIntervalDropdown" class="bell-dropdown-menu">
+                <button @click="bellInterval = 5; showIntervalDropdown = false">5 min</button>
+                <button @click="bellInterval = 10; showIntervalDropdown = false">10 min</button>
+                <button @click="bellInterval = 15; showIntervalDropdown = false">15 min</button>
+                <button @click="bellInterval = 20; showIntervalDropdown = false">20 min</button>
+              </div>
+            </div>
+            
+            <div class="bell-dropdown">
+              <button class="bell-dropdown-btn" @click="showSoundDropdown = !showSoundDropdown">
+                Bell {{ bellSound }} <span class="dropdown-arrow">▾</span>
+              </button>
+              <div v-if="showSoundDropdown" class="bell-dropdown-menu">
+                <button @click="selectBellSoundFromDropdown('1')">Bell 1</button>
+                <button @click="selectBellSoundFromDropdown('2')">Bell 2</button>
+                <button @click="selectBellSoundFromDropdown('3')">Bell 3</button>
+                <button @click="selectBellSoundFromDropdown('4')">Bell 4</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <div class="meditation-timer meditation-timer-overlay">
           <div class="timer-display" aria-live="polite" aria-label="Meditation timer">{{ formatTime(meditationSeconds) }}</div>
           <button class="meditation-btn" @click="stopMeditation" aria-label="Stop the current meditation session">{{ t('meditation.stop') }}</button>
@@ -240,6 +312,17 @@ const isCustomDuration = ref(false)
 const customDurationValue = ref(10)
 const customInput = ref<HTMLInputElement | null>(null)
 let meditationIntervalId: number | undefined
+
+// Bell settings
+const bellEnabled = ref(false)
+const bellInterval = ref(10) // minutes
+const bellSound = ref('1')
+const showBellConfig = ref(false)
+const showIntervalDropdown = ref(false)
+const showSoundDropdown = ref(false)
+const showConfigIntervalDropdown = ref(false)
+let lastBellTime = 0
+let bellAudioInstance: HTMLAudioElement | null = null
 
 const showCalendar = ref(false)
 const showNotes = ref(false)
@@ -307,6 +390,17 @@ function cancelCustomDuration() {
   customDurationValue.value = selectedDuration.value
 }
 
+function selectBellSound(sound: string) {
+  bellSound.value = sound
+  playBellSound() // Preview the sound
+}
+
+function selectBellSoundFromDropdown(sound: string) {
+  bellSound.value = sound
+  showSoundDropdown.value = false
+  playBellSound() // Preview the sound
+}
+
 async function fetchMeditations() {
   try {
     const res = await apiRequest('/meditations', 'GET')
@@ -335,6 +429,19 @@ function playAlert() {
   }
   alertAudio.value.currentTime = 0
   alertAudio.value.play()
+}
+
+function playBellSound() {
+  if (bellAudioInstance) {
+    bellAudioInstance.pause()
+    bellAudioInstance.currentTime = 0
+  }
+  
+  bellAudioInstance = new Audio(`/bell${bellSound.value}.mp3`)
+  bellAudioInstance.volume = 0.5
+  bellAudioInstance.play().catch(err => {
+    console.log('Bell sound playback failed:', err)
+  })
 }
 
 async function stopMeditationAudioSmooth() {
@@ -417,10 +524,24 @@ async function startMeditation() {
   if (meditationActive.value) return
   meditationActive.value = true
   meditationSeconds.value = selectedDuration.value * 60
+  lastBellTime = 0
   meditationAnimationIdx.value = Math.floor(Math.random() * ANIMATIONS.length)
   meditationIntervalId = window.setInterval(() => {
     if (meditationSeconds.value > 0) {
       meditationSeconds.value--
+      
+      // Check for interval bells
+      if (bellEnabled.value && bellInterval.value > 0) {
+        const totalSeconds = selectedDuration.value * 60
+        const elapsedSeconds = totalSeconds - meditationSeconds.value
+        const elapsedMinutes = elapsedSeconds / 60
+        const currentBellMinute = Math.floor(elapsedMinutes / bellInterval.value) * bellInterval.value
+        
+        if (currentBellMinute > lastBellTime && elapsedMinutes >= bellInterval.value) {
+          playBellSound()
+          lastBellTime = currentBellMinute
+        }
+      }
     } else {
       finishMeditation()
     }
@@ -936,6 +1057,200 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
   justify-content: center;
   flex-direction: column;
 }
+
+.bell-settings-toolbar {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: var(--blur2);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  z-index: 1001;
+}
+
+.bell-toggle-btn {
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--text2);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bell-toggle-btn:hover {
+  background: var(--input-bg-focus);
+  color: var(--text1);
+}
+
+.bell-toggle-btn.active {
+  background: var(--button-bg);
+  color: var(--text1);
+}
+
+.bell-settings {
+  display: flex;
+  gap: 0.5rem;
+  animation: slideIn 0.2s ease;
+}
+
+.bell-dropdown {
+  position: relative;
+}
+
+.bell-dropdown-btn {
+  padding: 0.4rem 0.8rem;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  color: var(--text1);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.bell-dropdown-btn:hover {
+  background: var(--input-bg-focus);
+  border-color: var(--input-border-focus);
+}
+
+.dropdown-arrow {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+.bell-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  min-width: 100%;
+  background: var(--blur2);
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  padding: 0.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1002;
+  animation: dropdownSlide 0.15s ease;
+}
+
+.bell-dropdown-menu button {
+  width: 100%;
+  padding: 0.4rem 0.8rem;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: var(--text1);
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.bell-dropdown-menu button:hover {
+  background: var(--input-bg-focus);
+}
+
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bell-config-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bell-config-panel {
+  position: absolute;
+  bottom: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  animation: slideUp 0.2s ease;
+  min-width: 300px;
+}
+
+.bell-config-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bell-sound-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.bell-sound-btn {
+  padding: 0.5rem;
+  background: transparent;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  color: var(--text2);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.bell-sound-btn:hover {
+  background: var(--input-bg-focus);
+  color: var(--text1);
+  border-color: var(--input-border-focus);
+}
+
+.bell-sound-btn.active {
+  background: var(--button-bg);
+  color: var(--text1);
+  border-color: var(--input-border-focus);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .meditation-timer-overlay {
   position: absolute;
   bottom: 3.5rem;

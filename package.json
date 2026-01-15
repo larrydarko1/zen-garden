@@ -1,7 +1,7 @@
 {
   "name": "zen-garden",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.9",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -42,7 +42,7 @@
     "vitest": "^3.2.4",
     "vue-tsc": "^2.2.10"
   },
-  "description": "A meditation and mindfulness web app built with Vue 3, TypeScript, and Vite.",
+  "description": "A meditation and mindfulness web app built with MEVN Stack.",
   "author": "Lorenzo Mazzola",
   "license": "MIT",
   "repository": {
