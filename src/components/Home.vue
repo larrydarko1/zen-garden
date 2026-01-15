@@ -152,12 +152,39 @@
           <button
             v-for="duration in [1, 5, 10, 15, 20, 30]"
             :key="duration"
-            :class="['duration-btn', { active: selectedDuration === duration }]"
-            @click="selectedDuration = duration"
+            :class="['duration-btn', { active: selectedDuration === duration && !isCustomDuration }]"
+            @click="selectPresetDuration(duration)"
             :aria-label="`Set meditation duration to ${duration} minutes`"
           >
             {{ duration }}
           </button>
+          <button
+            v-if="!isCustomDuration"
+            :class="['duration-btn', 'custom-btn']"
+            @click="enableCustomDuration"
+            :aria-label="'Set custom meditation duration'"
+          >
+            ⋯
+          </button>
+          <div v-else class="custom-duration-input">
+            <input
+              ref="customInput"
+              type="number"
+              v-model.number="customDurationValue"
+              @blur="applyCustomDuration"
+              @keyup.enter="applyCustomDuration"
+              @keyup.esc="cancelCustomDuration"
+              min="1"
+              max="180"
+              placeholder="min"
+              aria-label="Enter custom duration in minutes"
+            />
+            <button class="custom-ok-btn" @click="applyCustomDuration" aria-label="Confirm custom duration">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
           <button class="start-meditation-btn" @click="startMeditation" :aria-label="`Start a ${selectedDuration}-minute meditation session`">
             {{ t('meditation.begin') }}
           </button>
@@ -209,6 +236,9 @@ watch(meditationActive, (val) => {
 })
 const meditationSeconds = ref(600) // 10 minutes
 const selectedDuration = ref(10) // minutes
+const isCustomDuration = ref(false)
+const customDurationValue = ref(10)
+const customInput = ref<HTMLInputElement | null>(null)
 let meditationIntervalId: number | undefined
 
 const showCalendar = ref(false)
@@ -247,6 +277,34 @@ function handleClickOutside(event: MouseEvent) {
   if (dropdownContainer.value && !dropdownContainer.value.contains(event.target as Node)) {
     showDropdown.value = false
   }
+}
+
+function selectPresetDuration(duration: number) {
+  isCustomDuration.value = false
+  selectedDuration.value = duration
+}
+
+function enableCustomDuration() {
+  isCustomDuration.value = true
+  customDurationValue.value = selectedDuration.value
+  setTimeout(() => {
+    customInput.value?.focus()
+    customInput.value?.select()
+  }, 50)
+}
+
+function applyCustomDuration() {
+  if (customDurationValue.value >= 1 && customDurationValue.value <= 180) {
+    selectedDuration.value = customDurationValue.value
+    isCustomDuration.value = false
+  } else {
+    customDurationValue.value = Math.max(1, Math.min(180, customDurationValue.value))
+  }
+}
+
+function cancelCustomDuration() {
+  isCustomDuration.value = false
+  customDurationValue.value = selectedDuration.value
 }
 
 async function fetchMeditations() {
@@ -532,6 +590,62 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
 
 .duration-btn.active {
   background: var(--button-bg);
+  color: var(--text1);
+}
+
+.duration-btn.custom-btn {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.custom-duration-input {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.custom-duration-input input {
+  padding: 0.4rem 0.4rem;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: var(--text1);
+  font-size: 0.8rem;
+  text-align: center;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.custom-duration-input input::-webkit-outer-spin-button,
+.custom-duration-input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-duration-input input:focus {
+  outline: none;
+  background: var(--input-bg-focus);
+}
+
+.custom-ok-btn {
+  padding: 0.4rem;
+  background: transparent;
+  border: none;
+  color: var(--text2);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+}
+
+.custom-ok-btn:hover {
+  background: var(--input-bg-focus);
   color: var(--text1);
 }
 
