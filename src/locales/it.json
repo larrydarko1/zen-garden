@@ -21,20 +21,42 @@
     },
     "header": {
         "greeting": "Ciao",
-        "totalSessions": "Sessioni Tot.",
-        "totalMinutes": "Minuti Tot.",
-        "dayStreak": "Serie di Giorni",
         "breathe": "Respira",
         "emotions": "Emozioni",
         "eightfoldPath": "Nobile Ottuplice",
         "calendar": "Calendario",
         "gratitude": "Gratitudine",
         "insights": "Approfondimenti",
+        "philosophy": "Filosofia",
         "logout": "Esci"
     },
     "meditation": {
         "begin": "Inizia",
         "stop": "Ferma"
+    },
+    "philosophy": {
+        "title": "Perché nessun obiettivo o serie?",
+        "subtitle": "Comprendere l'approccio Zen alla pratica",
+        "practice": {
+            "title": "La pratica è il percorso",
+            "body": "Nello Zen, la meditazione non è un mezzo per raggiungere un fine—è il fine stesso. Ogni momento di pratica è completo e intero. Non c'è nessun posto dove andare, nulla da raggiungere. Quando ti siedi, sei già lì."
+        },
+        "noGoals": {
+            "title": "Gli obiettivi rafforzano l'ego",
+            "body": "Stabilire obiettivi come 'meditare X volte' o 'raggiungere Y minuti' rafforza l'illusione di un sé separato che deve realizzare cose. Questo crea dukkha (sofferenza) quando gli obiettivi non vengono raggiunti e attaccamento quando lo sono."
+        },
+        "noStreaks": {
+            "title": "Le serie creano ansia",
+            "body": "Una serie di 100 giorni può sembrare motivante, ma diventa una fonte di stress. Perdere un giorno sembra un fallimento. Questo contraddice lo spirito della pratica, che riguarda il lasciar andare, non l'aggrapparsi ai risultati."
+        },
+        "observation": {
+            "title": "Sosteniamo l'auto-osservazione",
+            "body": "Gli approfondimenti che vedi qui—correlazioni emotive, riflessioni dharma—sono strumenti per comprendere, non per tenere il punteggio. Ti aiutano a osservare i modelli senza giudizio, sostenendo la consapevolezza piuttosto che il risultato."
+        },
+        "quote": {
+            "text": "Prima dell'illuminazione, taglia la legna, porta l'acqua. Dopo l'illuminazione, taglia la legna, porta l'acqua.",
+            "author": "— Proverbio Zen"
+        }
     },
     "auth": {
         "welcome": "Benvenuto in ZenGarden",

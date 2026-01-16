@@ -21,20 +21,42 @@
     },
     "header": {
         "greeting": "Bonjour",
-        "totalSessions": "Sessions Tot.",
-        "totalMinutes": "Minutes Tot.",
-        "dayStreak": "Série de Jours",
         "breathe": "Respirer",
         "emotions": "Émotions",
         "eightfoldPath": "Noble Sentier",
         "calendar": "Calendrier",
         "gratitude": "Gratitude",
         "insights": "Aperçus",
+        "philosophy": "Philosophie",
         "logout": "Déconnexion"
     },
     "meditation": {
         "begin": "Commencer",
         "stop": "Arrêter"
+    },
+    "philosophy": {
+        "title": "Pourquoi pas d'objectifs ni de séries ?",
+        "subtitle": "Comprendre l'approche Zen de la pratique",
+        "practice": {
+            "title": "La pratique est le chemin",
+            "body": "Dans le Zen, la méditation n'est pas un moyen d'atteindre un but—c'est le but lui-même. Chaque moment de pratique est complet et entier. Il n'y a nulle part où aller, rien à accomplir. Lorsque vous vous asseyez, vous êtes déjà là."
+        },
+        "noGoals": {
+            "title": "Les objectifs renforcent l'égo",
+            "body": "Établir des objectifs comme 'méditer X fois' ou 'atteindre Y minutes' renforce l'illusion d'un soi séparé qui doit accomplir des choses. Cela crée dukkha (souffrance) lorsque les objectifs ne sont pas atteints et attachement lorsqu'ils le sont."
+        },
+        "noStreaks": {
+            "title": "Les séries créent de l'anxiété",
+            "body": "Une série de 100 jours peut sembler motivante, mais elle devient une source de stress. Manquer un jour ressemble à un échec. Cela contredit l'esprit de la pratique, qui consiste à lâcher prise, non à s'accrocher aux réalisations."
+        },
+        "observation": {
+            "title": "Nous soutenons l'auto-observation",
+            "body": "Les aperçus que vous voyez ici—corrélations émotionnelles, réflexions dharma—sont des outils de compréhension, pas de comptage. Ils vous aident à observer les motifs sans jugement, soutenant la conscience plutôt que l'accomplissement."
+        },
+        "quote": {
+            "text": "Avant l'éveil, couper du bois, porter de l'eau. Après l'éveil, couper du bois, porter de l'eau.",
+            "author": "— Proverbe Zen"
+        }
     },
     "auth": {
         "welcome": "Bienvenue sur ZenGarden",

@@ -21,20 +21,42 @@
     },
     "header": {
         "greeting": "你好",
-        "totalSessions": "总会话数",
-        "totalMinutes": "总分钟数",
-        "dayStreak": "连续天数",
         "breathe": "呼吸",
         "emotions": "情绪",
         "eightfoldPath": "八正道",
         "calendar": "日历",
         "gratitude": "感恩",
         "insights": "洞察",
+        "philosophy": "哲学",
         "logout": "登出"
     },
     "meditation": {
         "begin": "开始",
         "stop": "停止"
+    },
+    "philosophy": {
+        "title": "为什么没有目标或连续记录？",
+        "subtitle": "理解禅宗修行的方法",
+        "practice": {
+            "title": "修行即是道路",
+            "body": "在禅宗中，禅修不是达到目的的手段—它本身就是目的。每一个修行的片刻都是完整的。没有要去的地方，没有要实现的目标。当你坐下时，你已经在那里了。"
+        },
+        "noGoals": {
+            "title": "目标强化我执",
+            "body": "设定“禅俪X次”或“达到Y分钟”等目标会强化必须完成事情的分离自我的幻觉。这在未达成目标时产生苦（dukkha），在达成时产生执着。"
+        },
+        "noStreaks": {
+            "title": "连续记录产生焦虑",
+            "body": "100天的连续记录似乎很激励人，但它变成了压力来源。错过一天感觉像失败。这与修行的精神相矛盾，修行是关于放下，而不是执着于成就。"
+        },
+        "observation": {
+            "title": "我们支持自我观察",
+            "body": "你在这里看到的洞察—情绪相关性、佛法反思—是用于理解的工具，而不是计分。它们帮助你在没有判断的情况下观察模式，支持觉知而不是成就。"
+        },
+        "quote": {
+            "text": "悟道前，砌柴挑水。悟道后，砌柴挑水。",
+            "author": "— 禅宗谚语"
+        }
     },
     "auth": {
         "welcome": "欢迎来到ZenGarden",

@@ -21,20 +21,42 @@
     },
     "header": {
         "greeting": "Hola",
-        "totalSessions": "Sesiones Tot.",
-        "totalMinutes": "Minutos Tot.",
-        "dayStreak": "Racha de Días",
         "breathe": "Respirar",
         "emotions": "Emociones",
         "eightfoldPath": "Óctuple Sendero",
         "calendar": "Calendario",
         "gratitude": "Gratitud",
         "insights": "Perspectivas",
+        "philosophy": "Filosofía",
         "logout": "Cerrar Sesión"
     },
     "meditation": {
         "begin": "Comenzar",
         "stop": "Detener"
+    },
+    "philosophy": {
+        "title": "¿Por qué no hay metas ni rachas?",
+        "subtitle": "Entendiendo el enfoque Zen de la práctica",
+        "practice": {
+            "title": "La práctica es el camino",
+            "body": "En el Zen, la meditación no es un medio para un fin, es el fin en sí mismo. Cada momento de práctica es completo y entero. No hay ningún lugar al que ir, nada que lograr. Cuando te sientas, ya estás ahí."
+        },
+        "noGoals": {
+            "title": "Las metas refuerzan el ego",
+            "body": "Establecer metas como 'meditar X veces' o 'alcanzar Y minutos' fortalece la ilusión de un yo separado que debe lograr cosas. Esto crea dukkha (sufrimiento) cuando no se alcanzan las metas y apego cuando se logran."
+        },
+        "noStreaks": {
+            "title": "Las rachas crean ansiedad",
+            "body": "Una racha de 100 días puede parecer motivadora, pero se convierte en una fuente de estrés. Perder un día se siente como un fracaso. Esto contradice el espíritu de la práctica, que se trata de soltar, no de aferrarse a logros."
+        },
+        "observation": {
+            "title": "Apoyamos la auto-observación",
+            "body": "Las perspectivas que ves aquí—correlaciones emocionales, reflexiones del dharma—son herramientas para comprender, no para llevar la cuenta. Te ayudan a observar patrones sin juicio, apoyando la conciencia en lugar del logro."
+        },
+        "quote": {
+            "text": "Antes de la iluminación, corta leña, carga agua. Después de la iluminación, corta leña, carga agua.",
+            "author": "— Proverbio Zen"
+        }
     },
     "auth": {
         "welcome": "Bienvenido a ZenGarden",

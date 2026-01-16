@@ -24,23 +24,15 @@ export function createAuthRoutes(monks: Collection) {
         const existing = await monks.findOne({ username });
         if (existing) return res.status(409).json({ error: 'Username already exists' });
         const hash = await argon2.hash(password);
-        // Initialize user with default stats and goals
         const monk = {
             username,
             password: hash,
             theme: 'blue',
-            language: 'en',
-            stats: {
-                totalSessions: 0,
-                totalMinutes: 0,
-                currentStreak: 0,
-                longestStreak: 0,
-                lastMeditationDate: null
-            }
+            language: 'en'
         };
         await monks.insertOne(monk);
         const token = jwt.sign({ username }, process.env.JWT_SECRET || '', { expiresIn: '7d' });
-        res.status(201).json({ message: 'User registered', user: { username, theme: monk.theme, language: monk.language, stats: monk.stats }, token });
+        res.status(201).json({ message: 'User registered', user: { username, theme: monk.theme, language: monk.language }, token });
     });
 
     // Login
@@ -61,16 +53,13 @@ export function createAuthRoutes(monks: Collection) {
     router.get('/me', auth, async (req: Request, res: Response) => {
         const user = (req as AuthRequest).user;
         try {
-            // Look up the full user document so we can return the stored theme, stats, and goals
             const monk = await monks.findOne({ username: user.username }, { projection: { password: 0 } });
             if (!monk) return res.status(404).json({ error: 'User not found' });
             res.json({
                 user: {
                     username: monk.username,
                     theme: monk.theme || 'blue',
-                    language: monk.language || 'en',
-                    stats: monk.stats || { totalSessions: 0, totalMinutes: 0, currentStreak: 0, longestStreak: 0, lastMeditationDate: null },
-                    goals: monk.goals || { dailyMinutes: 10, weeklyMinutes: 70 }
+                    language: monk.language || 'en'
                 }
             });
         } catch (err: any) {

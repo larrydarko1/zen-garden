@@ -21,20 +21,42 @@
     },
     "header": {
         "greeting": "Hello",
-        "totalSessions": "Tot. Sessions",
-        "totalMinutes": "Tot. Minutes",
-        "dayStreak": "Day Streak",
         "breathe": "Breathe",
         "emotions": "Emotions",
         "eightfoldPath": "Eightfold Path",
         "calendar": "Calendar",
         "gratitude": "Gratitude",
         "insights": "Insights",
+        "philosophy": "Philosophy",
         "logout": "Logout"
     },
     "meditation": {
         "begin": "Begin",
         "stop": "Stop"
+    },
+    "philosophy": {
+        "title": "Why No Goals or Streaks?",
+        "subtitle": "Understanding the Zen approach to practice",
+        "practice": {
+            "title": "The Practice Is the Path",
+            "body": "In Zen, meditation is not a means to an end—it is the end itself. Each moment of practice is complete and whole. There is nowhere to go, nothing to achieve. When you sit, you are already there."
+        },
+        "noGoals": {
+            "title": "Goals Reinforce the Ego",
+            "body": "Setting goals like 'meditate X times' or 'reach Y minutes' strengthens the illusion of a separate self that must accomplish things. This creates dukkha (suffering) when goals aren't met and attachment when they are."
+        },
+        "noStreaks": {
+            "title": "Streaks Create Anxiety",
+            "body": "A 100-day streak might seem motivating, but it becomes a source of stress. Missing one day feels like failure. This contradicts the spirit of practice, which is about letting go, not holding on to achievements."
+        },
+        "observation": {
+            "title": "We Support Self-Observation",
+            "body": "The insights you see here—emotion correlations, dharma reflections—are tools for understanding, not scorekeeping. They help you observe patterns without judgment, supporting awareness rather than accomplishment."
+        },
+        "quote": {
+            "text": "Before enlightenment, chop wood, carry water. After enlightenment, chop wood, carry water.",
+            "author": "— Zen Proverb"
+        }
     },
     "auth": {
         "welcome": "Welcome to ZenGarden",

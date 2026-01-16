@@ -21,20 +21,42 @@
     },
     "header": {
         "greeting": "Olá",
-        "totalSessions": "Sessões Tot.",
-        "totalMinutes": "Minutos Tot.",
-        "dayStreak": "Sequência de Dias",
         "breathe": "Respirar",
         "emotions": "Emoções",
         "eightfoldPath": "Caminho Óctuplo",
         "calendar": "Calendário",
         "gratitude": "Gratidão",
         "insights": "Insights",
+        "philosophy": "Filosofia",
         "logout": "Sair"
     },
     "meditation": {
         "begin": "Começar",
         "stop": "Parar"
+    },
+    "philosophy": {
+        "title": "Por que não há metas ou sequências?",
+        "subtitle": "Compreendendo a abordagem Zen da prática",
+        "practice": {
+            "title": "A prática é o caminho",
+            "body": "No Zen, a meditação não é um meio para um fim—é o próprio fim. Cada momento de prática é completo e inteiro. Não há lugar para ir, nada a alcançar. Quando você se senta, você já está lá."
+        },
+        "noGoals": {
+            "title": "Metas reforçam o ego",
+            "body": "Estabelecer metas como 'meditar X vezes' ou 'alcançar Y minutos' fortalece a ilusão de um eu separado que deve realizar coisas. Isso cria dukkha (sofrimento) quando as metas não são alcançadas e apego quando são."
+        },
+        "noStreaks": {
+            "title": "Sequências criam ansiedade",
+            "body": "Uma sequência de 100 dias pode parecer motivadora, mas se torna uma fonte de estresse. Perder um dia parece uma falha. Isso contradiz o espírito da prática, que é sobre deixar ir, não se apegar a conquistas."
+        },
+        "observation": {
+            "title": "Apoiamos a auto-observação",
+            "body": "Os insights que você vê aqui—correlações emocionais, reflexões do dharma—são ferramentas para compreensão, não contagem. Eles ajudam você a observar padrões sem julgamento, apoiando a consciência em vez da realização."
+        },
+        "quote": {
+            "text": "Antes da iluminação, corte lenha, carregue água. Depois da iluminação, corte lenha, carregue água.",
+            "author": "— Provérbio Zen"
+        }
     },
     "auth": {
         "welcome": "Bem-vindo ao ZenGarden",
