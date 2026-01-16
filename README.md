@@ -5,7 +5,7 @@
 ![Pull Requests](https://img.shields.io/github/issues-pr/larrydarko1/zen-garden)
 ![Contributors](https://img.shields.io/github/contributors/larrydarko1/zen-garden)
 
-Zen Garden is a simple transcendental meditation web app built with the **MEVN Stack** (MongoDB, Express.js, Vue 3, Node.js) and TypeScript. It features guided meditations, a meditation calendar, and relaxing animations.
+Zen Garden is a simple meditation web app built with the **MEVN Stack** (MongoDB, Express.js, Vue 3, Node.js) and TypeScript. It features guided meditations, a meditation calendar, and relaxing animations.
 
 ## Demo
 
@@ -19,14 +19,20 @@ Zen Garden is a simple transcendental meditation web app built with the **MEVN S
 - **Authentication:** JWT + Argon2
 
 ## Features
-- Guided meditation audio with ambient soundscapes
-- Meditation calendar tracking with streak counting
-- Session notes and reflection journaling
-- Breathing exercises (Box, 4-7-8, Deep, Energizing)
-- Animated Zen backgrounds (Wind, Waves, Idle)
-- User authentication and secure data persistence
-- Three beautiful themes (Blue, White, Dark)
-- Fully responsive mobile design
+- 🧘 Guided meditation audio with ambient soundscapes
+- 📅 Meditation calendar tracking
+- 📝 Session notes and reflection journaling
+- 🫁 Breathing exercises (Box, 4-7-8, Deep, Energizing)
+- 🎨 Animated Zen backgrounds (Wind, Waves, Idle)
+- 🔐 User authentication and secure data persistence
+- 🎭 Three beautiful themes (Blue, White, Dark)
+- 📱 Fully responsive mobile design
+- ⚡ **Progressive Web App (PWA)** with offline support
+- 🔌 **Offline-first capability** - meditate without internet
+- 💾 **Smart caching** - instant loading with service workers
+- 📲 **Installable** - works like a native app on any device
+
+> **NEW!** Zen Garden is now a fully functional PWA! 
 
 ## Getting Started
 

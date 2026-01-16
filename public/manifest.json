@@ -1,0 +1,100 @@
+{
+    "name": "Zen Garden - Meditation & Mindfulness",
+    "short_name": "Zen Garden",
+    "description": "A meditation and mindfulness web app to help you find inner peace",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#1a1a1a",
+    "theme_color": "#4a7c59",
+    "orientation": "portrait-primary",
+    "categories": [
+        "health",
+        "lifestyle",
+        "wellness"
+    ],
+    "lang": "en",
+    "dir": "ltr",
+    "icons": [
+        {
+            "src": "/icon-72x72.png",
+            "sizes": "72x72",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icon-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icon-128x128.png",
+            "sizes": "128x128",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icon-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icon-152x152.png",
+            "sizes": "152x152",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/demo.gif",
+            "sizes": "800x600",
+            "type": "image/gif"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Start Meditation",
+            "short_name": "Meditate",
+            "description": "Begin a meditation session",
+            "url": "/?action=meditate",
+            "icons": [
+                {
+                    "src": "/icon-96x96.png",
+                    "sizes": "96x96"
+                }
+            ]
+        },
+        {
+            "name": "Gratitude Journal",
+            "short_name": "Journal",
+            "description": "Write in your gratitude journal",
+            "url": "/?action=gratitude",
+            "icons": [
+                {
+                    "src": "/icon-96x96.png",
+                    "sizes": "96x96"
+                }
+            ]
+        }
+    ]
+}

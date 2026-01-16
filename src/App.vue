@@ -1,5 +1,6 @@
 <template>
 	<div id="app" :class="currentTheme">
+		<NetworkStatus />
 		<Home @meditation-active="onMeditationActive" @theme-changed="setThemeFromLogin" @language-changed="setLanguageFromLogin" @user-changed="onUserChanged" />
 		<button
 			v-if="!meditationActive && isAuthenticated"
@@ -20,6 +21,7 @@ import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Home from './components/Home.vue';
 import SettingsPopup from './components/SettingsPopup.vue';
+import NetworkStatus from './components/NetworkStatus.vue';
 import { apiRequest } from './api';
 
 const { locale } = useI18n();
