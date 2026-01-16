@@ -1,11 +1,11 @@
 {
-    "name": "Zen Garden - Meditation & Mindfulness",
-    "short_name": "Zen Garden",
+    "name": "ZenGarden",
+    "short_name": "ZenGarden",
     "description": "A meditation and mindfulness web app to help you find inner peace",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#1a1a1a",
-    "theme_color": "#4a7c59",
+    "theme_color": "#181a20",
     "orientation": "portrait-primary",
     "categories": [
         "health",

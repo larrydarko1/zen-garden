@@ -11,10 +11,10 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'logo.svg', 'texture.jpg', '*.mp3'],
       manifest: {
-        name: 'Zen Garden - Meditation & Mindfulness',
-        short_name: 'Zen Garden',
+        name: 'ZenGarden',
+        short_name: 'ZenGarden',
         description: 'A meditation and mindfulness web app to help you find inner peace',
-        theme_color: '#4a7c59',
+        theme_color: '#181a20',
         background_color: '#1a1a1a',
         display: 'standalone',
         orientation: 'portrait-primary',

@@ -19,20 +19,37 @@ Zen Garden is a simple meditation web app built with the **MEVN Stack** (MongoDB
 - **Authentication:** JWT + Argon2
 
 ## Features
-- 🧘 Guided meditation audio with ambient soundscapes
-- 📅 Meditation calendar tracking
-- 📝 Session notes and reflection journaling
-- 🫁 Breathing exercises (Box, 4-7-8, Deep, Energizing)
-- 🎨 Animated Zen backgrounds (Wind, Waves, Idle)
-- 🔐 User authentication and secure data persistence
-- 🎭 Three beautiful themes (Blue, White, Dark)
-- 📱 Fully responsive mobile design
-- ⚡ **Progressive Web App (PWA)** with offline support
-- 🔌 **Offline-first capability** - meditate without internet
-- 💾 **Smart caching** - instant loading with service workers
-- 📲 **Installable** - works like a native app on any device
 
-> **NEW!** Zen Garden is now a fully functional PWA! 
+### Meditation & Mindfulness
+- **Meditation calendar** - visual tracking of your meditation history
+- **Session notes** - reflect and journal after each session
+
+### Breathing & Wellness
+- **Breathing exercises** - Box, 4-7-8, Deep, and Energizing techniques
+- **Emotion tracker** - log and monitor your daily emotional state
+- **Gratitude journal** - cultivate gratitude with daily entries
+
+### Insights & Progress
+- **Correlation insights** - discover the impact of meditation on your emotions
+- **Eightfold Path tracker** - follow Buddhist principles for mindful living
+- **Statistics dashboard** - meditation days, average time, and emotional trends
+- **Duration impact analysis** - see how meditation length affects your wellbeing
+
+### Design & Experience
+- **Animated Zen backgrounds** - Wind, Waves, and Idle animations
+- **Three themes** - Blue, White, and Dark modes
+- **Fully responsive** - optimized for mobile, tablet, and desktop
+- **8 languages** - English, Spanish, Italian, French, German, Portuguese, Chinese, Japanese
+
+### Technical Features
+- **Progressive Web App (PWA)** - install and use like a native app
+- **Offline-first** - meditate without an internet connection
+- **Smart caching** - instant loading with service workers
+- **Secure authentication** - JWT tokens with Argon2 password hashing
+- **Real-time sync** - seamless data synchronization across devices
+- **Network status** - visual indicator of connection state
+
+> **NEW!** Zen Garden now includes emotion tracking, gratitude journaling, and insights correlation analysis! 
 
 ## Getting Started
 
