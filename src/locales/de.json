@@ -32,7 +32,19 @@
     },
     "meditation": {
         "begin": "Beginnen",
-        "stop": "Stoppen"
+        "stop": "Stoppen",
+        "audio": {
+            "track": "Meditationsspur",
+            "trackLabel": "Spur",
+            "silent": "Stille",
+            "ambient": "Umgebungsklang",
+            "none": "Keine",
+            "rain": "Regen",
+            "forest": "Wald",
+            "ocean": "Ozean",
+            "whitenoise": "Weißes Rauschen",
+            "volume": "Hauptlautstärke"
+        }
     },
     "philosophy": {
         "title": "Warum keine Ziele oder Serien?",

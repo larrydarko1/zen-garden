@@ -32,7 +32,19 @@
     },
     "meditation": {
         "begin": "Begin",
-        "stop": "Stop"
+        "stop": "Stop",
+        "audio": {
+            "track": "Meditation Track",
+            "trackLabel": "Track",
+            "silent": "Silent",
+            "ambient": "Ambient Sound",
+            "none": "None",
+            "rain": "Rain",
+            "forest": "Forest",
+            "ocean": "Ocean",
+            "whitenoise": "White Noise",
+            "volume": "Master Volume"
+        }
     },
     "philosophy": {
         "title": "Why No Goals or Streaks?",

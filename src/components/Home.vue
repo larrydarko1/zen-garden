@@ -188,9 +188,93 @@
               <path d="M12 2C10.9 2 10 2.9 10 4C10 4.6 10.2 5.1 10.6 5.5C8 6.1 6 8.3 6 11V16L4 18V19H20V18L18 16V11C18 8.3 16 6.1 13.4 5.5C13.8 5.1 14 4.6 14 4C14 2.9 13.1 2 12 2ZM10 20C10 21.1 10.9 22 12 22C13.1 22 14 21.1 14 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
+          <button 
+            :class="['duration-btn', 'audio-config-btn', { active: selectedTrack !== 'silent' || selectedAmbient !== 'none' }]"
+            @click="showAudioConfig = !showAudioConfig"
+            :aria-label="'Configure meditation audio'"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18V5l12-2v13M9 18c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zm12-2c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
           <button class="start-meditation-btn" @click="startMeditation" :aria-label="`Start a ${selectedDuration}-minute meditation session`">
             {{ t('meditation.begin') }}
           </button>
+        </div>
+        
+        <!-- Audio Configuration Panel -->
+        <div v-if="showAudioConfig && !meditationActive" class="audio-config-panel">
+          <div class="audio-config-section">
+            <div class="audio-config-title">{{ t('meditation.audio.track') }}</div>
+            <div class="audio-track-options">
+              <button
+                :class="['audio-track-btn', { active: selectedTrack === 'silent' }]"
+                @click="selectedTrack = 'silent'"
+              >
+                {{ t('meditation.audio.silent') }}
+              </button>
+              <button
+                v-for="num in [1, 2, 3, 4, 5]"
+                :key="'track' + num"
+                :class="['audio-track-btn', { active: selectedTrack === 'track' + num }]"
+                @click="selectedTrack = 'track' + num; previewTrack('track' + num)"
+              >
+                {{ t('meditation.audio.trackLabel') }} {{ num }}
+              </button>
+            </div>
+          </div>
+          
+          <div class="audio-config-section">
+            <div class="audio-config-title">{{ t('meditation.audio.ambient') }}</div>
+            <div class="audio-ambient-options">
+              <button
+                :class="['audio-ambient-btn', { active: selectedAmbient === 'none' }]"
+                @click="selectedAmbient = 'none'"
+              >
+                {{ t('meditation.audio.none') }}
+              </button>
+              <button
+                :class="['audio-ambient-btn', { active: selectedAmbient === 'rain' }]"
+                @click="selectedAmbient = 'rain'; previewAmbient('rain')"
+              >
+                {{ t('meditation.audio.rain') }}
+              </button>
+              <button
+                :class="['audio-ambient-btn', { active: selectedAmbient === 'forest' }]"
+                @click="selectedAmbient = 'forest'; previewAmbient('forest')"
+              >
+                {{ t('meditation.audio.forest') }}
+              </button>
+              <button
+                :class="['audio-ambient-btn', { active: selectedAmbient === 'ocean' }]"
+                @click="selectedAmbient = 'ocean'; previewAmbient('ocean')"
+              >
+                {{ t('meditation.audio.ocean') }}
+              </button>
+              <button
+                :class="['audio-ambient-btn', { active: selectedAmbient === 'whitenoise' }]"
+                @click="selectedAmbient = 'whitenoise'; previewAmbient('whitenoise')"
+              >
+                {{ t('meditation.audio.whitenoise') }}
+              </button>
+            </div>
+          </div>
+          
+          <div class="audio-config-section">
+            <div class="audio-config-title">{{ t('meditation.audio.volume') }}</div>
+            <div class="volume-control">
+              <input 
+                type="range" 
+                v-model.number="masterVolume" 
+                min="0" 
+                max="1" 
+                step="0.1"
+                class="volume-slider"
+                @input="updatePreviewVolume"
+              />
+              <span class="volume-label">{{ Math.round(masterVolume * 100) }}%</span>
+            </div>
+          </div>
         </div>
         
         <!-- Bell Configuration Panel -->
@@ -224,8 +308,47 @@
       <div v-if="meditationActive" class="zen-meditation-overlay">
         <component :is="ANIMATIONS[meditationAnimationIdx]" />
         
-        <!-- Bell Settings Toolbar -->
+        <!-- Audio & Bell Settings Toolbar -->
         <div class="bell-settings-toolbar">
+          <!-- Volume Controls -->
+          <div class="volume-controls">
+            <button 
+              :class="['volume-toggle-btn', { muted: isMuted }]"
+              @click="toggleMute"
+              :aria-label="isMuted ? 'Unmute audio' : 'Mute audio'"
+            >
+              <svg v-if="!isMuted" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <svg v-else width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            
+            <div class="volume-slider-container">
+              <button 
+                class="volume-slider-toggle"
+                @click="showVolumeSlider = !showVolumeSlider"
+                :aria-label="'Adjust volume'"
+              >
+                {{ Math.round(masterVolume * 100) }}%
+              </button>
+              <div v-if="showVolumeSlider" class="volume-slider-popup">
+                <input 
+                  type="range" 
+                  v-model.number="masterVolume" 
+                  min="0" 
+                  max="1" 
+                  step="0.05"
+                  class="volume-slider-vertical"
+                  @input="updateMeditationVolume"
+                  orient="vertical"
+                />
+              </div>
+            </div>
+          </div>
+          
+          <div class="toolbar-divider"></div>
           <button 
             :class="['bell-toggle-btn', { active: bellEnabled }]"
             @click="bellEnabled = !bellEnabled"
@@ -318,6 +441,18 @@ const showSoundDropdown = ref(false)
 const showConfigIntervalDropdown = ref(false)
 let lastBellTime = 0
 let bellAudioInstance: HTMLAudioElement | null = null
+
+// Audio settings
+const selectedTrack = ref('silent') // 'silent', 'track1', 'track2', 'track3', 'track4', 'track5'
+const selectedAmbient = ref('none') // 'none', 'rain', 'forest', 'ocean', 'whitenoise'
+const showAudioConfig = ref(false)
+const masterVolume = ref(0.7)
+const isMuted = ref(false)
+const showVolumeSlider = ref(false)
+let trackAudio: HTMLAudioElement | null = null
+let ambientAudio: HTMLAudioElement | null = null
+let previewTrackAudio: HTMLAudioElement | null = null
+let previewAmbientAudio: HTMLAudioElement | null = null
 
 const showCalendar = ref(false)
 const showNotes = ref(false)
@@ -456,20 +591,107 @@ async function stopMeditationAudioSmooth() {
   }
 }
 
-function playMeditationAudio() {
-  if (!audio.value) {
-    audio.value = new Audio('/meditation.mp3')
-    audio.value.loop = true
+function playTrack() {
+  if (selectedTrack.value !== 'silent') {
+    if (trackAudio) {
+      trackAudio.pause()
+      trackAudio.currentTime = 0
+    }
+    trackAudio = new Audio(`/${selectedTrack.value}.mp3`)
+    trackAudio.loop = true
+    trackAudio.volume = isMuted.value ? 0 : masterVolume.value
+    trackAudio.play().catch(err => console.error('Track playback failed:', err))
+  } else {
   }
-  audio.value.currentTime = 0
-  audio.value.volume = 1
-  audio.value.play()
+}
+
+function playAmbient() {
+  if (selectedAmbient.value !== 'none') {
+    if (ambientAudio) {
+      ambientAudio.pause()
+      ambientAudio.currentTime = 0
+    }
+    ambientAudio = new Audio(`/${selectedAmbient.value}.mp3`)
+    ambientAudio.loop = true
+    ambientAudio.volume = isMuted.value ? 0 : masterVolume.value * 0.6 // Slightly lower ambient volume
+    ambientAudio.play().catch(err => console.error('Ambient playback failed:', err))
+  } else {
+  }
+}
+
+function stopAllAudio() {
+  if (audio.value) {
+    audio.value.pause()
+    audio.value.currentTime = 0
+  }
+  if (trackAudio) {
+    trackAudio.pause()
+    trackAudio.currentTime = 0
+  }
+  if (ambientAudio) {
+    ambientAudio.pause()
+    ambientAudio.currentTime = 0
+  }
+}
+
+function toggleMute() {
+  isMuted.value = !isMuted.value
+  updateMeditationVolume()
+}
+
+function updateMeditationVolume() {
+  const vol = isMuted.value ? 0 : masterVolume.value
+  if (audio.value) audio.value.volume = vol
+  if (trackAudio) trackAudio.volume = vol
+  if (ambientAudio) ambientAudio.volume = vol * 0.6
+}
+
+function previewTrack(track: string) {
+  if (previewTrackAudio) {
+    previewTrackAudio.pause()
+    previewTrackAudio.currentTime = 0
+  }
+  previewTrackAudio = new Audio(`/${track}.mp3`)
+  previewTrackAudio.volume = masterVolume.value
+  previewTrackAudio.play().catch(err => console.log('Track preview failed:', err))
+  
+  // Stop preview after 3 seconds
+  setTimeout(() => {
+    if (previewTrackAudio) {
+      previewTrackAudio.pause()
+      previewTrackAudio.currentTime = 0
+    }
+  }, 3000)
+}
+
+function previewAmbient(ambient: string) {
+  if (previewAmbientAudio) {
+    previewAmbientAudio.pause()
+    previewAmbientAudio.currentTime = 0
+  }
+  previewAmbientAudio = new Audio(`/${ambient}.mp3`)
+  previewAmbientAudio.volume = masterVolume.value * 0.6
+  previewAmbientAudio.play().catch(err => console.log('Ambient preview failed:', err))
+  
+  // Stop preview after 3 seconds
+  setTimeout(() => {
+    if (previewAmbientAudio) {
+      previewAmbientAudio.pause()
+      previewAmbientAudio.currentTime = 0
+    }
+  }, 3000)
+}
+
+function updatePreviewVolume() {
+  if (previewTrackAudio) previewTrackAudio.volume = masterVolume.value
+  if (previewAmbientAudio) previewAmbientAudio.volume = masterVolume.value * 0.6
 }
 
 async function stopMeditation() {
   meditationActive.value = false
   if (meditationIntervalId) clearInterval(meditationIntervalId)
   await stopMeditationAudioSmooth()
+  stopAllAudio()
   playAlert()
 }
 
@@ -477,6 +699,7 @@ async function finishMeditation() {
   meditationActive.value = false
   if (meditationIntervalId) clearInterval(meditationIntervalId)
   await stopMeditationAudioSmooth()
+  stopAllAudio()
   playAlert()
   
   completedMeditationDuration.value = (selectedDuration.value * 60) - meditationSeconds.value
@@ -521,6 +744,7 @@ async function startMeditation() {
   meditationActive.value = true
   meditationSeconds.value = selectedDuration.value * 60
   lastBellTime = 0
+  showVolumeSlider.value = false
   meditationAnimationIdx.value = Math.floor(Math.random() * ANIMATIONS.length)
   meditationIntervalId = window.setInterval(() => {
     if (meditationSeconds.value > 0) {
@@ -543,7 +767,8 @@ async function startMeditation() {
     }
   }, 1000)
   playAlert()
-  playMeditationAudio()
+  playTrack()
+  playAmbient()
 }
 
 onMounted(async () => {
@@ -1061,6 +1286,121 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
   z-index: 1001;
 }
 
+.volume-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.volume-toggle-btn {
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  color: var(--text2);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.volume-toggle-btn:hover {
+  background: var(--input-bg-focus);
+  color: var(--text1);
+}
+
+.volume-toggle-btn.muted {
+  color: var(--error-text);
+}
+
+.volume-slider-container {
+  position: relative;
+}
+
+.volume-slider-toggle {
+  padding: 0.4rem 0.8rem;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  color: var(--text1);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 50px;
+  font-variant-numeric: tabular-nums;
+}
+
+.volume-slider-toggle:hover {
+  background: var(--input-bg-focus);
+  border-color: var(--input-border-focus);
+}
+
+.volume-slider-popup {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 0.75rem;
+  background: var(--blur2);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1003;
+  animation: dropdownSlide 0.15s ease;
+}
+
+.volume-slider-vertical {
+  -webkit-appearance: slider-vertical;
+  appearance: slider-vertical;
+  width: 6px;
+  height: 120px;
+  border-radius: 3px;
+  background: var(--input-bg-focus);
+  outline: none;
+  cursor: pointer;
+  writing-mode: bt-lr;
+}
+
+.volume-slider-vertical::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--button-bg);
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.volume-slider-vertical::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.volume-slider-vertical::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--button-bg);
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.volume-slider-vertical::-moz-range-thumb:hover {
+  transform: scale(1.15);
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--input-border);
+  opacity: 0.5;
+}
+
 .bell-toggle-btn {
   padding: 0.5rem;
   background: transparent;
@@ -1162,10 +1502,141 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
   }
 }
 
-.bell-config-btn {
+.bell-config-btn,
+.audio-config-btn {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.audio-config-btn.active {
+  background: var(--button-bg);
+  color: var(--text1);
+}
+
+.audio-config-panel {
+  position: absolute;
+  bottom: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1.25rem;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 12px;
+  animation: slideUp 0.2s ease;
+  min-width: 400px;
+  max-width: 500px;
+  z-index: 10000;
+}
+
+.audio-config-section {
+  margin-bottom: 1.25rem;
+}
+
+.audio-config-section:last-child {
+  margin-bottom: 0;
+}
+
+.audio-config-title {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text1);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+}
+
+.audio-track-options,
+.audio-ambient-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.audio-track-btn,
+.audio-ambient-btn {
+  padding: 0.65rem;
+  background: transparent;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  color: var(--text2);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.audio-track-btn:hover,
+.audio-ambient-btn:hover {
+  background: var(--input-bg-focus);
+  color: var(--text1);
+  border-color: var(--input-border-focus);
+  transform: translateY(-1px);
+}
+
+.audio-track-btn.active,
+.audio-ambient-btn.active {
+  background: var(--button-bg);
+  color: var(--text1);
+  border-color: var(--input-border-focus);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.volume-slider {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--input-bg-focus);
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--button-bg);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--button-bg);
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.volume-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+.volume-label {
+  min-width: 45px;
+  text-align: right;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text1);
+  font-variant-numeric: tabular-nums;
 }
 
 .bell-config-panel {
@@ -1179,6 +1650,7 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
   border-radius: 8px;
   animation: slideUp 0.2s ease;
   min-width: 300px;
+  z-index: 2000;
 }
 
 .bell-config-options {

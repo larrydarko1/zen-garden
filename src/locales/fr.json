@@ -32,7 +32,19 @@
     },
     "meditation": {
         "begin": "Commencer",
-        "stop": "Arrêter"
+        "stop": "Arrêter",
+        "audio": {
+            "track": "Piste de Méditation",
+            "trackLabel": "Piste",
+            "silent": "Silence",
+            "ambient": "Son Ambiant",
+            "none": "Aucun",
+            "rain": "Pluie",
+            "forest": "Forêt",
+            "ocean": "Océan",
+            "whitenoise": "Bruit Blanc",
+            "volume": "Volume Principal"
+        }
     },
     "philosophy": {
         "title": "Pourquoi pas d'objectifs ni de séries ?",

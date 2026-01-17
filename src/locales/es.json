@@ -32,7 +32,19 @@
     },
     "meditation": {
         "begin": "Comenzar",
-        "stop": "Detener"
+        "stop": "Detener",
+        "audio": {
+            "track": "Pista de Meditación",
+            "trackLabel": "Pista",
+            "silent": "Silencio",
+            "ambient": "Sonido Ambiental",
+            "none": "Ninguno",
+            "rain": "Lluvia",
+            "forest": "Bosque",
+            "ocean": "Océano",
+            "whitenoise": "Ruido Blanco",
+            "volume": "Volumen Principal"
+        }
     },
     "philosophy": {
         "title": "¿Por qué no hay metas ni rachas?",

@@ -32,7 +32,19 @@
     },
     "meditation": {
         "begin": "開始",
-        "stop": "停止"
+        "stop": "停止",
+        "audio": {
+            "track": "瞑想トラック",
+            "trackLabel": "トラック",
+            "silent": "無音",
+            "ambient": "環境音",
+            "none": "なし",
+            "rain": "雨",
+            "forest": "森",
+            "ocean": "海",
+            "whitenoise": "ホワイトノイズ",
+            "volume": "マスターボリューム"
+        }
     },
     "philosophy": {
         "title": "なぜ目標や連続記録がないのか？",

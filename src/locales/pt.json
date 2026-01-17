@@ -32,7 +32,19 @@
     },
     "meditation": {
         "begin": "Começar",
-        "stop": "Parar"
+        "stop": "Parar",
+        "audio": {
+            "track": "Faixa de Meditação",
+            "trackLabel": "Faixa",
+            "silent": "Silêncio",
+            "ambient": "Som Ambiente",
+            "none": "Nenhum",
+            "rain": "Chuva",
+            "forest": "Floresta",
+            "ocean": "Oceano",
+            "whitenoise": "Ruído Branco",
+            "volume": "Volume Principal"
+        }
     },
     "philosophy": {
         "title": "Por que não há metas ou sequências?",
