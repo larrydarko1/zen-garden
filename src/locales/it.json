@@ -34,6 +34,7 @@
         "begin": "Inizia",
         "stop": "Ferma",
         "audio": {
+            "title": "Impostazioni Audio",
             "track": "Traccia di Meditazione",
             "trackLabel": "Traccia",
             "silent": "Silenzio",
@@ -44,6 +45,9 @@
             "ocean": "Oceano",
             "whitenoise": "Rumore Bianco",
             "volume": "Volume Principale"
+        },
+        "bell": {
+            "settings": "Impostazioni Campana"
         }
     },
     "philosophy": {

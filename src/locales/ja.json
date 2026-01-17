@@ -34,6 +34,7 @@
         "begin": "開始",
         "stop": "停止",
         "audio": {
+            "title": "オーディオ設定",
             "track": "瞑想トラック",
             "trackLabel": "トラック",
             "silent": "無音",
@@ -43,7 +44,10 @@
             "forest": "森",
             "ocean": "海",
             "whitenoise": "ホワイトノイズ",
-            "volume": "マスターボリューム"
+            "volume": "マスター音量"
+        },
+        "bell": {
+            "settings": "ベルの設定"
         }
     },
     "philosophy": {

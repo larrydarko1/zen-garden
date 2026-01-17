@@ -459,41 +459,144 @@ onMounted(() => {
     max-height: 100vh;
     border-radius: 0;
     border: none;
+    animation: slideInFromBottom 0.3s ease-out;
+  }
+
+  @keyframes slideInFromBottom {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
   }
 
   .gratitude-header {
-    padding: 0.75rem 3rem 0.75rem 1rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+    min-height: 64px;
+  }
+
+  .gratitude-header h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .gratitude-close {
+    top: 1rem;
+    right: 1rem;
+    width: 44px;
+    height: 44px;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+    border-radius: 50%;
+    transition: background 0.2s;
+  }
+
+  .gratitude-close:hover {
+    background: var(--input-bg-focus);
+  }
+
+  .gratitude-date-selector {
+    gap: 1rem;
+  }
+
+  .gratitude-date-selector button {
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+  }
+
+  .gratitude-date-selector span {
+    min-width: 180px;
+    font-size: 0.95rem;
+  }
+
+  .gratitude-content {
+    padding: 1.25rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .gratitude-prompt p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .gratitude-textarea {
+    min-height: 200px;
+    font-size: 1rem;
+    padding: 1rem;
+    line-height: 1.6;
+    touch-action: manipulation;
+  }
+
+  .gratitude-footer {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+  }
+
+  .save-btn {
+    padding: 0.875rem 1.75rem;
+    font-size: 1rem;
+    min-height: 52px;
+    touch-action: manipulation;
+  }
+
+  .character-count {
+    font-size: 0.85rem;
+  }
+
+  .past-entries h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .entry-item {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    min-height: 64px;
+    touch-action: manipulation;
+  }
+
+  .entry-date {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .entry-preview {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .save-status {
+    padding: 0.875rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gratitude-header {
+    padding: 0.875rem 1rem;
   }
 
   .gratitude-header h2 {
     font-size: 1.2rem;
   }
 
-  .gratitude-close {
-    top: 0.5rem;
-    right: 0.5rem;
-  }
-
-  .gratitude-date-selector span {
-    min-width: 150px;
-    font-size: 0.85rem;
-  }
-
   .gratitude-content {
     padding: 1rem;
   }
 
-  .gratitude-textarea {
-    min-height: 150px;
-    font-size: 0.9rem;
-  }
-
-  .save-btn {
-    padding: 0.5rem 1.2rem;
-    font-size: 0.9rem;
-  }
-
-  .entry-preview {
+  .gratitude-date-selector span {
+    min-width: 150px;
     font-size: 0.9rem;
   }
 }

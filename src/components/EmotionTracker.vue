@@ -821,80 +821,106 @@ onMounted(() => {
     max-height: 100vh;
     border-radius: 0;
     border: none;
+    animation: slideInFromBottom 0.3s ease-out;
+  }
+
+  @keyframes slideInFromBottom {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
   }
 
   .emotion-header {
-    padding: 0.65rem 3rem 0.65rem 1rem;
+    padding: 1rem 1.25rem;
     position: sticky;
     top: 0;
     background: var(--base1);
     z-index: 10;
     border-bottom: 1px solid var(--border-subtle);
+    min-height: 72px;
   }
 
   .emotion-header h2 {
-    font-size: 1.15rem;
-    margin: 0 0 0.5rem;
+    font-size: 1.3rem;
+    margin: 0 0 0.75rem;
   }
 
   .emotion-close {
-    top: 0.5rem;
-    right: 0.5rem;
-    width: 32px;
-    height: 32px;
-    font-size: 1.5rem;
-    background: var(--button-bg);
-    border: 1px solid var(--input-border);
+    top: 1rem;
+    right: 1rem;
+    width: 44px;
+    height: 44px;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+    border-radius: 50%;
+    transition: background 0.2s;
     z-index: 11;
   }
 
+  .emotion-close:hover {
+    background: var(--input-bg-focus);
+  }
+
   .emotion-date-selector {
-    gap: 0.5rem;
+    gap: 1rem;
   }
 
   .emotion-date-selector button {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.95rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 1.2rem;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
   }
 
   .emotion-date-selector span {
-    min-width: 110px;
-    font-size: 0.8rem;
+    min-width: 180px;
+    font-size: 0.95rem;
   }
 
   .emotion-stats {
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.4rem;
-    padding: 0.6rem 1rem;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
     position: sticky;
-    top: 58px;
+    top: 72px;
     background: var(--base1);
     z-index: 9;
     border-bottom: 1px solid var(--border-subtle);
   }
 
   .stat-box {
-    padding: 0.5rem;
+    padding: 0.875rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    min-height: 72px;
   }
 
   .stat-label {
-    font-size: 0.65rem;
-    margin-bottom: 0.25rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
   }
 
   .stat-value {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 
   .emotion-tabs {
-    padding: 0.5rem 1rem 0;
-    gap: 0.25rem;
+    padding: 0.75rem 1.25rem 0;
+    gap: 0.5rem;
     position: sticky;
-    top: 114px;
+    top: 160px;
     background: var(--base1);
     z-index: 9;
     overflow-x: auto;
@@ -908,42 +934,48 @@ onMounted(() => {
   }
 
   .tab {
-    padding: 0.45rem 0.85rem;
-    font-size: 0.8rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
     white-space: nowrap;
     flex-shrink: 0;
+    min-height: 48px;
+    touch-action: manipulation;
   }
 
   .emotion-content {
-    padding: 0.75rem 1rem 4rem;
+    padding: 1rem 1.25rem 5rem;
     -webkit-overflow-scrolling: touch;
   }
 
   .emotion-list {
-    gap: 0.45rem;
+    gap: 0.75rem;
   }
 
   .emotion-item {
-    padding: 0.6rem;
-    gap: 0.65rem;
+    padding: 1rem;
+    gap: 1rem;
     flex-wrap: wrap;
+    min-height: 64px;
+    touch-action: manipulation;
   }
 
   .emotion-item input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
   }
 
   .emotion-name {
     min-width: auto;
-    font-size: 0.875rem;
+    font-size: 1rem;
     flex: 1;
   }
 
   .emotion-description {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     width: 100%;
-    padding-left: 28px;
+    padding-left: 40px;
+    line-height: 1.5;
   }
 
   .analytics-view {
@@ -951,104 +983,160 @@ onMounted(() => {
   }
 
   .loading {
-    padding: 1.5rem;
-    font-size: 0.9rem;
+    padding: 2rem;
+    font-size: 1rem;
   }
 
   .analytics-content {
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   .analytics-summary {
     grid-template-columns: 1fr;
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
 
   .analytics-card {
-    padding: 0.85rem;
+    padding: 1.25rem;
+    min-height: 80px;
   }
 
   .analytics-label {
-    font-size: 0.7rem;
-    margin-bottom: 0.45rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
   }
 
   .analytics-value {
-    font-size: 1.85rem;
+    font-size: 2rem;
   }
 
   .analytics-section {
-    padding: 0.85rem;
+    padding: 1.25rem;
   }
 
   .analytics-section h3 {
-    font-size: 0.95rem;
-    margin-bottom: 0.65rem;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
   }
 
   .days-bar {
-    height: 30px;
-    margin-bottom: 0.65rem;
+    height: 40px;
+    margin-bottom: 1rem;
   }
 
   .days-bar-segment {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
   }
 
   .days-legend {
-    gap: 0.85rem;
+    gap: 1.25rem;
     flex-wrap: wrap;
   }
 
   .legend-item {
-    gap: 0.3rem;
-    font-size: 0.75rem;
+    gap: 0.5rem;
+    font-size: 0.85rem;
   }
 
   .legend-dot {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
   }
 
   .top-emotions-list {
-    gap: 0.55rem;
+    gap: 0.75rem;
   }
 
   .top-emotion-item {
-    grid-template-columns: 22px 1fr 38px;
-    gap: 0.6rem;
-    font-size: 0.8rem;
+    grid-template-columns: 28px 1fr 48px;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--input-border);
+  }
+
+  .top-emotion-item:last-child {
+    border-bottom: none;
+  }
+
+  .emotion-rank {
+    font-size: 0.9rem;
   }
 
   .emotion-bar-container {
     grid-column: 1 / -1;
-    height: 18px;
-    margin-top: 0.25rem;
+    height: 24px;
+    margin-top: 0.5rem;
   }
 
   .emotion-count {
     grid-column: 3;
     grid-row: 1;
+    font-size: 0.9rem;
   }
 
   .trend-chart {
-    height: 90px;
-    padding: 0.6rem;
-    gap: 1px;
+    height: 120px;
+    padding: 0.75rem;
+    gap: 2px;
   }
 
   .trend-labels {
-    font-size: 0.7rem;
-    margin-top: 0.35rem;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
   }
 
   .save-status {
-    padding: 0.55rem;
-    font-size: 0.75rem;
+    padding: 0.875rem;
+    font-size: 0.9rem;
     position: sticky;
     bottom: 0;
     background: var(--base1);
     border-top: 1px solid var(--border-subtle);
+  }
+}
+
+@media (max-width: 480px) {
+  .emotion-header {
+    padding: 0.875rem 1rem;
+    min-height: 64px;
+  }
+
+  .emotion-header h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .emotion-close {
+    width: 40px;
+    height: 40px;
+  }
+
+  .emotion-date-selector span {
+    min-width: 150px;
+    font-size: 0.9rem;
+  }
+
+  .emotion-stats {
+    padding: 0.875rem 1rem;
+    gap: 0.5rem;
+  }
+
+  .stat-box {
+    padding: 0.75rem;
+    min-height: 64px;
+  }
+
+  .emotion-content {
+    padding: 0.875rem 1rem 4rem;
+  }
+
+  .analytics-card {
+    padding: 1rem;
+  }
+
+  .analytics-section {
+    padding: 1rem;
   }
 }
 

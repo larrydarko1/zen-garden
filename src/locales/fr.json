@@ -34,9 +34,10 @@
         "begin": "Commencer",
         "stop": "Arrêter",
         "audio": {
+            "title": "Paramètres Audio",
             "track": "Piste de Méditation",
             "trackLabel": "Piste",
-            "silent": "Silence",
+            "silent": "Silencieux",
             "ambient": "Son Ambiant",
             "none": "Aucun",
             "rain": "Pluie",
@@ -44,6 +45,9 @@
             "ocean": "Océan",
             "whitenoise": "Bruit Blanc",
             "volume": "Volume Principal"
+        },
+        "bell": {
+            "settings": "Paramètres de la Cloche"
         }
     },
     "philosophy": {

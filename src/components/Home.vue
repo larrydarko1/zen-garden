@@ -39,7 +39,20 @@
                 <span>Menu</span>
               </button>
               
+              <!-- Mobile backdrop -->
+              <div v-if="showDropdown" class="dropdown-backdrop" @click="showDropdown = false"></div>
+              
               <div v-if="showDropdown" class="dropdown-menu" @click.stop>
+                <!-- Mobile close handle -->
+                <div class="dropdown-handle"></div>
+                <div class="dropdown-header">
+                  <h3 class="dropdown-title">{{ t('header.menu') }}</h3>
+                  <button class="dropdown-close-btn" @click="showDropdown = false" aria-label="Close menu">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </button>
+                </div>
                 <button 
                   class="dropdown-item"
                   @click="handleMenuClick(() => showBreathing = true)"
@@ -134,8 +147,8 @@
 
       <div v-if="!meditationActive" class="zen-main">
         <div class="zen-center">
-        <span class="zen-phrase">{{ currentPhrase }}</span>
-        <span class="zen-loader">
+        <span :class="['zen-phrase', { dimmed: showAudioConfig || showBellConfig }]">{{ currentPhrase }}</span>
+        <span :class="['zen-loader', { dimmed: showAudioConfig || showBellConfig }]">
           <svg width="32" height="32" viewBox="0 0 32 32">
             <rect x="10" y="15" width="12" height="2" rx="1" fill="#F0F8FF">
               <animateTransform attributeName="transform" type="rotate" from="0 16 16" to="360 16 16" dur="2.5s" repeatCount="indefinite"/>
@@ -203,7 +216,16 @@
         </div>
         
         <!-- Audio Configuration Panel -->
+        <div v-if="showAudioConfig && !meditationActive" class="audio-config-backdrop" @click="showAudioConfig = false"></div>
         <div v-if="showAudioConfig && !meditationActive" class="audio-config-panel">
+          <div class="audio-config-header">
+            <h3 class="audio-config-panel-title">{{ t('meditation.audio.title') }}</h3>
+            <button class="config-close-btn" @click="showAudioConfig = false" aria-label="Close audio settings">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
           <div class="audio-config-section">
             <div class="audio-config-title">{{ t('meditation.audio.track') }}</div>
             <div class="audio-track-options">
@@ -278,7 +300,16 @@
         </div>
         
         <!-- Bell Configuration Panel -->
+        <div v-if="showBellConfig && !meditationActive" class="bell-config-backdrop" @click="showBellConfig = false"></div>
         <div v-if="showBellConfig && !meditationActive" class="bell-config-panel">
+          <div class="bell-config-header">
+            <h3 class="bell-config-panel-title">{{ t('meditation.bell.settings') }}</h3>
+            <button class="config-close-btn" @click="showBellConfig = false" aria-label="Close bell settings">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
           <div class="bell-config-options">
             <div class="bell-dropdown">
               <button class="bell-dropdown-btn" @click="showConfigIntervalDropdown = !showConfigIntervalDropdown">
@@ -364,6 +395,7 @@
               <button class="bell-dropdown-btn" @click="showIntervalDropdown = !showIntervalDropdown">
                 {{ bellInterval }} min <span class="dropdown-arrow">▾</span>
               </button>
+              <div v-if="showIntervalDropdown" class="dropdown-backdrop-inline" @click="showIntervalDropdown = false"></div>
               <div v-if="showIntervalDropdown" class="bell-dropdown-menu">
                 <button @click="bellInterval = 5; showIntervalDropdown = false">5 min</button>
                 <button @click="bellInterval = 10; showIntervalDropdown = false">10 min</button>
@@ -376,6 +408,7 @@
               <button class="bell-dropdown-btn" @click="showSoundDropdown = !showSoundDropdown">
                 Bell {{ bellSound }} <span class="dropdown-arrow">▾</span>
               </button>
+              <div v-if="showSoundDropdown" class="dropdown-backdrop-inline" @click="showSoundDropdown = false"></div>
               <div v-if="showSoundDropdown" class="bell-dropdown-menu">
                 <button @click="selectBellSoundFromDropdown('1')">Bell 1</button>
                 <button @click="selectBellSoundFromDropdown('2')">Bell 2</button>
@@ -864,6 +897,12 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: opacity 0.2s ease;
+}
+
+.zen-loader.dimmed {
+  opacity: 0.05;
+  pointer-events: none;
 }
 
 .zen-date {
@@ -879,6 +918,15 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
   color: var(--text1);
   text-align: center;
   cursor: default;
+  max-width: 90vw;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  transition: opacity 0.2s ease;
+}
+
+.zen-phrase.dimmed {
+  opacity: 0.15;
+  pointer-events: none;
 }
 .meditation-timer {
   margin-top: 2.5rem;
@@ -1169,6 +1217,11 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
   position: relative;
 }
 
+/* Mobile backdrop */
+.dropdown-backdrop {
+  display: none;
+}
+
 .dropdown-menu {
   position: absolute;
   top: calc(100% + 0.5rem);
@@ -1192,6 +1245,14 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Dropdown header elements - hidden on desktop */
+.dropdown-handle,
+.dropdown-header,
+.dropdown-title,
+.dropdown-close-btn {
+  display: none;
 }
 
 .dropdown-item {
@@ -1465,6 +1526,7 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
   left: 0;
   min-width: 100%;
   background: var(--blur2);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--input-border);
   border-radius: 6px;
   padding: 0.25rem;
@@ -1512,6 +1574,20 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
 .audio-config-btn.active {
   background: var(--button-bg);
   color: var(--text1);
+}
+
+.audio-config-backdrop,
+.bell-config-backdrop {
+  display: none;
+}
+
+.dropdown-backdrop-inline {
+  display: none;
+}
+
+.audio-config-header,
+.bell-config-header {
+  display: none;
 }
 
 .audio-config-panel {
@@ -1725,18 +1801,24 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
 @media (max-width: 768px) {
   .zen-header {
     flex-direction: column;
-    gap: 0rem;
+    gap: 0.5rem;
     top: 0.5rem;
+    padding: 0.75rem 1rem;
+    /* Better touch interaction */
+    user-select: none;
+    -webkit-user-select: none;
   }
 
   .zen-header-left {
     width: 100%;
     align-items: center;
+    justify-content: center;
   }
   
   .zen-date,
   .zen-greeting {
     visibility: hidden;
+    position: absolute;
   }
 
   .zen-header-right {
@@ -1745,8 +1827,10 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
 
   .menu-bar {
     width: 100%;
-    gap: 0.3rem;
-    padding: 0.5rem;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    /* Improved touch area */
+    min-height: 44px;
   }
 
   .stats-inline {
@@ -1754,7 +1838,245 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
     border-right: none;
     padding-right: 0;
     margin-right: 0;
-    gap: 0.35rem;
+    gap: 0.5rem;
+    /* Better readability on mobile */
+    font-size: 0.8rem;
+  }
+
+  .stat-compact,
+  .stat-separator {
+    font-size: 0.8rem;
+  }
+
+  .menu-item {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+    /* Ensure minimum touch target size */
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu-logout {
+    border-left: none;
+    margin-left: 0;
+    padding-left: 1rem;
+    min-height: 44px;
+  }
+  
+  /* Mobile backdrop visible */
+  .dropdown-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .dropdown-menu {
+    /* Bottom sheet style on mobile */
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    background: var(--base1);
+    border: none;
+    border-radius: 20px 20px 0 0;
+    padding: 0;
+    animation: slideUpFromBottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    max-height: 80vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Drag handle at top */
+  .dropdown-handle {
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: var(--text2);
+    opacity: 0.3;
+    border-radius: 2px;
+    margin: 0.75rem auto 0;
+  }
+
+  /* Header with title and close button */
+  .dropdown-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem 0.75rem;
+    border-bottom: 1px solid var(--input-border);
+  }
+
+  .dropdown-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text1);
+    margin: 0;
+  }
+
+  .dropdown-close-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--text2);
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.2s;
+    touch-action: manipulation;
+  }
+
+  .dropdown-close-btn:hover,
+  .dropdown-close-btn:active {
+    background: var(--input-bg-focus);
+    color: var(--text1);
+  }
+
+  @keyframes slideUpFromBottom {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  .dropdown-menu .dropdown-item {
+    padding: 1rem 1.25rem;
+    /* Larger touch targets for dropdowns */
+    min-height: 60px;
+    font-size: 1rem;
+    gap: 1rem;
+    border-radius: 0;
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--input-border);
+    background: var(--base1);
+  }
+  
+  .dropdown-menu .dropdown-item:last-child {
+    border-bottom: none;
+    margin-bottom: 2rem;
+  }
+
+  .dropdown-menu .dropdown-item:first-child {
+    margin-top: 0.5rem;
+  }
+
+  .dropdown-menu .dropdown-item:active {
+    background: var(--input-bg-focus);
+    transform: none;
+  }
+  
+  .dropdown-menu .dropdown-item svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Hide zen phrase and loader on mobile for cleaner layout */
+  .zen-phrase,
+  .zen-loader {
+    display: none;
+  }
+
+  .zen-center {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .meditation-control-bar {
+    bottom: 2rem;
+    width: calc(100% - 2rem);
+    left: 50%;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0.75rem;
+    gap: 0.5rem;
+    /* Move up since phrase is hidden */
+    margin-top: 2rem;
+  }
+
+  .duration-btn {
+    min-width: 60px;
+    min-height: 44px;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    /* Better touch feedback */
+    touch-action: manipulation;
+  }
+
+  .start-meditation-btn {
+    flex: 1 1 100%;
+    margin-left: 0;
+    margin-top: 0.5rem;
+    border-left: none;
+    border-top: 1px solid var(--input-border);
+    border-radius: 4px;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.95rem;
+    min-height: 48px;
+  }
+
+  .timer-display {
+    font-size: 3rem;
+    bottom: 9rem;
+  }
+
+  .meditation-btn {
+    bottom: 2rem;
+    font-size: 1.1rem;
+    padding: 0.85em 2.5em;
+    min-height: 52px;
+    /* Better touch interaction */
+    touch-action: manipulation;
+  }
+
+  .meditation-timer-overlay {
+    bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .zen-header {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .zen-header-left svg {
+    width: 140px;
+    height: auto;
+  }
+
+  .zen-date,
+  .zen-greeting {
+    font-size: 0.85rem;
+  }
+
+  .stats-inline {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.4rem;
+    padding: 0.5rem 0.75rem;
   }
 
   .stat-compact,
@@ -1764,60 +2086,34 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
 
   .menu-item {
     font-size: 0.85rem;
-    padding: 0.5rem 0.75rem;
-  }
-
-  .menu-logout {
-    border-left: none;
-    margin-left: 0;
-    padding-left: 0.75rem;
-  }
-  
-  .dropdown-menu {
-    right: auto;
-    left: 0;
-    padding-left: 0.5rem;
-  }
-
-  .zen-main {
-    padding: 0 1rem;
+    padding: 0.6rem 0.75rem;
+    min-height: 44px;
   }
 
   .zen-phrase {
     font-size: 1.1rem;
+    margin-top: 10rem;
     padding: 0 1rem;
-    margin-top: 8rem;
-  }
-
-  .zen-center {
-    width: 100%;
+    line-height: 1.5;
   }
 
   .meditation-control-bar {
+    width: calc(100% - 1.5rem);
     bottom: 1.5rem;
-    width: calc(100% - 2rem);
-    left: 50%;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 0.3rem;
-    gap: 0.3rem;
+    padding: 0.5rem;
   }
 
   .duration-btn {
-    min-width: 45px;
-    padding: 0.6rem 0.5rem;
+    min-width: 50px;
+    min-height: 44px;
+    padding: 0.6rem 0.75rem;
     font-size: 0.85rem;
   }
 
   .start-meditation-btn {
-    flex: 1 1 100%;
-    margin-left: 0;
-    margin-top: 0.3rem;
-    border-left: none;
-    border-top: 1px solid var(--input-border);
-    border-radius: 4px;
-    padding: 0.7rem 1rem;
-    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    min-height: 48px;
   }
 
   .timer-display {
@@ -1828,79 +2124,12 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
   .meditation-btn {
     bottom: 1.5rem;
     font-size: 1rem;
-    padding: 0.7em 2em;
+    padding: 0.75em 2em;
+    min-height: 50px;
   }
 
   .meditation-timer-overlay {
     bottom: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .zen-header {
-    padding: 0.75rem;
-  }
-
-  .zen-header-left svg {
-    width: 120px;
-  }
-
-  .zen-date,
-  .zen-greeting {
-    font-size: 0.8rem;
-  }
-
-  .stats-inline {
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 0.25rem;
-    padding: 0.35rem 0.5rem;
-  }
-
-  .stat-compact,
-  .stat-separator {
-    font-size: 0.65rem;
-  }
-
-  .menu-item {
-    font-size: 0.75rem;
-    padding: 0.5rem 0.4rem;
-  }
-
-  .zen-phrase {
-    font-size: 1rem;
-    margin-top: 10rem;
-  }
-
-  .meditation-control-bar {
-    width: calc(100% - 1.5rem);
-    bottom: 1rem;
-  }
-
-  .duration-btn {
-    min-width: 40px;
-    padding: 0.5rem 0.4rem;
-    font-size: 0.75rem;
-  }
-
-  .start-meditation-btn {
-    padding: 0.65rem 0.8rem;
-    font-size: 0.8rem;
-  }
-
-  .timer-display {
-    font-size: 2rem;
-    bottom: 7rem;
-  }
-
-  .meditation-btn {
-    bottom: 1rem;
-    font-size: 0.9rem;
-    padding: 0.6em 1.8em;
-  }
-
-  .meditation-timer-overlay {
-    bottom: 1.5rem;
   }
 }
 
@@ -1910,10 +2139,12 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
     position: fixed;
     top: 0.5rem;
     padding: 0.5rem 1rem;
+    gap: 0.5rem;
   }
 
   .zen-header-left svg {
-    width: 100px;
+    width: 120px;
+    height: auto;
   }
 
   .zen-date,
@@ -1925,68 +2156,434 @@ watch(showCalendar, (val) => { if (val && user.value) fetchMeditations() })
     flex-direction: row;
     border-right: 1px solid var(--input-bg-focus);
     border-bottom: none;
-    padding: 0.3rem 0.5rem;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
   }
 
   .zen-phrase {
-    margin-top: 4rem;
-    font-size: 0.9rem;
+    margin-top: 4.5rem;
+    font-size: 1rem;
+    line-height: 1.4;
   }
 
   .meditation-control-bar {
-    bottom: 0.75rem;
-    gap: 0.2rem;
-    padding: 0.3rem;
+    bottom: 1rem;
+    gap: 0.4rem;
+    padding: 0.5rem;
   }
 
   .duration-btn {
-    padding: 0.4rem 0.4rem;
-    font-size: 0.7rem;
-    min-width: 35px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    min-width: 50px;
+    min-height: 40px;
   }
 
   .start-meditation-btn {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
     margin-top: 0;
     flex: 0 0 auto;
+    min-height: 40px;
   }
 
   .timer-display {
-    font-size: 1.8rem;
-    bottom: 3.5rem;
+    font-size: 2rem;
+    bottom: 4rem;
   }
 
   .meditation-btn {
-    bottom: 0.75rem;
-    font-size: 0.85rem;
-    padding: 0.5em 1.5em;
+    bottom: 1rem;
+    font-size: 0.95rem;
+    padding: 0.6em 2em;
+    min-height: 44px;
   }
 }
 
 /* Very small screens */
 @media (max-width: 360px) {
   .zen-header-left svg {
-    width: 100px;
+    width: 120px;
+    height: auto;
   }
 
   .stats-inline {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
 
   .menu-item {
-    font-size: 0.7rem;
-    padding: 0.45rem 0.3rem;
+    font-size: 0.8rem;
+    padding: 0.55rem 0.5rem;
+    min-height: 44px;
+  }
+
+  .zen-phrase {
+    font-size: 1rem;
+    padding: 0 0.75rem;
   }
 
   .duration-btn {
-    min-width: 35px;
-    padding: 0.45rem 0.3rem;
-    font-size: 0.7rem;
+    min-width: 48px;
+    min-height: 44px;
+    padding: 0.55rem 0.6rem;
+    font-size: 0.8rem;
   }
 
   .start-meditation-btn {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
+    padding: 0.7rem 1rem;
+    min-height: 48px;
+  }
+  
+  .meditation-btn {
+    font-size: 0.95rem;
+    padding: 0.7em 2em;
+    min-height: 48px;
+  }
+}
+
+/* Mobile optimizations for audio/bell config panels */
+@media (max-width: 768px) {
+  .audio-config-backdrop,
+  .bell-config-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 9998;
+    animation: fadeIn 0.2s ease;
+  }
+
+  .dropdown-backdrop-inline {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: transparent;
+    z-index: 1001;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .audio-config-panel {
+    position: fixed;
+    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    transform: none;
+    border-radius: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 9999;
+    padding: 0.75rem;
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    box-sizing: border-box;
+    animation: slideUpMobile 0.3s ease;
+  }
+
+  @keyframes slideUpMobile {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .audio-config-header,
+  .bell-config-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--base1);
+    border-bottom: 1px solid var(--input-border);
+    z-index: 10001;
+    min-height: 52px;
+    box-sizing: border-box;
+  }
+
+  .audio-config-panel-title,
+  .bell-config-panel-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text1);
+    margin: 0;
+  }
+
+  .config-close-btn {
+    padding: 0.5rem;
+    background: transparent;
+    border: none;
+    color: var(--text2);
+    cursor: pointer;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  .config-close-btn:hover,
+  .config-close-btn:active {
+    background: var(--input-bg);
+    color: var(--text1);
+  }
+  
+  .audio-track-options,
+  .audio-ambient-options {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .audio-track-btn,
+  .audio-ambient-btn {
+    padding: 0.65rem 0.5rem;
+    font-size: 0.8rem;
+    min-height: 44px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .audio-config-section {
+    margin-bottom: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .audio-config-title {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .bell-config-panel {
+    position: fixed;
+    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    transform: none;
+    border-radius: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 9999;
+    padding: 0.75rem;
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    box-sizing: border-box;
+    animation: slideUpMobile 0.3s ease;
+  }
+  
+  .bell-sound-options {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .bell-sound-btn {
+    padding: 0.65rem 0.5rem;
+    font-size: 0.8rem;
+    min-height: 44px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .bell-config-options {
+    gap: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .bell-dropdown {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .bell-dropdown-btn {
+    width: 100%;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+
+  .bell-dropdown-menu {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    min-width: 100vw;
+    border-radius: 16px 16px 0 0;
+    padding: 1rem 0.75rem;
+    padding-bottom: 1.5rem;
+    max-height: 50vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1003;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .bell-dropdown-menu button {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    min-height: 48px;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+  }
+
+  .bell-dropdown-menu button:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Make bell settings toolbar more mobile-friendly */
+  .bell-settings-toolbar {
+    top: 0.75rem;
+    left: 0.5rem;
+    right: 0.5rem;
+    width: calc(100% - 1rem);
+    max-width: calc(100% - 1rem);
+    padding: 0.5rem;
+    transform: none;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+
+  .volume-toggle-btn,
+  .bell-toggle-btn {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0.5rem;
+    box-sizing: border-box;
+  }
+
+  .volume-slider-toggle,
+  .bell-dropdown-btn {
+    min-height: 40px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    box-sizing: border-box;
+  }
+
+  .bell-settings {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+  }
+
+  .volume-slider-popup {
+    transform: translateX(-50%);
+    padding: 0.75rem 0.5rem;
+  }
+
+  .volume-slider-vertical {
+    height: 100px;
+  }
+  
+  .volume-control {
+    gap: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .volume-label {
+    font-size: 0.8rem;
+    min-width: 40px;
+  }
+  
+  .volume-slider {
+    height: 6px;
+  }
+  
+  .volume-slider::-webkit-slider-thumb {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .volume-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .audio-track-options,
+  .audio-ambient-options {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .audio-track-btn,
+  .audio-ambient-btn {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .bell-sound-options {
+    grid-template-columns: 1fr;
+  }
+
+  .audio-config-panel,
+  .bell-config-panel {
+    padding: 0.5rem;
+    padding-top: 4rem;
+  }
+
+  .bell-settings-toolbar {
+    padding: 0.4rem;
+    gap: 0.4rem;
+    left: 0.25rem;
+    right: 0.25rem;
+    width: calc(100% - 0.5rem);
+    max-width: calc(100% - 0.5rem);
+  }
+
+  .volume-toggle-btn,
+  .bell-toggle-btn {
+    min-width: 36px;
+    min-height: 36px;
+    padding: 0.4rem;
+  }
+
+  .volume-slider-toggle,
+  .bell-dropdown-btn {
+    min-height: 36px;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
   }
 }
 

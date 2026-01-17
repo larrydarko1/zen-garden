@@ -316,18 +316,117 @@ function handleAccountDeletion() {
 	height: 16px;
 }
 
-@media (max-width: 600px) {
+/* Mobile optimizations */
+@media (max-width: 768px) {
+	.settings-overlay {
+		align-items: stretch;
+		padding: 0;
+	}
+
 	.settings-popup {
-		width: 90vw;
-		max-width: unset;
+		width: 100vw;
+		max-width: 100vw;
+		height: 100vh;
+		max-height: 100vh;
+		border-radius: 0;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.settings-header {
+		padding: 1rem 1.25rem;
+		border-bottom: 1px solid var(--input-border);
+		min-height: 56px;
+		display: flex;
+		align-items: center;
+	}
+
+	.settings-title {
+		font-size: 1.25rem;
+	}
+
+	.close-btn {
+		right: 1rem;
+		width: 44px;
+		height: 44px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		touch-action: manipulation;
+	}
+
+	.close-btn svg {
+		width: 20px;
+		height: 20px;
+	}
+
+	.settings-content {
+		padding: 1.5rem 1.25rem;
+		overflow-y: auto;
+		flex: 1;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.settings-section {
+		margin-bottom: 2rem;
+	}
+
+	.section-label {
+		font-size: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	.theme-options {
+		gap: 0.75rem;
+	}
+
+	.theme-option {
+		padding: 1rem;
+		min-height: 72px;
+		touch-action: manipulation;
+	}
+
+	.theme-preview {
+		width: 36px;
+		height: 36px;
+	}
+
+	.theme-name {
+		font-size: 0.85rem;
+		margin-top: 0.5rem;
 	}
 
 	.language-options {
 		grid-template-columns: repeat(2, 1fr);
+		gap: 0.75rem;
 	}
 
-	.theme-options {
-		gap: 0.35rem;
+	.language-option {
+		padding: 0.875rem 0.75rem;
+		font-size: 0.85rem;
+		min-height: 52px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		touch-action: manipulation;
+	}
+
+	.settings-divider {
+		margin: 1.5rem 0;
+	}
+}
+
+@media (max-width: 480px) {
+	.settings-header {
+		padding: 0.875rem 1rem;
+	}
+
+	.settings-content {
+		padding: 1.25rem 1rem;
+	}
+
+	.language-options {
+		grid-template-columns: 1fr;
 	}
 }
 </style>

@@ -34,16 +34,20 @@
         "begin": "Beginnen",
         "stop": "Stoppen",
         "audio": {
+            "title": "Audio-Einstellungen",
             "track": "Meditationsspur",
             "trackLabel": "Spur",
-            "silent": "Stille",
+            "silent": "Still",
             "ambient": "Umgebungsklang",
-            "none": "Keine",
+            "none": "Keiner",
             "rain": "Regen",
             "forest": "Wald",
             "ocean": "Ozean",
             "whitenoise": "Weißes Rauschen",
             "volume": "Hauptlautstärke"
+        },
+        "bell": {
+            "settings": "Glocken-Einstellungen"
         }
     },
     "philosophy": {

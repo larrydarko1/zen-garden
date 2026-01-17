@@ -34,9 +34,10 @@
         "begin": "Começar",
         "stop": "Parar",
         "audio": {
+            "title": "Configurações de Áudio",
             "track": "Faixa de Meditação",
             "trackLabel": "Faixa",
-            "silent": "Silêncio",
+            "silent": "Silencioso",
             "ambient": "Som Ambiente",
             "none": "Nenhum",
             "rain": "Chuva",
@@ -44,6 +45,9 @@
             "ocean": "Oceano",
             "whitenoise": "Ruído Branco",
             "volume": "Volume Principal"
+        },
+        "bell": {
+            "settings": "Configurações de Sino"
         }
     },
     "philosophy": {

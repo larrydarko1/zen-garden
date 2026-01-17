@@ -34,6 +34,7 @@
         "begin": "Begin",
         "stop": "Stop",
         "audio": {
+            "title": "Audio Settings",
             "track": "Meditation Track",
             "trackLabel": "Track",
             "silent": "Silent",
@@ -44,6 +45,9 @@
             "ocean": "Ocean",
             "whitenoise": "White Noise",
             "volume": "Master Volume"
+        },
+        "bell": {
+            "settings": "Bell Settings"
         }
     },
     "philosophy": {

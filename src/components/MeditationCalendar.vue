@@ -385,13 +385,138 @@ function getDaysInMonth(year: number, month: number) {
     margin: 0;
     width: 100%;
     height: 100%;
-    padding: 1rem;
+    padding: 1.25rem;
+    animation: slideInFromBottom 0.3s ease-out;
+  }
+
+  @keyframes slideInFromBottom {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
   }
 
   .calendar-modal-focused {
     max-width: 100%;
     max-height: 100vh;
     border-radius: 0;
+  }
+
+  .calendar-header {
+    padding: 0.75rem 0.5rem;
+    margin-bottom: 1.25rem;
+    min-height: 56px;
+  }
+
+  .calendar-title {
+    font-size: 1rem;
+    flex: 1;
+    text-align: center;
+  }
+
+  .calendar-arrow,
+  .calendar-close {
+    font-size: 1.4rem;
+    padding: 0.5rem;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+  }
+
+  .calendar-content {
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .calendar-month-focused {
+    height: auto;
+    min-height: 360px;
+    width: 100%;
+    padding: 1.25rem;
+  }
+
+  .calendar-month-title {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .calendar-weekdays {
+    font-size: 0.8rem;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .calendar-weekdays span {
+    width: 2.75em;
+    height: 2.75em;
+  }
+
+  .calendar-days {
+    gap: 0.5rem;
+  }
+
+  .calendar-day {
+    width: 2.75em;
+    height: 2.75em;
+    font-size: 0.9rem;
+    touch-action: manipulation;
+  }
+
+  .meditation-details {
+    height: auto;
+    min-height: 200px;
+    max-height: 350px;
+    min-width: 100%;
+    padding: 1.25rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .meditation-details h3 {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .meditation-entry {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--input-border);
+  }
+
+  .meditation-entry:last-child {
+    border-bottom: none;
+  }
+
+  .meditation-info {
+    margin-bottom: 0.75rem;
+  }
+
+  .meditation-duration {
+    font-size: 0.9rem;
+  }
+
+  .meditation-notes {
+    font-size: 0.85rem;
+    padding: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .meditation-notes strong {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-modal {
+    padding: 1rem;
   }
 
   .calendar-header {
@@ -405,37 +530,28 @@ function getDaysInMonth(year: number, month: number) {
 
   .calendar-arrow,
   .calendar-close {
-    font-size: 1.2rem;
-    padding: 0.5rem;
-  }
-
-  .calendar-content {
-    flex-direction: column;
-    gap: 1rem;
-    overflow-y: auto;
+    font-size: 1.3rem;
+    width: 40px;
+    height: 40px;
   }
 
   .calendar-month-focused {
-    height: auto;
-    min-height: 340px;
-    width: 100%;
     padding: 1rem;
+    min-height: 320px;
   }
 
   .calendar-month-title {
     font-size: 0.8rem;
-    margin-bottom: 0.75rem;
   }
 
   .calendar-weekdays {
     font-size: 0.75rem;
     gap: 0.35rem;
-    margin-bottom: 0.75rem;
   }
 
   .calendar-weekdays span {
-    width: 2.5em;
-    height: 2.5em;
+    width: 2.4em;
+    height: 2.4em;
   }
 
   .calendar-days {
@@ -443,150 +559,78 @@ function getDaysInMonth(year: number, month: number) {
   }
 
   .calendar-day {
-    width: 2.5em;
-    height: 2.5em;
+    width: 2.4em;
+    height: 2.4em;
     font-size: 0.85rem;
   }
 
   .meditation-details {
-    height: auto;
-    min-height: 200px;
-    max-height: 300px;
-    min-width: 100%;
     padding: 1rem;
+    max-height: 280px;
   }
 
   .meditation-details h3 {
-    font-size: 0.8rem;
-    margin-bottom: 1rem;
-  }
-
-  .meditation-entry {
-    padding: 0.75rem 0;
-  }
-
-  .meditation-info {
-    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
   }
 
   .meditation-duration {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
 
   .meditation-notes {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     padding: 0.75rem;
   }
 
   .meditation-notes strong {
-    font-size: 0.75rem;
-    margin-bottom: 0.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .calendar-modal {
-    padding: 0.75rem;
-  }
-
-  .calendar-header {
-    padding: 0.4rem;
-  }
-
-  .calendar-title {
     font-size: 0.8rem;
-  }
-
-  .calendar-arrow,
-  .calendar-close {
-    font-size: 1.1rem;
-    padding: 0.4rem;
-  }
-
-  .calendar-month-focused {
-    padding: 0.75rem;
-    min-height: 300px;
-  }
-
-  .calendar-month-title {
-    font-size: 0.75rem;
-  }
-
-  .calendar-weekdays {
-    font-size: 0.7rem;
-    gap: 0.25rem;
-  }
-
-  .calendar-weekdays span {
-    width: 2.2em;
-    height: 2.2em;
-  }
-
-  .calendar-days {
-    gap: 0.25rem;
-  }
-
-  .calendar-day {
-    width: 2.2em;
-    height: 2.2em;
-    font-size: 0.8rem;
-  }
-
-  .meditation-details {
-    padding: 0.75rem;
-    max-height: 250px;
-  }
-
-  .meditation-details h3 {
-    font-size: 0.75rem;
-  }
-
-  .meditation-duration {
-    font-size: 0.75rem;
-  }
-
-  .meditation-notes {
-    font-size: 0.7rem;
-    padding: 0.6rem;
-  }
-
-  .meditation-notes strong {
-    font-size: 0.7rem;
   }
 }
 
 /* Very small screens */
 @media (max-width: 360px) {
   .calendar-modal {
-    padding: 0.5rem;
+    padding: 0.75rem;
   }
 
   .calendar-weekdays span {
-    width: 2em;
-    height: 2em;
+    width: 2.2em;
+    height: 2.2em;
   }
 
   .calendar-day {
-    width: 2em;
-    height: 2em;
-    font-size: 0.75rem;
+    width: 2.2em;
+    height: 2.2em;
+    font-size: 0.8rem;
   }
 }
 
 /* Landscape orientation on mobile */
 @media (max-height: 500px) and (max-width: 900px) {
   .calendar-modal {
-    padding: 0.5rem;
+    padding: 0.75rem;
   }
 
   .calendar-content {
     flex-direction: row;
+    gap: 1rem;
   }
 
   .calendar-month-focused {
     min-height: auto;
     height: auto;
     flex: 1;
+    padding: 1rem;
+  }
+
+  .calendar-weekdays span {
+    width: 2.2em;
+    height: 2.2em;
+  }
+
+  .calendar-day {
+    width: 2.2em;
+    height: 2.2em;
   }
 
   .meditation-details {

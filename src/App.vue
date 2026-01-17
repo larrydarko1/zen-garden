@@ -116,8 +116,26 @@ async function setLanguage(language: string) {
 
 @media (max-width: 420px) {
 	.settings-btn {
-		width: 48px;
-		height: 48px;
+		width: 52px;
+		height: 52px;
+		bottom: 1.25rem;
+		right: 1.25rem;
+		/* Improved mobile interaction */
+		-webkit-tap-highlight-color: transparent;
+		touch-action: manipulation;
+	}
+	
+	.settings-btn svg {
+		width: 22px;
+		height: 22px;
+	}
+}
+
+/* Tablet and medium screens */
+@media (min-width: 421px) and (max-width: 768px) {
+	.settings-btn {
+		width: 54px;
+		height: 54px;
 		bottom: 1.5rem;
 		right: 1.5rem;
 	}

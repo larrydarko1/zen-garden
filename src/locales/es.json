@@ -34,6 +34,7 @@
         "begin": "Comenzar",
         "stop": "Detener",
         "audio": {
+            "title": "Configuración de Audio",
             "track": "Pista de Meditación",
             "trackLabel": "Pista",
             "silent": "Silencio",
@@ -43,7 +44,10 @@
             "forest": "Bosque",
             "ocean": "Océano",
             "whitenoise": "Ruido Blanco",
-            "volume": "Volumen Principal"
+            "volume": "Volumen Maestro"
+        },
+        "bell": {
+            "settings": "Configuración de Campana"
         }
     },
     "philosophy": {
