@@ -26,7 +26,6 @@
         "eightfoldPath": "Nobile Ottuplice",
         "calendar": "Calendario",
         "gratitude": "Gratitudine",
-        "insights": "Approfondimenti",
         "philosophy": "Filosofia",
         "logout": "Esci"
     },
@@ -549,34 +548,6 @@
         "saving": "Salvataggio...",
         "saved": "Salvato!",
         "recentEntries": "Voci Recenti"
-    },
-    "insights": {
-        "title": "Approfondimenti su Meditazione ed Emozioni",
-        "subtitle": "Scopri come la tua pratica influisce sul tuo benessere",
-        "loading": "Caricamento approfondimenti",
-        "correlationScore": "Punteggio di Impatto della Meditazione",
-        "strongCorrelation": "Forte impatto positivo",
-        "moderateCorrelation": "Impatto positivo moderato",
-        "weakCorrelation": "Costruendo slancio",
-        "meditationDays": "Giorni con Meditazione",
-        "avgMeditationTime": "Tempo Med. di Meditazione",
-        "emotionTrackedDays": "Giorni Tracciati",
-        "avgPNRatio": "Rapporto P/N Med.",
-        "withVsWithout": "Confronto dell'Impatto",
-        "daysWithMeditation": "Giorni con Meditazione",
-        "daysWithoutMeditation": "Giorni senza Meditazione",
-        "avgPositive": "Med. Positivo",
-        "avgNegative": "Med. Negativo",
-        "pnRatio": "Rapporto P/N",
-        "durationImpact": "Impatto della Durata sulle Emozioni",
-        "days": "giorni",
-        "bestDays": "I Tuoi Giorni Migliori",
-        "insight": "Intuizione Chiave",
-        "messages": {
-            "high": "Eccellente! La tua pratica di meditazione mostra un forte impatto positivo sul tuo benessere emotivo. Continua così!",
-            "medium": "Buon progresso! C'è una correlazione positiva moderata tra la tua meditazione e le emozioni. Considera di aumentare la frequenza o la durata.",
-            "low": "Il tuo viaggio di meditazione è appena iniziato. Con una pratica costante, potresti vedere maggiori benefici emotivi nel tempo."
-        }
     },
     "phrases": [
         "Inspira pace, espira tensione.",

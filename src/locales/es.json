@@ -26,7 +26,6 @@
         "eightfoldPath": "Óctuple Sendero",
         "calendar": "Calendario",
         "gratitude": "Gratitud",
-        "insights": "Perspectivas",
         "philosophy": "Filosofía",
         "logout": "Cerrar Sesión"
     },
@@ -549,34 +548,6 @@
         "saving": "Guardando...",
         "saved": "¡Guardado!",
         "recentEntries": "Entradas Recientes"
-    },
-    "insights": {
-        "title": "Perspectivas de Meditación y Emociones",
-        "subtitle": "Descubre cómo tu práctica afecta tu bienestar",
-        "loading": "Cargando perspectivas",
-        "correlationScore": "Puntuación de Impacto de Meditación",
-        "strongCorrelation": "Fuerte impacto positivo",
-        "moderateCorrelation": "Impacto positivo moderado",
-        "weakCorrelation": "Construyendo impulso",
-        "meditationDays": "Días con Meditación",
-        "avgMeditationTime": "Tiempo Prom. de Meditación",
-        "emotionTrackedDays": "Días Registrados",
-        "avgPNRatio": "Ratio P/N Prom.",
-        "withVsWithout": "Comparación de Impacto",
-        "daysWithMeditation": "Días con Meditación",
-        "daysWithoutMeditation": "Días sin Meditación",
-        "avgPositive": "Prom. Positivo",
-        "avgNegative": "Prom. Negativo",
-        "pnRatio": "Ratio P/N",
-        "durationImpact": "Impacto de la Duración en las Emociones",
-        "days": "días",
-        "bestDays": "Tus Mejores Días",
-        "insight": "Perspectiva Clave",
-        "messages": {
-            "high": "¡Excelente! Tu práctica de meditación muestra un fuerte impacto positivo en tu bienestar emocional. ¡Sigue así!",
-            "medium": "¡Buen progreso! Hay una correlación positiva moderada entre tu meditación y emociones. Considera aumentar la frecuencia o duración.",
-            "low": "Tu viaje de meditación apenas comienza. Con práctica constante, puedes ver mayores beneficios emocionales con el tiempo."
-        }
     },
     "phrases": [
         "Inspira paz, expira tensión.",

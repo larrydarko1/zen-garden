@@ -26,7 +26,6 @@
         "eightfoldPath": "Caminho Óctuplo",
         "calendar": "Calendário",
         "gratitude": "Gratidão",
-        "insights": "Insights",
         "philosophy": "Filosofia",
         "logout": "Sair"
     },
@@ -549,34 +548,6 @@
         "saving": "Salvando...",
         "saved": "Salvo!",
         "recentEntries": "Entradas Recentes"
-    },
-    "insights": {
-        "title": "Insights de Meditação e Emoções",
-        "subtitle": "Descubra como sua prática afeta seu bem-estar",
-        "loading": "Carregando insights",
-        "correlationScore": "Pontuação de Impacto da Meditação",
-        "strongCorrelation": "Forte impacto positivo",
-        "moderateCorrelation": "Impacto positivo moderado",
-        "weakCorrelation": "Construindo momento",
-        "meditationDays": "Dias com Meditação",
-        "avgMeditationTime": "Tempo Méd. de Meditação",
-        "emotionTrackedDays": "Dias Rastreados",
-        "avgPNRatio": "Proporção P/N Méd.",
-        "withVsWithout": "Comparação de Impacto",
-        "daysWithMeditation": "Dias com Meditação",
-        "daysWithoutMeditation": "Dias sem Meditação",
-        "avgPositive": "Méd. Positivo",
-        "avgNegative": "Méd. Negativo",
-        "pnRatio": "Proporção P/N",
-        "durationImpact": "Impacto da Duração nas Emoções",
-        "days": "dias",
-        "bestDays": "Seus Melhores Dias",
-        "insight": "Insight Chave",
-        "messages": {
-            "high": "Excelente! Sua prática de meditação mostra um forte impacto positivo no seu bem-estar emocional. Continue assim!",
-            "medium": "Bom progresso! Há uma correlação positiva moderada entre sua meditação e emoções. Considere aumentar a frequência ou duração.",
-            "low": "Sua jornada de meditação está apenas começando. Com prática consistente, você pode ver maiores benefícios emocionais ao longo do tempo."
-        }
     },
     "phrases": [
         "Inspire paz, expire tensão.",

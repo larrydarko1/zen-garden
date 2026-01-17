@@ -26,7 +26,6 @@
         "eightfoldPath": "Eightfold Path",
         "calendar": "Calendar",
         "gratitude": "Gratitude",
-        "insights": "Insights",
         "philosophy": "Philosophy",
         "logout": "Logout"
     },
@@ -549,34 +548,6 @@
         "saving": "Saving...",
         "saved": "Saved!",
         "recentEntries": "Recent Entries"
-    },
-    "insights": {
-        "title": "Meditation & Emotion Insights",
-        "subtitle": "Discover how your practice affects your well-being",
-        "loading": "Loading insights",
-        "correlationScore": "Meditation Impact Score",
-        "strongCorrelation": "Strong positive impact",
-        "moderateCorrelation": "Moderate positive impact",
-        "weakCorrelation": "Building momentum",
-        "meditationDays": "Days with Meditation",
-        "avgMeditationTime": "Avg. Meditation Time",
-        "emotionTrackedDays": "Days Tracked",
-        "avgPNRatio": "Avg. P/N Ratio",
-        "withVsWithout": "Impact Comparison",
-        "daysWithMeditation": "Days with Meditation",
-        "daysWithoutMeditation": "Days without Meditation",
-        "avgPositive": "Avg. Positive",
-        "avgNegative": "Avg. Negative",
-        "pnRatio": "P/N Ratio",
-        "durationImpact": "Duration Impact on Emotions",
-        "days": "days",
-        "bestDays": "Your Best Days",
-        "insight": "Key Insight",
-        "messages": {
-            "high": "Excellent! Your meditation practice shows a strong positive impact on your emotional well-being. Keep up the great work!",
-            "medium": "Good progress! There's a moderate positive correlation between your meditation and emotions. Consider increasing frequency or duration.",
-            "low": "Your meditation journey is just beginning. With consistent practice, you may see greater emotional benefits over time."
-        }
     },
     "phrases": [
         "Breathe in peace, breathe out tension.",

@@ -18,7 +18,6 @@ import { createSettingsRoutes } from './routes/settings';
 import { createAccountRoutes } from './routes/account';
 import { createEightfoldPathRoutes } from './routes/eightfold-path';
 import { createGratitudeRoutes } from './routes/gratitude';
-import { createInsightsRoutes } from './routes/insights';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -44,7 +43,6 @@ MongoClient.connect(MONGO_URI)
         app.use('/api/emotions', createEmotionRoutes(db));
         app.use('/api/eightfold-path', createEightfoldPathRoutes(db));
         app.use('/api/gratitude', createGratitudeRoutes(db));
-        app.use('/api/insights', createInsightsRoutes(db));
         app.use('/api', createSettingsRoutes(monks));
         app.use('/api/user', createAccountRoutes(db, monks));
 

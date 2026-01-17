@@ -26,7 +26,6 @@
         "eightfoldPath": "八正道",
         "calendar": "カレンダー",
         "gratitude": "感謝",
-        "insights": "洞察",
         "philosophy": "哲学",
         "logout": "ログアウト"
     },
@@ -549,34 +548,6 @@
         "saving": "保存中...",
         "saved": "保存されました！",
         "recentEntries": "最近のエントリ"
-    },
-    "insights": {
-        "title": "瞑想と感情の洞察",
-        "subtitle": "あなたの練習が幸福にどのように影響するかを発見しましょう",
-        "loading": "洞察を読み込んでいます",
-        "correlationScore": "瞑想インパクトスコア",
-        "strongCorrelation": "強いポジティブな影響",
-        "moderateCorrelation": "中程度のポジティブな影響",
-        "weakCorrelation": "勢いをつけています",
-        "meditationDays": "瞑想をした日数",
-        "avgMeditationTime": "平均瞑想時間",
-        "emotionTrackedDays": "追跡した日数",
-        "avgPNRatio": "平均P/N比率",
-        "withVsWithout": "影響の比較",
-        "daysWithMeditation": "瞑想をした日",
-        "daysWithoutMeditation": "瞑想をしなかった日",
-        "avgPositive": "平均ポジティブ",
-        "avgNegative": "平均ネガティブ",
-        "pnRatio": "P/N比率",
-        "durationImpact": "持続時間が感情に与える影響",
-        "days": "日",
-        "bestDays": "あなたのベストデー",
-        "insight": "重要な洞察",
-        "messages": {
-            "high": "素晴らしい！あなたの瞑想の実践は、感情的な幸福に強い肯定的な影響を示しています。この調子で続けてください！",
-            "medium": "良い進歩です！あなたの瞑想と感情の間には中程度の正の相関があります。頻度や時間を増やすことを検討してください。",
-            "low": "あなたの瞑想の旅は始まったばかりです。一貫した実践により、時間とともにより大きな感情的利益が得られるかもしれません。"
-        }
     },
     "phrases": [
         "平和を吸い込み、緊張を吐き出す。",

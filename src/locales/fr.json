@@ -26,7 +26,6 @@
         "eightfoldPath": "Noble Sentier",
         "calendar": "Calendrier",
         "gratitude": "Gratitude",
-        "insights": "Aperçus",
         "philosophy": "Philosophie",
         "logout": "Déconnexion"
     },
@@ -549,34 +548,6 @@
         "saving": "Enregistrement...",
         "saved": "Enregistré!",
         "recentEntries": "Entrées Récentes"
-    },
-    "insights": {
-        "title": "Aperçus sur la Méditation et les Émotions",
-        "subtitle": "Découvrez comment votre pratique affecte votre bien-être",
-        "loading": "Chargement des aperçus",
-        "correlationScore": "Score d'Impact de la Méditation",
-        "strongCorrelation": "Fort impact positif",
-        "moderateCorrelation": "Impact positif modéré",
-        "weakCorrelation": "Construction d'élan",
-        "meditationDays": "Jours avec Méditation",
-        "avgMeditationTime": "Temps Moy. de Méditation",
-        "emotionTrackedDays": "Jours Suivis",
-        "avgPNRatio": "Ratio P/N Moy.",
-        "withVsWithout": "Comparaison d'Impact",
-        "daysWithMeditation": "Jours avec Méditation",
-        "daysWithoutMeditation": "Jours sans Méditation",
-        "avgPositive": "Moy. Positive",
-        "avgNegative": "Moy. Négative",
-        "pnRatio": "Ratio P/N",
-        "durationImpact": "Impact de la Durée sur les Émotions",
-        "days": "jours",
-        "bestDays": "Vos Meilleurs Jours",
-        "insight": "Aperçu Clé",
-        "messages": {
-            "high": "Excellent ! Votre pratique de la méditation montre un impact positif fort sur votre bien-être émotionnel. Continuez comme ça !",
-            "medium": "Bon progrès ! Il y a une corrélation positive modérée entre votre méditation et vos émotions. Envisagez d'augmenter la fréquence ou la durée.",
-            "low": "Votre voyage de méditation ne fait que commencer. Avec une pratique régulière, vous pourriez voir de plus grands bienfaits émotionnels au fil du temps."
-        }
     },
     "phrases": [
         "Inspire la paix, expire la tension.",

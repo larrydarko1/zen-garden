@@ -109,14 +109,6 @@
                 </button>
                 <button 
                   class="dropdown-item"
-                  @click="handleMenuClick(() => showInsights = true)"
-                  aria-label="View insights"
-                >
-                 <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="stats" class="icon glyph"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M20,2H4A2,2,0,0,0,2,4V20a2,2,0,0,0,2,2H20a2,2,0,0,0,2-2V4A2,2,0,0,0,20,2ZM9,17a1,1,0,0,1-2,0V15a1,1,0,0,1,2,0Zm4,0a1,1,0,0,1-2,0V11a1,1,0,0,1,2,0Zm4,0a1,1,0,0,1-2,0V7a1,1,0,0,1,2,0Z"></path></g></svg>
-                  {{ t('header.insights') }}
-                </button>
-                <button 
-                  class="dropdown-item"
                   @click="handleMenuClick(() => showPhilosophy = true)"
                   aria-label="About our philosophy"
                 >
@@ -141,7 +133,6 @@
       <BreathingExercise v-if="showBreathing" @close="showBreathing = false" />
       <EmotionTracker v-if="showEmotions" @close="showEmotions = false" />
       <GratitudeJournal v-if="showGratitude" @close="showGratitude = false" />
-      <InsightsCorrelation v-if="showInsights" @close="showInsights = false" />
       <ZenPhilosophy v-if="showPhilosophy" @close="showPhilosophy = false" />
       <EightfoldPath v-if="showEightfoldPath" @close="showEightfoldPath = false" />
 
@@ -435,7 +426,6 @@ import BreathingExercise from './BreathingExercise.vue'
 import EmotionTracker from './EmotionTracker.vue'
 import EightfoldPath from './EightfoldPath.vue'
 import GratitudeJournal from './GratitudeJournal.vue'
-import InsightsCorrelation from './InsightsCorrelation.vue'
 import ZenPhilosophy from './ZenPhilosophy.vue'
 import { ref, onMounted, onUnmounted, watch, computed } from 'vue'
 import ZenWindAnimation from './ZenWindAnimation.vue'
@@ -493,7 +483,6 @@ const showBreathing = ref(false)
 const showEmotions = ref(false)
 const showEightfoldPath = ref(false)
 const showGratitude = ref(false)
-const showInsights = ref(false)
 const showPhilosophy = ref(false)
 const showDropdown = ref(false)
 const dropdownContainer = ref<HTMLElement | null>(null)
